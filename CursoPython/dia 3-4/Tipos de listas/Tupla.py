@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Personal = ('Manuel', 'Lopez',17)
 print('\n',Personal)
 print('-----------------------------------------------')
@@ -11,3 +12,18 @@ print('Lopez se encuentra en', Personal.index('Lopez'))
 print('-----------------------------------------------')
 print('Cantidad de valores en la tupla:', len(Personal))
 print('-----------------------------------------------')
+=======
+Personal = ('Manuel', 'Lopez',17)
+print('\n',Personal)
+print('-----------------------------------------------')
+print('Nombre:', Personal[0])
+print('-----------------------------------------------')
+print('Apellido:', Personal[1])
+print('-----------------------------------------------')
+print('Edad:', Personal[2])
+print('-----------------------------------------------')
+print('Lopez se encuentra en', Personal.index('Lopez'))
+print('-----------------------------------------------')
+print('Cantidad de valores en la tupla:', len(Personal))
+print('-----------------------------------------------')
+>>>>>>> 186abf19ab9f2a79d2746b5b473d7784ac388d12
