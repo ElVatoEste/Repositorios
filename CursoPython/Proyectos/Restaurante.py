@@ -2,7 +2,7 @@
 
 # Listas ***
 Meseros = ['Juan', 'Pedro', 'Maria']
-
+Propina =[]
 
 interruptor = True 
 
