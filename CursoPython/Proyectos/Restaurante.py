@@ -50,11 +50,10 @@ while interruptor:
 
         Propina.append(tips)
     print('Propinas del dia: ')
+    
     # Se establece el diccionario para que cada mesero tenga su propina correspondiente
-    Diccionario = dict(zip(SubMeseros, Propina))
+    Diccionario = (dict(zip(SubMeseros, Propina)))
     print = Diccionario
-
-
 
 
 
