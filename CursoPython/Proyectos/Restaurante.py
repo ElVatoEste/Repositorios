@@ -15,7 +15,7 @@ while interruptor:
 
 
     entrada = str(input('Desea seguir con el menu? y/n: '))
-    if entrada == "y":
+    if entrada == "n":
         interruptor = False
         break
     print('hola xd')
