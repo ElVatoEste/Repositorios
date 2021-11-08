@@ -7,9 +7,6 @@
     
 # Primer ejecicio
 
-import abc
-
-
 Cantidad = int(input('Digite la cantidad de persona: '))
 
 Nombre=[]
@@ -19,7 +16,6 @@ for x in range(Cantidad):
     Nombre.append(Nom)
     Sueldo=float(input('Ingrese su salario: '))
     Salario.append(Sueldo)
-    break
 
 i = 0
 for i in range(Cantidad):
