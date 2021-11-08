@@ -1,37 +1,52 @@
-# testeo del while
+print('\n-------------------------------')
+print('Bienvenido al sistema de propinas')
+print('-------------------------------\n')
+# Sistema en blucle
 
-# Listas ***
-Meseros = ['Juan', 'Pedro', 'Maria']
-Propina =[]
-
+# Interruptor que definira si el blucle sigue o no
 interruptor = True 
 
 while interruptor:
-# Zona de ingreso 
-    Cantidad = int(input('¿Cuantos meseros desean ingresar la propina?: '))
+    # ** inicio del bucle **
+
+    # Listas puestas dentro del blucle para que se reincien
+    Meseros = ['Juan', 'Pedro', 'Maria']
+    Propina =[]
+
+    # Lista Default para modificar mas adelante
+    SubMeseros = ()
+
+    # Zona de ingreso 
+
+    Cantidad = int(input('¿Cuantos meseros desean ingresar propinas?: '))
     while Cantidad > len(Meseros):
-        print('Cantidad sobrepasa el limite de meseros registrados')
+        print('** La Cantidad sobrepasa el limite de meseros registrados **')
         print(f'Meseros dispobles actualmente {len(Meseros)}')
         Cantidad = int(input('Ingrese nuevamente la cantidad: '))
   
      # Especificar Meseros
     for x in range(Cantidad):
-        Nom = str(input('Ingrese su nombre: '))
+        Nomb = str(input('Ingrese su nombre: '))
 
         #Chequea si esta en la lista
-        while Nom not in Meseros:
+        while Nomb not in Meseros:
             print('Ese mesero no esta registrado')
-            Nom = str(input('Ingrese nuevamente el nombre: '))
-        Sueldo = float(input('Ingrese su salario: '))
-        Propina.append(Sueldo)
+            Nomb = str(input('Ingrese nuevamente el nombre: '))
 
-        # Ubicar meseros
-        i = Meseros.get(Nom)
-        print(i)
+        # Utilizar la sublista junto con la propina emparejar con el metodo
+        # dict(zip()) de los diccionarios
 
+        SubMeseros.append(Nomb)
 
-    Diccionario = dict(zip(Meseros, Propina))
-    print(Diccionario)
+        tips = float(input('Ingrese su propina: '))
+        if tips >= 1000:
+            print('Excelente aporte!')
+        else:
+            print('Gracias por su aporte')
+
+        Propina.append(tips)
+    
+
 
 
 
