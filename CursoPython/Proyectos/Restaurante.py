@@ -11,8 +11,10 @@ while interruptor:
 
     # Listas puestas dentro del blucle para que se reincien
     Meseros = ['Juan', 'Pedro', 'Maria']
-    Propina =[]
 
+    # Se crea una copia de la lista para utilizar en la repartición
+    MeserosCopia = Meseros.copy()
+    Propina =[]
     # Lista Default para modificar mas adelante
     SubMeseros = []
 
@@ -31,7 +33,7 @@ while interruptor:
         #Chequea si esta en la lista
         while Nomb not in Meseros:
             print('\nEse mesero no esta registrado o ya fue ingresado')
-            Nomb = str(input('Intente con otro nombre: \n'))
+            Nomb = str(input('Intente con otro nombre: '))
 
         # Utilizar la sublista junto con la propina emparejar con el metodo
         # dict(zip()) de los diccionarios
@@ -40,14 +42,17 @@ while interruptor:
         # Eliminamos el mesero de la lista original para que no se repita
         Meseros.remove(Nomb)
 
-        tips = float(input('Ingrese su propina: '))
+        tips = float(input('\nIngrese su propina: '))
         if tips >= 1000:
-            print('Excelente aporte!')
+            print('Excelente aporte!\n')
         else:
-            print('Gracias por su aporte')
+            print('Gracias por su aporte\n')
 
         Propina.append(tips)
-    
+    print('Propinas del dia: ')
+    # Se establece el diccionario para que cada mesero tenga su propina correspondiente
+    Diccionario = dict(zip(SubMeseros, Propina))
+    print = Diccionario
 
 
 
@@ -59,4 +64,4 @@ while interruptor:
     if entrada == "n":
         interruptor = False
         break
-print('--------------------------------------')
+print('--------------------------------------\n')
