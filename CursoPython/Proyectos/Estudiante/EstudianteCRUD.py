@@ -10,22 +10,21 @@ Estudiante = {
     },
 }
 
-print('El diccionario contiene los valores de 3 estudiantes:')
-print('\n', Estudiante['Estudiante1'], '\n')
-print( Estudiante['Estudiante2'], '\n')
-print( Estudiante['Estudiante3'], '\n')
-
+print('\n El diccionario contiene la informacion de 3 estudiantes:\n')
+print(f' Estudiante1: {Estudiante["Estudiante1"]["Nom1"]} {Estudiante["Estudiante1"]["Nom2"]} {Estudiante["Estudiante1"]["Apellido1"]} {Estudiante["Estudiante1"]["Apellido2"]}, {Estudiante["Estudiante1"]["Edad"]} años. Clases: {Estudiante["Estudiante1"]["Clases"]["Clase1"]}, {Estudiante["Estudiante1"]["Clases"]["Clase2"]}, {Estudiante["Estudiante1"]["Clases"]["Clase3"]}')
+print(f' Estudiante2: {Estudiante["Estudiante2"]["Nom1"]} {Estudiante["Estudiante2"]["Nom2"]} {Estudiante["Estudiante2"]["Apellido1"]} {Estudiante["Estudiante2"]["Apellido2"]}, {Estudiante["Estudiante2"]["Edad"]} años. Clases: {Estudiante["Estudiante2"]["Clases"]["Clase1"]}, {Estudiante["Estudiante2"]["Clases"]["Clase2"]}, {Estudiante["Estudiante2"]["Clases"]["Clase3"]}')
+print(f' Estudiante3: {Estudiante["Estudiante3"]["Nom1"]} {Estudiante["Estudiante3"]["Nom2"]} {Estudiante["Estudiante3"]["Apellido1"]} {Estudiante["Estudiante3"]["Apellido2"]}, {Estudiante["Estudiante3"]["Edad"]} años. Clases: {Estudiante["Estudiante3"]["Clases"]["Clase1"]}, {Estudiante["Estudiante3"]["Clases"]["Clase2"]}, {Estudiante["Estudiante3"]["Clases"]["Clase3"]}')
 
 # Area de modificacion
 
 # Cambiar
-Std = input(str(f'Ingrese el estudiante que desea modificar {Estudiante.keys()}: '))
+Std = input(str(f'\nIngrese el estudiante que desea modificar {Estudiante.keys()}: '))
 Valor = input(str(f'Ingrese el valor que desea cambiar {Estudiante[Std].keys()}: '))
 Nuevo = input(str(f'Cual sera el nuevo valor de ({Estudiante[Std][Valor]}): '))
 print(f'Cambio realizado por "{Estudiante[Std][Valor]}"')
 Cambio = Estudiante[Std][Valor] = Nuevo
 
-print('\n', Estudiante[Std], '\n')
+print(f'\nActualizacion de datos: {Estudiante[Std]}\n')
 
 # Agregar
 Std = input(str(f'Ingrese a que estudiante desea agregar una clase {Estudiante.keys()}: '))
