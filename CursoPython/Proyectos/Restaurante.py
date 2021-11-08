@@ -14,14 +14,14 @@ while interruptor:
     Propina =[]
 
     # Lista Default para modificar mas adelante
-    SubMeseros = ()
+    SubMeseros = []
 
     # Zona de ingreso 
 
     Cantidad = int(input('¿Cuantos meseros desean ingresar propinas?: '))
     while Cantidad > len(Meseros):
-        print('** La Cantidad sobrepasa el limite de meseros registrados **')
-        print(f'Meseros dispobles actualmente {len(Meseros)}')
+        print('\n** La Cantidad sobrepasa el limite de meseros registrados **')
+        print(f'           Meseros dispobles actualmente {len(Meseros)}\n')
         Cantidad = int(input('Ingrese nuevamente la cantidad: '))
   
      # Especificar Meseros
@@ -30,8 +30,8 @@ while interruptor:
 
         #Chequea si esta en la lista
         while Nomb not in Meseros:
-            print('Ese mesero no esta registrado')
-            Nomb = str(input('Ingrese nuevamente el nombre: '))
+            print('\nEse mesero no esta registrado')
+            Nomb = str(input('Ingrese nuevamente el nombre: \n'))
 
         # Utilizar la sublista junto con la propina emparejar con el metodo
         # dict(zip()) de los diccionarios
