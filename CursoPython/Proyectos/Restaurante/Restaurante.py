@@ -17,13 +17,18 @@ while interruptor:
     Propina =[]
     # Lista Default para modificar mas adelante
     SubMeseros = []
-
+    
+    # Mostrar la lista desde un comienzo
+    print(f'Meseros disponibles: {Meseros}\n')
+    
     # Zona de ingreso 
 
     Cantidad = int(input('¿Cuantos meseros desean ingresar propinas?: '))
     while Cantidad > len(Meseros):
         print('\n** La Cantidad sobrepasa el limite de meseros registrados **')
-        print(f'           Meseros dispobles actualmente {len(Meseros)}\n')
+        print(f'             Meseros dispobles actualmente {len(Meseros)}')
+        print(f'     Meseros disponibles: {Meseros}\n')
+
         Cantidad = int(input('Ingrese nuevamente la cantidad: '))
   
      # Especificar Meseros
@@ -42,23 +47,35 @@ while interruptor:
         # Eliminamos el mesero de la lista original para que no se repita
         Meseros.remove(Nomb)
 
-        tips = float(input('\nIngrese su propina: '))
+        tips = float(input('Ingrese su propina: '))
         if tips >= 1000:
-            print('Excelente aporte!\n')
+            print('\n-------------------------------')
+            print('    Excelente aporte!')
+            print('-------------------------------\n')
         else:
-            print('Gracias por su aporte\n')
+            print('\n-------------------------------')
+            print('    Gracias por su aporte')
+            print('-------------------------------\n')
 
         Propina.append(tips)
-    print('Propinas del dia: ')
+    
+    Ask1 = str(input('¿Desea ver el registro de propinas del dia? y/n: '))
+    # Preguntar si quiere ver la lista de las propinas con su mesero correspondiente
+    while Ask1 != "y" and Ask1 != 'n':
+        print('\n         Dato ingresado incorrecto')
+        print('               y/n = Yes/No')
+        Ask1 = input(str('\n¿Desea ver el registro de propinas del dia? y/n: '))
+    if Ask1 == 'y':
 
-    # Se establece el diccionario para que cada mesero tenga su propina correspondiente
-    print(dict(zip(SubMeseros, Propina)))
+        # Se establece un diccionario
+        print('\nPropinas del dia: ')
+        print(dict(zip(SubMeseros, Propina)))
 
     # Espacio para hacer calculos matematicos
     T_Propina = sum(Propina)
     Correspondiente = (T_Propina/len(MeserosCopia))
     
-        
+
     print('\n---------------------------------------------------------------')
     print('El sistema esta basado en que cada mesero incluya la propina\nque gano en el dia y que todos reciban la misma parte por igual')
     print('---------------------------------------------------------------\n')
@@ -67,9 +84,14 @@ while interruptor:
 
     # Salida del servicio
     print('\n-----------------------------------------------')
-    entrada = str(input('        Desea seguir con el menu? y/n: '))
-    if entrada == "n":
+    entrada = str(input('       ¿Desea seguir con el menu? y/n: '))
+    # Solo entradas validas
+
+    while entrada != "y" and entrada != 'n':
+        print('\n         Dato ingresado incorrecto')
+        print('               y/n = Yes/No')
+        entrada = input(str('\n       ¿Desea seguir con el menu? y/n: '))
+
+    if entrada == 'n':
         interruptor = False
-        break
-    print('-----------------------------------------------\n')
 print('-----------------------------------------------\n')
