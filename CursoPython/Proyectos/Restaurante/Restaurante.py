@@ -50,17 +50,26 @@ while interruptor:
 
         Propina.append(tips)
     print('Propinas del dia: ')
-    
+
     # Se establece el diccionario para que cada mesero tenga su propina correspondiente
-    Diccionario = (dict(zip(SubMeseros, Propina)))
-    print = Diccionario
+    print(dict(zip(SubMeseros, Propina)))
 
+    # Espacio para hacer calculos matematicos
+    T_Propina = sum(Propina)
+    Correspondiente = (T_Propina/len(MeserosCopia))
+    
+        
+    print('\n---------------------------------------------------------------')
+    print('El sistema esta basado en que cada mesero incluya la propina\nque gano en el dia y que todos reciban la misma parte por igual')
+    print('---------------------------------------------------------------\n')
 
+    print(f'{MeserosCopia} recibiran {Correspondiente:.2f} el dia de hoy')
 
     # Salida del servicio
-    print('--------------------------------------')
-    entrada = str(input('Desea seguir con el menu? y/n: '))
+    print('\n-----------------------------------------------')
+    entrada = str(input('        Desea seguir con el menu? y/n: '))
     if entrada == "n":
         interruptor = False
         break
-print('--------------------------------------\n')
+    print('-----------------------------------------------\n')
+print('-----------------------------------------------\n')
