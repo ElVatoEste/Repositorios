@@ -17,7 +17,6 @@ for x in range(Cantidad):
     Sueldo=float(input('Ingrese su salario: '))
     Salario.append(Sueldo)
 
-
 i = 0
 for i in range(Cantidad):
     print(Nombre[i],Salario[i] )
