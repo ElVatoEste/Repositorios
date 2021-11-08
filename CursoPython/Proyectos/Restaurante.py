@@ -30,13 +30,15 @@ while interruptor:
 
         #Chequea si esta en la lista
         while Nomb not in Meseros:
-            print('\nEse mesero no esta registrado')
-            Nomb = str(input('Ingrese nuevamente el nombre: \n'))
+            print('\nEse mesero no esta registrado o ya fue ingresado')
+            Nomb = str(input('Intente con otro nombre: \n'))
 
         # Utilizar la sublista junto con la propina emparejar con el metodo
         # dict(zip()) de los diccionarios
 
         SubMeseros.append(Nomb)
+        # Eliminamos el mesero de la lista original para que no se repita
+        Meseros.remove(Nomb)
 
         tips = float(input('Ingrese su propina: '))
         if tips >= 1000:
