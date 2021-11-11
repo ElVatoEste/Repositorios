@@ -15,6 +15,30 @@ día: tipo cadena
 
 '''
 
+
 print('\n-------------------------------')
 print('Sistemas de tarifas laborales')
 print('-------------------------------\n')
+
+
+# Definir la tarifa semanal de cada turno
+
+TurnoA = 18000
+TurnoB = 27000
+
+#Trabajo domingos 
+ExtraA = 2000
+ExtraB = 3000
+
+# Establecer la lista de trabajadores
+
+Trabajadores = []
+
+# Zona de calculos
+DiaTurnoA = TurnoA/6
+DiaTurnoB = TurnoB/6
+
+MensualA = TurnoA*4
+MensualB = TurnoB*4
+
+exit()
