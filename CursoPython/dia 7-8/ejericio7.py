@@ -42,12 +42,10 @@ DiaTurnoB = TurnoB/6
 MensualA = TurnoA*4
 MensualB = TurnoB*4
 
-# i me sirve para ir contando 
-i = 0
 
 while True:
-    Nomb = input(str('Ingrese el nombre del trabajador: '))
-    Apellido = input(str('Ingrese el apellido del trabajador: '))
+    Nomb = str(input('Ingrese el nombre del trabajador: '))
+    Apellido = str(input('Ingrese el apellido del trabajador: '))
     
     #Junto el nombre
     NombCompleto = Nomb+(' ')+Apellido
@@ -55,9 +53,35 @@ while True:
     # Lo agrego en la lista
     Trabajadores.append(NombCompleto)
 
-    Turno = input(f'{NombCompleto} opto por:\n1. Turno Diuno\n2. Turno Nocturno\n ')
+    Turno = int(input(f'{NombCompleto} opto por:\n1. Turno Diuno\n2. Turno Nocturno\n'))
+
+    while Turno != 1 and Turno != 2:
+        print('La opcion que eligio no corresponde a ninguna de la lista')
+        Turno = int(input(f'{NombCompleto} opto por:\n1. Turno Diuno\n2. Turno Nocturno\n'))
+    
+    if Turno == 1:
+        Salario.append(TurnoA)
+        
+    else:
+        Salario.append(TurnoB)
 
 
+    Extra = str(input(f'{NombCompleto} va a trabajar extra? y/n:'))
+    while Extra != 'y' and Extra != 'n':
+            print('Caracter no valido')
+            Extra = input(str(f'{NombCompleto} va a trabajar extra? y/n: '))
+    if Extra == 'y':
+        Contador = int(input('Cuantos Domingos desea trabajar? [1-4]: '))
+        while Contador > 4:
+            print('La cantidad sobrepasa el limite maximo por semana [4]')
+            Contador = int(input('Cuantos Domingos desea trabajar? [1-4]: '))
+            Salario.append(ExtraA*Contador)
+    else:
+        pass
+    
+    TotalDomingo = sum(Salario)
+    print(f'{NombCompleto}')
+   
     
     Menu = input(str('Desea salir del sistema? y/n: '))
     if Menu == ('y'):
