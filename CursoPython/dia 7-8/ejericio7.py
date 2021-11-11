@@ -81,7 +81,6 @@ while True:
     
     TotalDomingo = sum(Salario)
     print(f'{NombCompleto}')
-   a
     
     Menu = input(str('Desea salir del sistema? y/n: '))
     if Menu == ('y'):
