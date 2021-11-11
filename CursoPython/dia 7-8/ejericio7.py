@@ -30,9 +30,10 @@ TurnoB = 27000
 ExtraA = 2000
 ExtraB = 3000
 
-# Establecer la lista de trabajadores
+# Establecer listas
 
 Trabajadores = []
+Salario = []
 
 # Zona de calculos
 DiaTurnoA = TurnoA/6
@@ -41,4 +42,23 @@ DiaTurnoB = TurnoB/6
 MensualA = TurnoA*4
 MensualB = TurnoB*4
 
-exit()
+# i me sirve para ir contando 
+i = 0
+
+while True:
+    Nomb = input(str('Ingrese el nombre del trabajador: '))
+    Apellido = input(str('Ingrese el apellido del trabajador: '))
+    
+    #Junto el nombre
+    NombCompleto = Nomb+(' ')+Apellido
+
+    # Lo agrego en la lista
+    Trabajadores.append(NombCompleto)
+
+    Turno = input(f'{NombCompleto} opto por:\n1. Turno Diuno\n2. Turno Nocturno\n ')
+
+
+    
+    Menu = input(str('Desea salir del sistema? y/n: '))
+    if Menu == ('y'):
+        exit()
