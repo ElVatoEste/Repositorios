@@ -104,6 +104,7 @@ while True:
                 print(f'\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA}\nal hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
 
         print(f'\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensualmente seran {MensualA} al no trabajar los domingos ')
+    
     else:
         if Extra == 'y':
             if TurnoExtra == 1:
