@@ -32,8 +32,8 @@ ExtraB = 3000
 
 # Establecer listas
 
-Trabajadores = []
-Salario = []
+Trabajadores = {}
+Salario = ()
 
 # Zona de calculos
 DiaTurnoA = TurnoA/6
@@ -49,9 +49,6 @@ while True:
     
     #Junto el nombre
     NombCompleto = Nomb+(' ')+Apellido
-
-    # Lo agrego en la lista
-    Trabajadores.append(NombCompleto)
 
     Turno = int(input(f'{NombCompleto} opto por:\n1. Turno Diuno\n2. Turno Nocturno\n'))
 
@@ -70,12 +67,16 @@ while True:
     while Extra != 'y' and Extra != 'n':
             print('Caracter no valido')
             Extra = input(str(f'{NombCompleto} va a trabajar extra? y/n: '))
+
     if Extra == 'y':
         Contador = int(input('Cuantos Domingos desea trabajar? [1-4]: '))
+
         while Contador > 4:
             print('La cantidad sobrepasa el limite maximo por semana [4]')
             Contador = int(input('Cuantos Domingos desea trabajar? [1-4]: '))
+
             Salario.append(ExtraA*Contador)
+            
     else:
         pass
     
