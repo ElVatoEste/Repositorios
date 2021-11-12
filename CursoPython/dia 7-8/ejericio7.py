@@ -1,3 +1,4 @@
+
 '''
 Los empleados de una fábrica trabajan en dos turnos diurno y nocturno, se desea Calcular el
 jornal diario y el total devengado de cada uno de ellos durante una semana de trabajo de
@@ -34,6 +35,8 @@ print(f'{Blue}\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 print(f'~~~ {Red}Sistemas de tarifas laborales {Blue}~~~')
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
+# Me servira de contador más adelante
+i = 1
 
 # Definir la tarifa semanal de cada turno
 TurnoA = 18000
@@ -125,8 +128,13 @@ while True:
     Total = sum(Salario)
     
     # Agrego los datos a un diccionario
-    Trabajadores.setdefault(NombCompleto, Total)
-    
+
+    Trabajadores.setdefault(i, {'Nombre': NombCompleto, 'Salario' : Total})
+    i = i+1 
+    # uso i ya que pude haber utilizado for x in trabajadores pero estoy imprimiendo el salario
+    # de cada uno individualmente por cada bucle, la i me permite llevar un control de cuantas
+    # veces se ha llevado a cabo el bucle
+
     # Condicciones para ver que mensaje se enviara
 
     # opcion si se eligio el turno matutino normal
@@ -136,14 +144,14 @@ while True:
         if Extra == 'y' or Extra == 'Y':
             # Si se trabajo de dia los domingos
             if TurnoExtra == 1:
-                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
+                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA:.2f} diario mensaulmente son {MensualA} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
             # Si se trabajo de noche los domingos
             else:
-                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
+                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA:.2f} diario mensaulmente son {MensualA} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
         
         # Mensaje si no se trabajo los domingos
         else:
-            print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensualmente seran {MensualA} al no trabajar los domingos 1')
+            print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA:.2f} diario mensualmente seran {MensualA} al no trabajar los domingos 1')
     
         # opcion si se eligio el turno nocturno normal
     elif Turno == 2:
@@ -152,14 +160,14 @@ while True:
         if Extra == 'y' or Extra == 'Y':
             # Si se trabajo de dia los domingos
             if TurnoExtra == 1:
-                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoB} diario mensaulmente son {MensualB} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
+                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoB:.2f} diario mensaulmente son {MensualB} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
             # Si se trabajo de noche los domingos
             else:
-                print(f'\n{Blue}A {NombCompleto} le pagaran {DiaTurnoB} diario mensaulmente son {MensualB} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
+                print(f'\n{Blue}A {NombCompleto} le pagaran {DiaTurnoB:.2f} diario mensaulmente son {MensualB} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
         
         # Mensaje si no se trabajo los domingos
         else:
-            print(f'\n{Blue}A {NombCompleto} le pagaran {DiaTurnoB} diario mensualmente seran {MensualB} al no trabajar los domingos 2')
+            print(f'\n{Blue}A {NombCompleto} le pagaran {DiaTurnoB:.2f} diario mensualmente seran {MensualB} al no trabajar los domingos 2')
 
     # Preguntar si se seguira agregando
 
@@ -176,7 +184,17 @@ while True:
     if Menu == 'n' or Menu == 'N':
 
         # Imprimir todos los trabajadores que se hicieron y que se guardaron en cache
+
         print(f'\n{Magenta}Registros guardados tras ejecutar programa ')
-        print(Green, Trabajadores, White)
+        
+        # Aca se explica el porque la variable i
+
+        print(Trabajadores)
+
+        for x in Trabajadores:
+            print(f'{Green}{Trabajadores[x]["Nombre"]} gano un total de {Trabajadores[x]["Salario"]} coordobas')
+
+        # para que los mensajes de la consola queden nuevamente en su color original
+        print(White)
 
         exit()
