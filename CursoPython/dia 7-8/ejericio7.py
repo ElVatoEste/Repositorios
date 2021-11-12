@@ -14,10 +14,22 @@ tarifaD y tarifaN: tipo int
 día: tipo cadena
 
 '''
+# Zona de colores -----------------------
+Red = '\033[91m'
+Green = '\033[92m'
+Yellow ='\033[93m'
+Blue = '\033[94m'
+Magenta = '\033[95m'
+Cyan = '\033[96m'
+White = '\033[97m'
+Black = '\033[98m'
+Gray = '\033[90m'
+# ----------------------- Zona de colores
 
 
-print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-print('~~~ Sistemas de tarifas laborales ~~~')
+# Saludo 
+print(f'{Blue}\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+print(f'~~~ {Red}Sistemas de tarifas laborales {Blue}~~~')
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
 
@@ -47,17 +59,17 @@ while True:
     # Dejo dentro del bucle para reiniciar mi sistema de suma
     Salario = [] 
 
-    Nomb = str(input('Ingrese el nombre del trabajador: '))
-    Apellido = str(input('Ingrese el apellido del trabajador: '))
+    Nomb = str(input(f'{Yellow}Ingrese el nombre del trabajador:{Green} '))
+    Apellido = str(input(f'{Yellow}Ingrese el apellido del trabajador:{Green} '))
     
     #Junto el nombre
     NombCompleto = Nomb+(' ')+Apellido
 
-    Turno = int(input(f'\n {NombCompleto} opto por:\n1. Turno Diuno = {TurnoA} semanal\n2. Turno Nocturno = {TurnoB} semanal\n'))
+    Turno = int(input(f'{Yellow}\n{NombCompleto} opto por:\n1. Turno Diuno = {TurnoA} semanal\n2. Turno Nocturno = {TurnoB} semanal\n{Green}'))
 
     while Turno != 1 and Turno != 2:
-        print('\nLa opcion que eligio no corresponde a ninguna de la lista')
-        Turno = int(input(f'{NombCompleto} opto por:\n1. Turno Diuno = {TurnoA} semanal\n2. Turno Nocturno = {TurnoB} semanal\n'))
+        print(f'\n{Red}La opcion que eligio no corresponde a ninguna de la lista')
+        Turno = int(input(f'{Yellow}\n{NombCompleto} opto por:\n1. Turno Diuno = {TurnoA} semanal\n2. Turno Nocturno = {TurnoB} semanal\n{Green}'))
     
     if Turno == 1:
         Salario.append(TurnoA)
@@ -66,23 +78,23 @@ while True:
         Salario.append(TurnoB)
 
 
-    Extra = str(input(f'\n¿{NombCompleto} va a trabajar extra? y/n: '))
+    Extra = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
     while Extra != 'y' and Extra != 'n':
-            print('\nCaracter no valido')
-            Extra = input(str(f'{NombCompleto} va a trabajar extra? y/n: '))
+            print(f'\n{Red}Caracter no valido')
+            Extra = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
 
     if Extra == 'y':
-        Contador = int(input('\nCuantos Domingos desea trabajar? [1-4]: '))
+        Contador = int(input(f'{Yellow}\nCuantos Domingos desea trabajar? [1-4]: '))
 
         while Contador > 4:
-            print('\nLa cantidad sobrepasa el limite maximo por semana [4]')
-            Contador = int(input('Cuantos Domingos desea trabajar? [1-4]: '))
+            print(f'{Red}\nLa cantidad sobrepasa el limite maximo por semana [4]')
+            Contador = int(input(f'{Yellow}\nCuantos Domingos desea trabajar? [1-4]: '))
 
-        TurnoExtra = int(input(f'\n{NombCompleto} los domingos hace:\n1. Turno Diuno = {ExtraA} el dia\n2. Turno Nocturno = {ExtraB} el dia\n'))
+        TurnoExtra = int(input(f'{Yellow}\n{NombCompleto} los domingos hace:\n1. Turno Diuno = {ExtraA} el dia\n2. Turno Nocturno = {ExtraB} el dia\n'))
 
         while TurnoExtra != 1 and TurnoExtra != 2:
-            print('\nLa opcion que eligio no corresponde a ninguna de la lista')
-            TurnoExtra = int(input(f'{NombCompleto} los domingos hace:\n1. Turno Diuno\n2. Turno Nocturno\n'))
+            print(f'{Red}\nLa opcion que eligio no corresponde a ninguna de la lista')
+            TurnoExtra = int(input(f'{Yellow}\n{NombCompleto} los domingos hace:\n1. Turno Diuno = {ExtraA} el dia\n2. Turno Nocturno = {ExtraB} el dia\n'))
 
         if TurnoExtra == 1:
             Salario.append(ExtraA*Contador)
@@ -99,26 +111,30 @@ while True:
     if Turno == 1:
         if Extra == 'y':
             if TurnoExtra == 1:
-                print(f'\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA}\aal hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
+                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
             else:
-                print(f'\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA}\nal hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
-
-        print(f'\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensualmente seran {MensualA} al no trabajar los domingos ')
+                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
+        else:
+            print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensualmente seran {MensualA} al no trabajar los domingos 1')
     
-    else:
+    elif Turno == 2:
         if Extra == 'y':
             if TurnoExtra == 1:
-                print(f'\nA {NombCompleto} le pagaran {DiaTurnoB} diario mensaulmente son {MensualB}\aal hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
+                print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoB} diario mensaulmente son {MensualB} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
             else:
-                print(f'\nA {NombCompleto} le pagaran {DiaTurnoB} diario mensaulmente son {MensualB}\nal hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
+                print(f'\n{Blue}A {NombCompleto} le pagaran {DiaTurnoB} diario mensaulmente son {MensualB} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraB*Contador}')
+        else:
+            print(f'\n{Blue}A {NombCompleto} le pagaran {DiaTurnoB} diario mensualmente seran {MensualB} al no trabajar los domingos 2')
 
-        print(f'\nA {NombCompleto} le pagaran {DiaTurnoB} diario mensualmente seran {MensualB} al no trabajar los domingos ')
 
+    Menu = input(str(f'\n{Yellow}Seguira agregando trabajadores? y/n: '))
+    while Menu != 'y' and Menu != 'n':
+            print(f'\n{Red}Caracter no valido')
+            Menu = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
 
-    Menu = input(str('\nSeguira agregando trabajadores? y/n: '))
     if Menu == ('n'):
 
-        print('Registros guardados tras ejecutar programa ')
-        print(Trabajadores)
+        print(f'\n{Magenta}Registros guardados tras ejecutar programa ')
+        print(Green, Trabajadores, White)
 
         exit()
