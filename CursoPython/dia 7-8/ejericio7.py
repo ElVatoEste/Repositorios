@@ -88,7 +88,11 @@ while True:
 
     # Valido la respuesta
     while Extra != 'y' and Extra != 'n':
-            print(f'\n{Red}Caracter no valido')
+
+            print(f'\n{Red}-----------------------------------------')
+            print('           Caracter no valido')
+            print('-----------------------------------------')
+
             Extra = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
 
     # En caso que trabaje, le pregunto cuantos dias al mes
@@ -161,7 +165,9 @@ while True:
     
     # while para validar opcion
     while Menu != 'y' and Menu != 'n':
-            print(f'\n{Red}Caracter no valido')
+            print(f'\n{Red}-----------------------------------------')
+            print('           Caracter no valido')
+            print('-----------------------------------------')
             Menu = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
 
     # If para que en caso que no se quiera se de por terminado el blucle
