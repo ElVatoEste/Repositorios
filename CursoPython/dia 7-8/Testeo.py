@@ -9,6 +9,9 @@ Black = '\033[90m'
 Gray = '\033[98m'
 
 
-print(f'\n{Red}-----------------------------------------')
-print('           Caracter no valido')
-print('-----------------------------------------') 
+Trabajadores = {
+    'Manuel' : {'Nombre': 'Manuel','Edad': 17, 'Salario': 10},
+    'Pedro' : {'Nombre': 'Pedro', 'Edad': 20, 'Salario': 200}}
+
+for x in Trabajadores:
+    print(Trabajadores[x]['Nombre'])
