@@ -26,6 +26,8 @@ Black = '\033[98m'
 Gray = '\033[90m'
 # ----------------------- Zona de colores
 
+# Me permite validar cualquiera de las 4 respuestas posibles
+y_n = ['Y', 'N', 'n', 'y']
 
 # Saludo 
 print(f'{Blue}\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
@@ -87,7 +89,7 @@ while True:
     Extra = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
 
     # Valido la respuesta
-    while Extra != 'y' and Extra != 'n':
+    while Extra not in y_n:
 
             print(f'\n{Red}-----------------------------------------')
             print('           Caracter no valido')
@@ -96,7 +98,7 @@ while True:
             Extra = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
 
     # En caso que trabaje, le pregunto cuantos dias al mes
-    if Extra == 'y':
+    if Extra == 'y' or Extra == 'Y':
         Contador = int(input(f'{Yellow}\nCuantos Domingos desea trabajar al mes? [1-4]: '))
 
         # Valido la cantidad
@@ -131,7 +133,7 @@ while True:
     if Turno == 1:
 
         # opcion si se trabajo extra
-        if Extra == 'y':
+        if Extra == 'y' or Extra == 'Y':
             # Si se trabajo de dia los domingos
             if TurnoExtra == 1:
                 print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA} diario mensaulmente son {MensualA} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
@@ -147,7 +149,7 @@ while True:
     elif Turno == 2:
 
         # opcion si se trabajo extra
-        if Extra == 'y':
+        if Extra == 'y' or Extra == 'Y':
             # Si se trabajo de dia los domingos
             if TurnoExtra == 1:
                 print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoB} diario mensaulmente son {MensualB} al hacer {Contador} domingos extra, se le agregara a su salario {ExtraA*Contador}')
@@ -164,14 +166,14 @@ while True:
     Menu = input(str(f'\n{Yellow}Seguira agregando trabajadores? y/n: '))
     
     # while para validar opcion
-    while Menu != 'y' and Menu != 'n':
+    while Menu not in y_n:
             print(f'\n{Red}-----------------------------------------')
             print('           Caracter no valido')
             print('-----------------------------------------')
             Menu = str(input(f'{Yellow}\n¿{NombCompleto} va a trabajar extra? y/n:{Green} '))
 
     # If para que en caso que no se quiera se de por terminado el blucle
-    if Menu == ('n'):
+    if Menu == 'n' or Menu == 'N':
 
         # Imprimir todos los trabajadores que se hicieron y que se guardaron en cache
         print(f'\n{Magenta}Registros guardados tras ejecutar programa ')
