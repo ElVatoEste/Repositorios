@@ -8,10 +8,6 @@ White = '\033[97m'
 Black = '\033[90m'
 Gray = '\033[98m'
 
-
-Trabajadores = {
-    'Manuel' : {'Nombre': 'Manuel','Edad': 17, 'Salario': 10},
-    'Pedro' : {'Nombre': 'Pedro', 'Edad': 20, 'Salario': 200}}
-
-for x in Trabajadores:
-    print(Trabajadores[x]['Nombre'])
+print('\nMuchas gracias por usar nuestro sistema de medidad')
+print('             !! Vuelva pronto ¡¡\n')
+exit()

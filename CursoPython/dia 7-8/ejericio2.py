@@ -42,5 +42,5 @@ while True:
 
     if Salida == 'y' or Salida == 'Y':
         print('\nMuchas gracias por usar nuestro sistema de medidad')
-        print('Vuelva pronto\n')
+        print('             !! Vuelva pronto ¡¡\n')
         exit()
