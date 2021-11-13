@@ -21,6 +21,7 @@ while True:
             print('\n-----------------------------------------')
             print('           Caracter no valido')
             print('-----------------------------------------\n')
+            print('1. Grados centigrados a Fahreheit\n2. Grados Fahreheit a Centigrados')
             Opcion = int(input('Ingrese opción: '))
     
     if Opcion == 1:
@@ -30,16 +31,16 @@ while True:
     else:
         GradosF = float(input('\nIngrese la cantidad de Grados Centigrados que desea convertir: '))
         GradosC = (GradosF-32)*5/9
-        print(f'{GradosF}ºF son {GradosC}ºC')
+        print(f'\n{GradosF}ºF son {GradosC}ºC')
     
-    Salida = print('Desea salir del sistema? y/n: ')
+    Salida = input('\n¿Desea salir del sistema? y/n: ')
     while Salida not in y_n:
         print('\n-----------------------------------------')
         print('           Caracter no valido')
         print('-----------------------------------------')
-        Salida = print('\n¿Desea seguir en el sistema? y/n: ')
+        Salida = input('\n¿Desea salir del sistema? y/n: ')
 
     if Salida == 'y' or Salida == 'Y':
-        print('Muchas gracias por usar nuestro sistema de medidad')
+        print('\nMuchas gracias por usar nuestro sistema de medidad')
         print('Vuelva pronto\n')
         exit()
