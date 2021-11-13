@@ -37,7 +37,7 @@ while True:
         print('\n-----------------------------------------')
         print('           Caracter no valido')
         print('-----------------------------------------')
-        Salida = print('\nDesea seguir en el sistema? y/n: ')
+        Salida = print('\n¿Desea seguir en el sistema? y/n: ')
 
     if Salida == 'y' or Salida == 'Y':
         print('Muchas gracias por usar nuestro sistema de medidad')
