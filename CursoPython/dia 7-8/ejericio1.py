@@ -7,8 +7,6 @@ los sueldos
 y_n = ['Y', 'N', 'n', 'y']
 
 
-
-
 print('\n*****************************')
 print('** Sistema de trabajadores **')
 print('*****************************\n')
@@ -439,7 +437,8 @@ while True:
         print(f'\n-----------------------------------------')
         print('           Caracter no valido')
         print('-----------------------------------------')
+        Salida = str(input('¿Desea continuar? y/n'))
     
     if Salida == 'N' or Salida == 'n':
-        print('Gracias por usar nuestro sistema\n')
+        print('\nGracias por usar nuestro sistema\n')
         exit()
