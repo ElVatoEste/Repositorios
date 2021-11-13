@@ -9,12 +9,35 @@ print('\n---------------------------------------------------')
 print('  Bienvenido al sistema de medidas de temperatura')
 print('---------------------------------------------------\n')
 
-
-
-
+y_n = ['Y', 'N', 'n', 'y']
 
 while True:
     print('Seleccione la medida a la que se desea convertir: ')
     print('1. Grados centigrados a Fahreheit\n2. Grados Fahreheit a Centigrados')
     
-    int(input)
+    Opcion = int(input('Ingrese opción: '))
+    
+    while Opcion != 1 and Opcion != 2:
+            print('\n-----------------------------------------')
+            print('           Caracter no valido')
+            print('-----------------------------------------\n')
+            Opcion = int(input('Ingrese opción: '))
+    
+    if Opcion == 1:
+        GradosC = float(input('\nIngrese la cantidad de Grados Centigrados que desea convertir: '))
+        GradosF = (GradosC*9/5)+32
+        print(f'{GradosC}ºC son {GradosF}ºF')
+    else:
+        GradosF = float(input('\nIngrese la cantidad de Grados Centigrados que desea convertir: '))
+        GradosC = (GradosF-32)*5/9
+        print(f'{GradosF}ºF son {GradosC}ºC')
+    
+    Salida = print('Desea salir del sistema? y/n: ')
+    while Salida not in y_n:
+        print('\n-----------------------------------------')
+        print('           Caracter no valido')
+        print('-----------------------------------------')
+        Salida = print('\nDesea seguir en el sistema? y/n: ')
+
+    if Salida =
+
