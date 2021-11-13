@@ -15,7 +15,6 @@ agradecer por su interés al banco
 
 y_n = ['Y', 'N', 'n', 'y']
 
-interes = 2
 
 print('\n********************************************************************')
 print('** Bienvenido al Sistema de préstamos del Banco Industrial Python **')
@@ -50,6 +49,15 @@ while len(Cedula)!=16:
 Ingresos = float(input('\nIngrese la cantidad de ingresos mensuales: '))
 
 if Ingresos >= 5000.00:
-    print('\n ** Solicitdud aceptada **')
+    print('\n ** Solicitud aceptada **')
 
-    
+    print('\n-----------------------------------------------------------------------------')
+    Prestamo = float(input('Ingrese la cantidad de dinero a solicitar para el prestamo: '))
+    print('-----------------------------------------------------------------------------')
+    Meses = int(input('¿Cuantas cuotas mensuales desea realiazar para completar su prestamo?: '))
+    print('-----------------------------------------------------------------------------')
+
+    Cuotas =  Prestamo/Meses
+    Extra = Cuotas*(Prestamo*0.2)
+
+    Total = (Cuotas+Extra)*Meses

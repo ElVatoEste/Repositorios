@@ -8,7 +8,8 @@ White = '\033[97m'
 Black = '\033[90m'
 Gray = '\033[98m'
 
-print('\n                 Cedula invalida')
-print("    tienes que introducir 14 digitos validos")
-print('** Utilize - para separar la cadena de digitoa **\n')
-Cedula = str(input(''))
+print('\n-----------------------------------------------------------------------------')
+Prestamo = float(input('Ingrese la cantidad de dinero a solicitar para el prestamo: '))
+print('-----------------------------------------------------------------------------')
+Meses = int(input('¿Cuantas cuotas mensuales desea realiazar para completar su prestamo?: '))
+print('-----------------------------------------------------------------------------')
