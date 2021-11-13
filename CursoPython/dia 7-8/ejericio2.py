@@ -39,5 +39,7 @@ while True:
         print('-----------------------------------------')
         Salida = print('\nDesea seguir en el sistema? y/n: ')
 
-    if Salida =
-
+    if Salida == 'y' or Salida == 'Y':
+        print('Muchas gracias por usar nuestro sistema de medidad')
+        print('Vuelva pronto\n')
+        exit()
