@@ -441,4 +441,5 @@ while True:
         print('-----------------------------------------')
     
     if Salida == 'N' or Salida == 'n':
+        print('Gracias por usar nuestro sistema\n')
         exit()
