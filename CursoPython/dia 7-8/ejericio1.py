@@ -423,8 +423,9 @@ while True:
         print(f'La media es {Total/Cantidad:.2f} ')
         print('--------------------------------------')
         print(f'El salario maximo es {Maximo}')
+        print('--------------------------------------')
         print(f'El salario minimo es {Minimo}')
-    
+        print('--------------------------------------')
 
 
     print('\n¿Desea volver a ingresar los datos de los trabajadores?')
