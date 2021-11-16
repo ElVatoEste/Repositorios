@@ -68,7 +68,7 @@ while True:
     '''
     Salario = [] 
 
-    # Solicito el nombre y apellido dle trabajador
+    # Solicito el nombre y apellido del trabajador
     Nomb = str(input(f'{Yellow}Ingrese el nombre del trabajador:{Green} '))
     Apellido = str(input(f'{Yellow}Ingrese el apellido del trabajador:{Green} '))
     
@@ -153,7 +153,7 @@ while True:
         
         # Mensaje si no se trabajo los domingos
         else:
-            print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA:.2f} diario mensualmente seran {MensualA} al no trabajar los domingos 1')
+            print(f'{Blue}\nA {NombCompleto} le pagaran {DiaTurnoA:.2f} diario mensualmente seran {MensualA} al no trabajar los domingos ')
     
         # opcion si se eligio el turno nocturno normal
     elif Turno == 2:
@@ -190,9 +190,6 @@ while True:
         print(f'\n{Magenta}Registros guardados tras ejecutar programa ')
         
         
-        # Aca se explica el porque la variable i
-        print(Trabajadores)
-
         for x in Trabajadores:
             print(f'{Green}{Trabajadores[x]["Nombre"]} gano un total de {Trabajadores[x]["Salario"]} coordobas')
 
@@ -200,3 +197,5 @@ while True:
         print(White)
 
         exit()
+
+
