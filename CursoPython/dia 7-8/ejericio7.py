@@ -60,10 +60,12 @@ MensualB = TurnoB*4
 # Condicion while true para hacer el blucle infinito
 while True:
 
-    # Uso una lista para usalar como sistema de suma
-    # Dejo dentro del bucle para reiniciar mi sistema de suma cada vez que se reinicie el bucle
-    # Y que no se guarden los datos del trabajador anterior
-
+    '''
+    Uso una lista para usalar como sistema de suma
+    Dejo dentro del bucle para reiniciar mi sistema de suma
+    cada vez que se reinicie el bucle
+    Y que no se guarden los datos del trabajador anterior
+    '''
     Salario = [] 
 
     # Solicito el nombre y apellido dle trabajador
@@ -187,8 +189,8 @@ while True:
 
         print(f'\n{Magenta}Registros guardados tras ejecutar programa ')
         
+        
         # Aca se explica el porque la variable i
-
         print(Trabajadores)
 
         for x in Trabajadores:
