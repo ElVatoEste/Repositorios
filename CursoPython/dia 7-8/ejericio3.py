@@ -61,3 +61,7 @@ if Ingresos >= 5000.00:
     Extra = Cuotas*(Prestamo*0.2)
 
     Total = (Cuotas+Extra)*Meses
+
+    print('Su prestamo se ha procesado...')
+    print('Su ')
+
