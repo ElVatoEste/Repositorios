@@ -42,14 +42,14 @@ def Euro():
         print('\n-------------------------------------------------------------------')
         Num1 = float(input('Ingrese la cantidad de coordobas que desea convertir: '))
         print('-------------------------------------------------------------------\n')
-        CoorDolar =  Num1 * 0.025
-        print(f'C${Num1} son aproximadamente €{CoorDolar:.2f}')
+        CoorEuro =  Num1 * 0.025
+        print(f'C${Num1} son aproximadamente €{CoorEuro:.2f}')
     elif Ask == 2:
         print('\n-------------------------------------------------------------------')
         Num1 = float(input('Ingrese la cantidad de euros que desea convertir: '))
         print('-------------------------------------------------------------------\n')
-        CoorDolar =  Num1 * 39.91
-        print(f'€{Num1} son aproximadamente C${CoorDolar:.2f}')
+        CoorEuro =  Num1 * 39.91
+        print(f'€{Num1} son aproximadamente C${CoorEuro:.2f}')
     else:
         print('\nNumero invaldido...')
 
