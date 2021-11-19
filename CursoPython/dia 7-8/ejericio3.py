@@ -33,35 +33,38 @@ while Pedir not in y_n:
 if Pedir == 'n' or Pedir == 'N':
     print('\n**  Usted ha salido del sistema **')
     print('    !Que tenga un bonito dia!\n')
+else:
+    print('\nIngrese su nombre completo: ')
+    Nombre = str(input(''))
 
-print('\nIngrese su nombre completo: ')
-Nombre = str(input(''))
-
-print('\nIngrese su numero de cedula\nEjemplo: 001-260204-1234J')
-Cedula = str(input(''))
-
-while len(Cedula)!=16:
-    print('\n                 Cedula invalida')
-    print("    tienes que introducir 14 digitos validos")
-    print('** Utilize - para separar la cadena de digitoa **\n')
+    print('\nIngrese su numero de cedula\nEjemplo: 001-260204-1234J')
     Cedula = str(input(''))
 
-Ingresos = float(input('\nIngrese la cantidad de ingresos mensuales: '))
+    while Cedula != 'xd':
+        print('\n                 Cedula invalida')
+        print("    tienes que introducir 14 digitos validos")
+        print('** Utilize - para separar la cadena de digitoa **\n')
+        Cedula = str(input(''))
 
-if Ingresos >= 5000.00:
-    print('\n ** Solicitud aceptada **')
+    Ingresos = float(input('\nIngrese la cantidad de ingresos mensuales: '))
 
-    print('\n-----------------------------------------------------------------------------')
-    Prestamo = float(input('Ingrese la cantidad de dinero a solicitar para el prestamo: '))
-    print('-----------------------------------------------------------------------------')
-    Meses = int(input('¿Cuantas cuotas mensuales desea realiazar para completar su prestamo?: '))
-    print('-----------------------------------------------------------------------------')
+    if Ingresos >= 5000.00:
+        print('\n                           ** Solicitud aceptada **                          ')
 
-    Cuotas =  Prestamo/Meses
-    Extra = Cuotas*(Prestamo*0.2)
+        print('\n-----------------------------------------------------------------------------')
+        Prestamo = float(input('Ingrese la cantidad de dinero a solicitar para el prestamo: '))
+        print('-----------------------------------------------------------------------------')
+        Meses = int(input('¿Cuantas cuotas mensuales desea realiazar para completar su prestamo?: '))
+        print('-----------------------------------------------------------------------------')
 
-    Total = (Cuotas+Extra)*Meses
+        Cuotas =  Prestamo/Meses
+        Extra = Cuotas+(Cuotas*0.02)
 
-    print('Su prestamo se ha procesado...')
-    print('Su ')
+        Total = (Extra)*Meses
 
+        print('\nSu prestamo se ha procesado...')   
+        print(f'\nPrestamo exitoso, el pago final sera de {Total} en cuotas de {Extra} por {Meses} meses')
+        print('Gracias por su tiempo, gracias por confiar en B.I.P\nVuelva pronto\n')
+    else:
+        print('\nRequisitos faltantes...')
+        print('Gracias por su tiempo, gracias por confiar en B.I.P\nVuelva pronto\n')
