@@ -1,5 +1,7 @@
 '''
-Un restaurante tiene la necesidad de presentar su menú de forma virtual por ende se necesita de un programa el cual muestre en pantalla el menú del restaurante con sus precios y el tiempo a esperar, cual solicite al cliente que platillo que le gustaría degustar he imprimir en pantalla pedido exitoso
+Un restaurante tiene la necesidad de presentar su menú de forma virtual por ende se necesita de un
+programa el cual muestre en pantalla el menú del restaurante con sus precios y el tiempo a esperar,
+cual solicite al cliente que platillo que le gustaría  degustar he imprimir en pantalla pedido exitoso
 El desglose sería el siguiente: La opción pollo frito seguido del precio y del tiempo a esperar
 '''
 
@@ -15,3 +17,4 @@ Menu = {
 print('\n---------------------------------------------------')
 print('         Bienvenido al restaurante el jefe         ')
 print('---------------------------------------------------\n')
+
