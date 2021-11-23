@@ -1,0 +1,8 @@
+setup.py
+Paquete_Python.egg-info/PKG-INFO
+Paquete_Python.egg-info/SOURCES.txt
+Paquete_Python.egg-info/dependency_links.txt
+Paquete_Python.egg-info/top_level.txt
+paquete/Script.py
+paquete/Adios/Adios.py
+paquete/Hola/Hola.py
