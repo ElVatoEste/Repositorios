@@ -5,6 +5,6 @@ setup(
     description= ('Es un paquete practica'),
     author= 'Vato_Dev',
     author_email= 'bigmalv@gmail.com',
-    packages=['Paquete', 'Paquete.hola', 'Paquete.Adios'],
+    packages=['paquete', 'paquete.Hola', 'paquete.Adios'],
     scripts=[]
 )
