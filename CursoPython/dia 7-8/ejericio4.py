@@ -7,14 +7,29 @@ El desglose sería el siguiente: La opción pollo frito seguido del precio y del
 
 
 Menu = {
-    {'Nombre': 'Pollo Frito', 'Precio': 150, 'Tiempo': 15},
-    {'Nombre': 'Pizza', 'Precio': 220, 'Tiempo': 20},
-    {'Nombre': 'Hamburgesa', 'Precio': 120, 'Tiempo': 10},
-    {'Nombre': 'Natacamal', 'Precio': 80, 'Tiempo': 15},
-    {'Nombre': 'Tostones con queso', 'Precio': 250 , 'Tiempo': 10},
+    1:{'Nombre': 'Pollo Frito', 'Precio': 150, 'Tiempo': 15},
+    2:{'Nombre': 'Pizza', 'Precio': 220, 'Tiempo': 20},
+    3:{'Nombre': 'Hamburgesa', 'Precio': 120, 'Tiempo': 10}
 }
 
 print('\n---------------------------------------------------')
 print('         Bienvenido al restaurante el jefe         ')
 print('---------------------------------------------------\n')
 
+while True:
+
+    Ask = int(input('Opciones del restaurante\n#1 Menu de comidas\n#2 Solicitar plato\n#3 Agregar platillo\n#4 Salir\n'))
+
+    if Ask == 1:
+        for x in Menu:
+            print('\nNombre del plato:',Menu[x]['Nombre'], '\nPrecio del plato:',Menu[x]['Precio'], '\nEsta orden se prepara en',Menu[x]['Tiempo'], 'min\n')
+    
+    if Ask == 2:
+        Comida = str(input())
+        print('\nNombre del plato:',Menu[x]['Nombre'], '\nPrecio del plato:',Menu[x]['Precio'], '\nEsta orden se prepara en',Menu[x]['Tiempo'], 'min\n')
+
+    if Ask == 3:
+        
+        
+
+    if Ask == 4:
