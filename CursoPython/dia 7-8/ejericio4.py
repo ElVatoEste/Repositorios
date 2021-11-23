@@ -26,10 +26,12 @@ while True:
     
     if Ask == 2:
         Comida = str(input())
-        print('\nNombre del plato:',Menu[x]['Nombre'], '\nPrecio del plato:',Menu[x]['Precio'], '\nEsta orden se prepara en',Menu[x]['Tiempo'], 'min\n')
+        while Comida not in Menu:
+            Comida = str(input('Comida inexistente o dato ingresado no es el mismo de la base de datos...\nEscriba especificamente el plato solicitado: '))
+        print('Su orden de:', Menu[x][{Comida}])
 
     if Ask == 3:
         
-        
 
     if Ask == 4:
+        print('Gracias por visitarnos, regrese pronto')
