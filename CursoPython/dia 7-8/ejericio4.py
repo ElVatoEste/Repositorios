@@ -22,17 +22,20 @@ while True:
 
     if Ask == 1:
         for x in Menu:
-            print('\nNombre del plato:',Menu[x]['Nombre'], '\nPrecio del plato:',Menu[x]['Precio'], '\nEsta orden se prepara en',Menu[x]['Tiempo'], 'min\n')
-    
+            print('\n---------------------------------------------------') 
+            print('Nombre del plato:',Menu[x]['Nombre'], '\nPrecio del plato:',Menu[x]['Precio'], '\nEsta orden se prepara en',Menu[x]['Tiempo'], 'min')
+            print('--------------------------------------------------\n') 
+
     if Ask == 2:
         Comida = str(input())
         while Comida not in Menu:
             Comida = str(input('Comida inexistente o dato ingresado no es el mismo de la base de datos...\nEscriba especificamente el plato solicitado: '))
-        print('Su orden de:', Menu[x][{Comida}])
-
+        print('Su orden de:', Menu[x][{Comida}]) 
+    
     if Ask == 3:
-        
-
+        Agregar = {}
+        Ncomida = str(input('Ingrese el nombre de la comida que desea agregar: '))
+        Pcomida = int(input(f'Cuanto costara el plato {Ncomida}?: '))
 
     if Ask == 4:
         print('Gracias por visitarnos, regrese pronto')
