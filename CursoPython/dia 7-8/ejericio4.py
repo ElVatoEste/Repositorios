@@ -1,3 +1,4 @@
+i = 4
 '''
 Un restaurante tiene la necesidad de presentar su menú de forma virtual por ende se necesita de un
 programa el cual muestre en pantalla el menú del restaurante con sus precios y el tiempo a esperar,
@@ -24,7 +25,7 @@ while True:
         for x in Menu:
             print('\n---------------------------------------------------') 
             print('Nombre del plato:',Menu[x]['Nombre'], '\nPrecio del plato:',Menu[x]['Precio'], '\nEsta orden se prepara en',Menu[x]['Tiempo'], 'min')
-            print('--------------------------------------------------\n') 
+            print('--------------------------------------------------') 
 
     if Ask == 2:
         Comida = str(input())
@@ -33,9 +34,14 @@ while True:
         print('Su orden de:', Menu[x][{Comida}]) 
     
     if Ask == 3:
+
         Agregar = {}
         Ncomida = str(input('Ingrese el nombre de la comida que desea agregar: '))
         Pcomida = int(input(f'Cuanto costara el plato {Ncomida}?: '))
+        Tcomida = int(input('Cuantos minutos hay que esperar?: '))
+        Menu.setdefault(i,{'Nombre':Ncomida, 'Precio':Pcomida, 'Tiempo':Tcomida})
+        i = i+1
 
     if Ask == 4:
         print('Gracias por visitarnos, regrese pronto')
+        exit()
