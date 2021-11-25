@@ -47,14 +47,16 @@ class Agenda():
             print('-------------------------------------')
 
     def Buscar(self):
-        NContacto = str(input('\nIngrese el nombre del contacto que desea buscar: '))
+        print('\n---------------------------------------------------------')
+        NContacto = str(input('Ingrese el nombre del contacto que desea buscar: '))
+        print('---------------------------------------------------------')
         for x in Contactos:
             if NContacto in Contactos[x]['Nombre']:
                 print('\nInformacion del contacto:')
                 print('Numero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
     
     def Editar(self):
-        Cct = input(str(f'\nIngrese el estudiante que desea modificar {Contactos.keys()}: '))
+        Cct = input(str(f'\nIngrese el nombre del contacto que desea modificar {Contactos.keys()}: '))
         Valor = input(str(f'Ingrese el valor que desea cambiar {Contactos[Cct].keys()}: '))
         print(f'Cambio realizado por "{Contactos[Cct][Valor]}"')
         if Valor == 'Nombre':
