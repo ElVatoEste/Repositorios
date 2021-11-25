@@ -9,7 +9,7 @@ ventana.title('Titulo')
 # fuinciones
 def Accion():
     ventana.iconify()
-    time.sleep(0.5)
+    time.sleep(0.1)
     ventana.deiconify()
 
     
@@ -20,7 +20,7 @@ Lbl.pack(anchor= CENTER)
 
 Lbl.config(
     fg= 'blue',
-    bg= 'red',
+    bg= '#ff8003',
     font= ('Times', 10),
     cursor= 'watch'
 )
@@ -31,7 +31,7 @@ Btn.pack()
 Btn.config(
     font= ('Times', 10),
     cursor= 'arrow',
-    height= 10,
+    height= 5,
     width= 10
 )
 
