@@ -1,6 +1,8 @@
 print('\nBienvenido a la agenda python\n')
 
-Contactos = []
+
+Contactos={}
+
 
 class Agenda():
     def __init__(self):
