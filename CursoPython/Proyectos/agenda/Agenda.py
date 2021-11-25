@@ -1,9 +1,27 @@
-print('\nBienvenido a la agenda python\n')
-
+print('\n-----------------------------------')
+print('** Bienvenido a la agenda python **')
+print('-----------------------------------\n')
 
 
 Contactos={}
 
+def Opciones():
+    print('\n---------------------------------\nQue opcion desea elegir:\n#1 Añadir\n#2 Mostrar\n#3 Buscar\n#4 Editar\n#5 Salir\n---------------------------------')
+    Ask = int(input('#'))
+
+    if Ask == 1:
+        A.Añadir()
+    elif Ask == 2:
+        A.Mostrar()
+    elif Ask == 3:
+        A.Buscar()
+    elif Ask == 4:
+        A.Editar()
+    elif Ask == 5:
+        A.Salir()
+    else:
+        pass
+    
 class Agenda():
     def __init__(self):
         Cantidad = int(input('Cuantos contactos desea agregar?: '))
@@ -30,6 +48,14 @@ class Agenda():
             if NContacto in Contactos[x]['Nombre']:
                 print('\nInformacion del contacto:')
                 print('Numero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
+    
+    def Editar(self):
+        NContacto = str(input('\nIngrese el nombre del contacto que desea buscar: '))
+        for x in Contactos:
+            if NContacto in Contactos[x]['Nombre']:
+                print('\nInformacion del contacto:')
+                print('Numero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
+
     def Salir(self):
         print('\nGracias por usar nuestros servicios uwu\nVuelva pronto\n')
         exit()
@@ -37,14 +63,4 @@ class Agenda():
 A = Agenda()
 
 while True:
-    print('\n---------------------------------\nQue opcion desea elegir:\n#1 Añadir\n#2 Mostrar\n#3 Buscar\n#4 Editar\n#5 Salir\n---------------------------------')
-    Ask = int(input('#'))
-
-    if Ask == 1:
-        A.Añadir()
-    if Ask == 2:
-        A.Mostrar()
-    if Ask == 3:
-        A.Buscar()
-    if Ask == 5:
-        A.Salir()
+    Opciones()
