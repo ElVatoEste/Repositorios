@@ -15,24 +15,25 @@ class Agenda():
 
     def Añadir(self):
         nom = str(input('\n¿Cual es el nombre de su contacto?: '))
-        Telefono = int(input('¿Cual es el telefono de su contacto?: '))
+        numero = int(input('¿Cual es el telefono de su contacto?: '))
         email = str(input('¿Cual es el correo de su contacto?: '))
-        Contactos.setdefault(nom, {'Nombre': nom, 'Telefono':Telefono, 'Email':email})
+        Contactos.setdefault(nom, {'Nombre': nom, 'Numero':numero, 'Email':email})
     
     def Mostrar(self):
         for x in Contactos:
-            print('\n')
+            print('\n-------------------------------------')
             print(f'Nombre del contacto: {x}\nNumero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
-
+            print('-------------------------------------')
     def Buscar(self):
-        NContacto = str(input('Ingrese el nombre del contacto que desea buscar'))
-        for NContacto in Contactos:
-            print('hola')
+        NContacto = str(input('\nIngrese el nombre del contacto que desea buscar: '))
+        for x in Contactos:
+            if NContacto in Contactos[x]['Nombre']:
+                print('\nInformacion del contacto:')
 
 A = Agenda()
 
 while True:
-    print('\nQue opcion desea elegir:\n#1 Añadir\n#2 Mostrar\n#3 Buscar\n#4 Editar')
+    print('\n---------------------------------\nQue opcion desea elegir:\n#1 Añadir\n#2 Mostrar\n#3 Buscar\n#4 Editar\n---------------------------------\n')
     Ask = int(input())
 
     if Ask == 1:
