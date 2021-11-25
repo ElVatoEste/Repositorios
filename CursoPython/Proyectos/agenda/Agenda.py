@@ -1,3 +1,5 @@
+
+
 print('\n-----------------------------------')
 print('** Bienvenido a la agenda python **')
 print('-----------------------------------\n')
@@ -21,7 +23,8 @@ def Opciones():
         A.Salir()
     else:
         pass
-    
+
+ 
 class Agenda():
     def __init__(self):
         Cantidad = int(input('Cuantos contactos desea agregar?: '))
@@ -42,6 +45,7 @@ class Agenda():
             print('\n-------------------------------------')
             print(f'Nombre del contacto: {x}\nNumero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
             print('-------------------------------------')
+
     def Buscar(self):
         NContacto = str(input('\nIngrese el nombre del contacto que desea buscar: '))
         for x in Contactos:
@@ -50,11 +54,19 @@ class Agenda():
                 print('Numero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
     
     def Editar(self):
-        NContacto = str(input('\nIngrese el nombre del contacto que desea buscar: '))
-        for x in Contactos:
-            if NContacto in Contactos[x]['Nombre']:
-                print('\nInformacion del contacto:')
-                print('Numero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
+        Cct = input(str(f'\nIngrese el estudiante que desea modificar {Contactos.keys()}: '))
+        Valor = input(str(f'Ingrese el valor que desea cambiar {Contactos[Cct].keys()}: '))
+        print(f'Cambio realizado por "{Contactos[Cct][Valor]}"')
+        if Valor == 'Nombre':
+            Nuevo = input(str(f'Cual sera el nuevo valor de ({Contactos[Cct][Valor]}): '))
+            Cambio = Contactos[Cct][Valor] = Nuevo
+            Contactos[Nuevo] = Contactos.pop(Cct)
+        elif Valor == 'Numero':
+            Nuevo = int(input(f'Cual sera el nuevo valor de ({Contactos[Cct][Valor]}): '))
+            Cambio = Contactos[Cct][Valor] = Nuevo
+        else:
+            Nuevo = input(str(f'Cual sera el nuevo valor de ({Contactos[Cct][Valor]}): '))
+            Cambio = Contactos[Cct][Valor] = Nuevo
 
     def Salir(self):
         print('\nGracias por usar nuestros servicios uwu\nVuelva pronto\n')
