@@ -15,14 +15,3 @@ class Agenda():
 
 
 A = Agenda()
-
-'''
-while True:
-    print('\nQue opcion desea elegir:\n#1 Suma\n#2 Resta\n#3 Multiplicación\n#4 Division')
-    Ask = int(input())
-
-    if Ask == 1:
-    if Ask == 2:
-    if Ask == 3:
-    if Ask == 4:
-'''
