@@ -25,6 +25,8 @@ Lbl.config(
     cursor= 'watch'
 )
 
+# caja de texto
+CT = Entry(ventana, justify='center').pack()
 
 
 # boton 
