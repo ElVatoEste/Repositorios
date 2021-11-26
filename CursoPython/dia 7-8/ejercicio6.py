@@ -30,11 +30,11 @@ if NumeroRandom >= 60:
 
     print('------------------------')
     print('-- Recibo a nombre de --')
-    print(Nomb.center(20))
+    print(Nomb.center(22))
     print('------------------------')
     print('--  Cantidad a pagar  --')
     print(format(Total, '^22'))
-    print('------------------------')
+    print('------------------------\n')
 
 else:
     
@@ -44,10 +44,13 @@ else:
 
     print('------------------------')
     print('-- Recibo a nombre de --')
-    print(Nomb.center(20))
+    print(Nomb.center(22))
     print('------------------------')
     print('--  Cantidad a pagar  --')
     print(format(Total, '^22'))
-    print('------------------------')
+    print('------------------------\n')
+
+print('** Gracias por su compra **')
+print('       Vuelva pronto!\n')
 
 
