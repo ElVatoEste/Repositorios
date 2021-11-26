@@ -52,7 +52,7 @@ class Agenda():
         print('---------------------------------------------------------')
         for x in Contactos:
             if NContacto in Contactos[x]['Nombre']:
-                print('\nInformacion del contacto:')
+                print('\nInformacion del contacto de', Contactos[x]['Nombre'])
                 print('Numero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
     
     def Editar(self):

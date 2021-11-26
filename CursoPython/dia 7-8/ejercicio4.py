@@ -28,11 +28,17 @@ while True:
             print('--------------------------------------------------') 
 
     if Ask == 2:
-        Comida = str(input())
+        Comida = str(input(f'\nIngrese el nombre del plato\nDispobible {Menu.keys()}\n'))
         while Comida not in Menu:
             Comida = str(input('Comida inexistente o dato ingresado no es el mismo de la base de datos...\nEscriba especificamente el plato solicitado: '))
-        print('Su orden de:', Menu[x][{Comida}]) 
-    
+        for x in Comida:
+            if Comida in Menu[x]:
+                print(f'\nSu orden de {Comida}]') 
+                print('Se ha procesado exitosamente')
+                print('Vuelva pronto')
+                exit()
+
+        
     if Ask == 3:
 
         Agregar = {}
