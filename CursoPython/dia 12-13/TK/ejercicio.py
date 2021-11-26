@@ -10,7 +10,12 @@ Btn = Button(ventana, text='Click 1')
 Btn2 = Button(ventana, text='Click 2')
 Cajat = Entry(ventana, justify='center')
 
-Lbl.pack()
+Cajat.config(
+    background='gray',
+    fg='black',
+    width=77,
+    )
+
 
 Lbl.config(
     background='black',
@@ -43,7 +48,7 @@ Btn2.config(
 Lbl.place(x= 0, y=0)
 Btn.place(x= 0, y=161)
 Btn2.place(x= 324, y=161)
-Cajat.place(x=0, y= 500)
+Cajat.place(x=0, y= 280)
 
 
 ventana.geometry('500x500')
