@@ -8,7 +8,7 @@ Solicitar: El nombre del empleado y calcular el salario tomando en cuenta la can
 
 print('\n----------------------------')
 print('** Calculadora de salario ** ')
-print('----------------------------\n')
+print('----------------------------')
 
 
 Salarios={}
@@ -17,7 +17,7 @@ Salida = True
 
 while Salida:
 
-    Nombre = str(input('Cual es el nombre de su obrero?: '))
+    Nombre = str(input('\nCual es el nombre de su obrero?: '))
     Dias = int(input('Cuantas dias trabaja a la semana: '))
 
     # Datos
@@ -29,10 +29,14 @@ while Salida:
 
     Salario = Dia*Dias
 
-    ask = str(input('Desea salir del sistema? y/n: '))
+    Salarios.setdefault(Nombre, {'Nombre': Nombre, 'Salario':Salario})
 
-    if ask == 'y' or ask == 'Y':
+    ask = str(input('\nSeguira agregando trabajadores? y/n: '))
+
+    if ask == 'n' or ask == 'N':
         Salida = False
 
-print(f'\nEl obrero trabaja un total de {Dias} dias a la semana')
-print(f'El obrero gana a la semana un total de {Salario} coordobas a la semana')
+for x in Salarios:
+    print('\n-------------------------------------')
+    print('El trabajador', Salarios[x]['Nombre'],'gana', Salarios[x]['Salario'], 'a la semana ')
+    print('-------------------------------------')
