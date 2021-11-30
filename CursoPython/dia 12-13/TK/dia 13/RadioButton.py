@@ -9,3 +9,4 @@ Hombre.grid(column=0, row=0)
 
 Mujer = Radiobutton(ventana, text='Mujer', value='Mujer')
 Mujer.grid(column=1, row=0)
+
