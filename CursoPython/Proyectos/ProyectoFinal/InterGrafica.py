@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 # -------------------------------------------------------
 
@@ -12,17 +13,22 @@ Usuarios = {
 
 
 
-
 def Verificar():
-    if Usu in Usuarios:
-        if Contra == Usuarios[Usu]["password"]:
-            print("Hola xd")
-        else: 
-            print("Contraseña invalida")
+    Username = NombreUsuario.get()
+    Password = ContraseñaUsuario.get()
 
-    elif Usu not in Usuarios:
-        print("Usuario invalido")
-        
+    if Username == "":
+        messagebox.showerror("Alert", "Campo vacio")
+
+    elif Username not in Usuarios:
+        messagebox.showwarning("Error", "Usuario invalido")
+    
+    elif Username in Usuarios and Password == Usuarios[Username]["password"]:
+        messagebox.showinfo("Login", "Inicio de secion exitoso")
+    
+    elif Username in Usuarios and Password != Usuarios[Username]["password"]:
+        messagebox.showerror("Error", "Contraseña invalida")
+
 
 # -------------------------------------------------------
 
@@ -90,8 +96,6 @@ IniciarSecion.config(
     height= 1,
     width= 30
 )
-
-print(Usu)
 
 IniciarSecion.place(x= 410.5, y=250)
 
