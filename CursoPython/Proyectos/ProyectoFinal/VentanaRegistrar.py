@@ -1,11 +1,10 @@
 from tkinter import *
 
-
-def AbrirVentana2():
+def Registrar():
 
     Ventana2 = Tk()
     Ventana2.title('VatGram')
-    Ventana2.tk.call('wm', 'iconphoto', Ventana2._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\imagenes\icon.png"))
+    Ventana2.tk.call('wm', 'iconphoto', Ventana2._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\icon.png"))
     Ventana2.geometry('600x600')
     Ventana2.resizable(0, 0) 
 

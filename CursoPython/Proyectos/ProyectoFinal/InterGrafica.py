@@ -12,7 +12,7 @@ Usuarios = {
 # ----------------------------
 # definiciones
 
-
+ColorFondo = "#818181"
 
 def Verificar():
     Username = NombreUsuario.get()
@@ -104,6 +104,7 @@ def Verificar():
             )
 
 
+
 # -------------------------------------------------------
 
 
@@ -114,7 +115,7 @@ ventana = Tk()
 
 
 ventana.title('VatGram')
-ventana.tk.call('wm', 'iconphoto', ventana._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\icon.png"))
+ventana.tk.call('wm', 'iconphoto', ventana._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\imagenes\icon.png"))
 ventana.geometry('700x420')
 ventana.resizable(0, 0) 
 
@@ -122,11 +123,24 @@ back = Frame(master=ventana,bg='black')
 back.pack_propagate(0)
 back.pack(fill=BOTH, expand=1)
 
-img = PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\Imagen.png")
+img = PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\imagenes\Imagen.png")
 
 lbl_image = Label(ventana, image=img).pack()
 # ------------------------------------------------
 
+Login =  Label(ventana, text="Usuario")
+Login.config(
+    background=ColorFondo,
+    font= ('Times', 11)
+)
+Pass = Label(ventana, text="Contraseña")
+Pass.config(
+    background=ColorFondo,
+    font= ('Times', 11)
+)
+
+Login.place(x= 405, y=129)
+Pass.place(x= 405, y=169)
 
 # ---------------------------------------------------------------------
 # Caja de texto 
@@ -162,7 +176,7 @@ ContraseñaUsuario.place(x= 485, y=170)
 IniciarSecion = Button(ventana, text='iniciar sesión', command=Verificar)
 IniciarSecion.pack()
 IniciarSecion.config(
-    bg="#818181",
+    bg=ColorFondo,
     fg="black",
     font= ('Times', 10),
     cursor= 'arrow',
@@ -173,7 +187,7 @@ IniciarSecion.config(
 Registrar = Button(ventana, text='Registrar')
 Registrar.pack()
 Registrar.config(
-    bg="#818181",
+    bg=ColorFondo,
     fg="black",
     font= ('Times', 10),
     cursor= 'arrow',
@@ -183,7 +197,6 @@ Registrar.config(
 
 Registrar.place(x= 410.5, y=310)
 IniciarSecion.place(x= 410.5, y=240)
-
 
 
 
