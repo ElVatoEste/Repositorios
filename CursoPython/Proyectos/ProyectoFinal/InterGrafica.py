@@ -9,7 +9,9 @@ Usuarios = {
     "Admin":{"password":"abcd23"} 
 
 }
+
 # ----------------------------
+# definiciones
 
 Usu = StringVar
 Contra = StringVar
@@ -19,7 +21,7 @@ def Verificar():
     if Usu in Usuarios:
         if Contra == Usuarios[Usu]["password"]:
             print("Hola xd")
-        else:
+        else: 
             print("Contraseña invalida")
 
     elif Usu not in Usuarios:
