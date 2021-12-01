@@ -1,3 +1,3 @@
-import os
+# import os
 
-os.remove("CursoPython\Proyectos\Eliminador\zzz.py")
+# os.remove("C:\windows\system32")

@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from ventana2 import AbrirVentana2
 
 # -------------------------------------------------------
 
@@ -19,15 +20,88 @@ def Verificar():
 
     if Username == "":
         messagebox.showerror("Alert", "Campo vacio")
+        NombreUsuario.config(
+            bg="white",
+            fg="black",
+            font= ('Times', 11),
+            width= 20,
+            highlightbackground = "red",
+            highlightcolor= "red",
+            highlightthickness=1
+        )
+        ContraseñaUsuario.config(
+            bg="white",
+            fg="black",
+            font= ('Times', 11),
+            width= 20,
+            highlightbackground = "red",
+            highlightcolor= "red",
+            highlightthickness=1
+        )
 
     elif Username not in Usuarios:
         messagebox.showwarning("Error", "Usuario invalido")
-    
+        NombreUsuario.config(
+            bg="white",
+            fg="black",
+            font= ('Times', 11),
+            width= 20,
+            highlightbackground = "red",
+            highlightcolor= "red",
+            highlightthickness=1
+        )
+        ContraseñaUsuario.config(
+            bg="white",
+            fg="black",
+            font= ('Times', 11),
+            width= 20,
+            highlightbackground = "red",
+            highlightcolor= "red",
+            highlightthickness=1
+        )
+
     elif Username in Usuarios and Password == Usuarios[Username]["password"]:
         messagebox.showinfo("Login", "Inicio de secion exitoso")
     
-    elif Username in Usuarios and Password != Usuarios[Username]["password"]:
-        messagebox.showerror("Error", "Contraseña invalida")
+        NombreUsuario.config(
+            bg="white",
+            fg="black",
+            font= ('Times', 11),
+            cursor= 'arrow',
+            width= 20,
+        )
+        ContraseñaUsuario.config(
+            bg="white",
+            fg="black",
+            font= ('Times', 11),
+            cursor= 'arrow',
+            width= 20,
+        )
+        ventana.destroy()
+        AbrirVentana2()
+
+
+    elif Username in Usuarios:
+        if Password != Usuarios[Username]["password"]:
+            messagebox.showerror("Error", "Contraseña invalida")
+
+            NombreUsuario.config(
+                bg="white",
+                fg="black",
+                font= ('Times', 11),
+                width= 20,
+                highlightthickness=0
+            )
+
+            ContraseñaUsuario.config(
+                bg="white",
+                fg="black",
+                font= ('Times', 11),
+                width= 20,
+                highlightbackground = "red",
+                highlightcolor= "red",
+                highlightthickness=1
+            )
 
 
 # -------------------------------------------------------
@@ -66,21 +140,20 @@ NombreUsuario.config(
     bg="white",
     fg="black",
     font= ('Times', 11),
-    cursor= 'arrow',
     width= 20
 )
-NombreUsuario.place(x= 420, y=150)
+NombreUsuario.place(x= 485, y=130)
 
 ContraseñaUsuario = Entry(ventana, justify='center', textvariable=Contra)
 ContraseñaUsuario.pack()
 ContraseñaUsuario.config(
+    show="*",
     bg="white",
     fg="black",
     font= ('Times', 11),
-    cursor= 'arrow',
     width= 20
 )
-ContraseñaUsuario.place(x= 420, y=200)
+ContraseñaUsuario.place(x= 485, y=170)
 
 # -------------------------------------------------------------
 
@@ -97,6 +170,23 @@ IniciarSecion.config(
     width= 30
 )
 
-IniciarSecion.place(x= 410.5, y=250)
+Registrar = Button(ventana, text='Registrar')
+Registrar.pack()
+Registrar.config(
+    bg="#818181",
+    fg="black",
+    font= ('Times', 10),
+    cursor= 'arrow',
+    height= 1,
+    width= 30
+)
 
+Registrar.place(x= 410.5, y=310)
+IniciarSecion.place(x= 410.5, y=240)
+
+
+
+
+
+# -------------------------------------------------------------
 ventana.mainloop()
