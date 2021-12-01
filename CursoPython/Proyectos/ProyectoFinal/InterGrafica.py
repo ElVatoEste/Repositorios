@@ -29,7 +29,9 @@ def Verificar():
 # -------------------------------------------------------
 
 
-#
+#-------------------------------------
+# diseño
+
 ventana = Tk()
 
 
@@ -45,6 +47,8 @@ back.pack(fill=tkinter.BOTH, expand=1)
 img = PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\Imagen.png")
 
 lbl_image = Label(ventana, image=img).pack()
+# ------------------------------------------------
+
 
 # ---------------------------------------------------------------------
 # Caja de texto 
