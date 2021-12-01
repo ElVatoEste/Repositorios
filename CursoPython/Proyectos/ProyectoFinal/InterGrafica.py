@@ -1,7 +1,4 @@
 from tkinter import *
-import tkinter
-from tkinter import ttk
-from tkinter import messagebox
 
 # -------------------------------------------------------
 
@@ -13,8 +10,7 @@ Usuarios = {
 # ----------------------------
 # definiciones
 
-Usu = StringVar
-Contra = StringVar
+
 
 
 def Verificar():
@@ -38,13 +34,13 @@ ventana = Tk()
 
 
 ventana.title('VatGram')
-ventana.tk.call('wm', 'iconphoto', ventana._w, tkinter.PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\icon.png"))
+ventana.tk.call('wm', 'iconphoto', ventana._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\icon.png"))
 ventana.geometry('700x420')
 ventana.resizable(0, 0) 
 
-back = tkinter.Frame(master=ventana,bg='black')
+back = Frame(master=ventana,bg='black')
 back.pack_propagate(0)
-back.pack(fill=tkinter.BOTH, expand=1)
+back.pack(fill=BOTH, expand=1)
 
 img = PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\Imagen.png")
 
@@ -54,6 +50,9 @@ lbl_image = Label(ventana, image=img).pack()
 
 # ---------------------------------------------------------------------
 # Caja de texto 
+
+Usu = StringVar()
+Contra = StringVar()
 
 NombreUsuario = Entry(ventana, justify='center', textvariable=Usu)
 NombreUsuario.pack()
@@ -91,6 +90,8 @@ IniciarSecion.config(
     height= 1,
     width= 30
 )
+
+print(Usu)
 
 IniciarSecion.place(x= 410.5, y=250)
 
