@@ -4,7 +4,7 @@ def Registrar():
 
     ventana3 = Tk()
     ventana3.title('VatGram')
-    ventana3.tk.call('wm', 'iconphoto', ventana3._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\imagenes\icon.png"))
+    ventana3.iconbitmap("CursoPython\Proyectos\ProyectoFinal\imagenes\icon.ico")
     ventana3.geometry('700x420')
     ventana3.resizable(0, 0) 
 

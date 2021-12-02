@@ -115,7 +115,7 @@ ventana = Tk()
 
 
 ventana.title('VatGram')
-ventana.tk.call('wm', 'iconphoto', ventana._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\imagenes\icon.png"))
+ventana.iconbitmap("CursoPython\Proyectos\ProyectoFinal\imagenes\icon.ico")
 ventana.geometry('700x420')
 ventana.resizable(0, 0) 
 
