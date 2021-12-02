@@ -1,8 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
 from ventana2 import AbrirVentana2
-
+from VentanaRegistrar import Registrar
 # -------------------------------------------------------
+
+top = Toplevel()
 
 Usuarios = {
     "Admin":{"password":"abcd23"} 
@@ -184,7 +186,7 @@ IniciarSecion.config(
     width= 30
 )
 
-Registrar = Button(ventana, text='Registrar')
+Registrar = Button(ventana, text='Registrar', command=Registrar)
 Registrar.pack()
 Registrar.config(
     bg=ColorFondo,
@@ -202,4 +204,4 @@ IniciarSecion.place(x= 410.5, y=240)
 
 
 # -------------------------------------------------------------
-ventana.mainloop()
+top.mainloop()

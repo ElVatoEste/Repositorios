@@ -2,14 +2,20 @@ from tkinter import *
 
 def Registrar():
 
-    Ventana2 = Tk()
-    Ventana2.title('VatGram')
-    Ventana2.tk.call('wm', 'iconphoto', Ventana2._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\icon.png"))
-    Ventana2.geometry('600x600')
-    Ventana2.resizable(0, 0) 
+    ventana3 = Tk()
+    ventana3.title('VatGram')
+    ventana3.tk.call('wm', 'iconphoto', ventana3._w, PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\imagenes\icon.png"))
+    ventana3.geometry('700x420')
+    ventana3.resizable(0, 0) 
 
-    back = Frame(master=Ventana2,bg='black')
+    back = Frame(master=ventana3,bg='black')
     back.pack_propagate(0)
     back.pack(fill=BOTH, expand=1)
 
-    Ventana2.mainloop()
+    ventana3.mainloop()
+
+    Login =  Label(ventana3, text="Usuario")
+    Login.config(
+        font= ('Times', 11)
+    )
+    Login.place(x=100, y=100)
