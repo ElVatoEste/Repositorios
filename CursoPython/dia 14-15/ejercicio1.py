@@ -1,5 +1,11 @@
 from tkinter import *
 
+def Mensaje():
+
+    textolargo = (f"{CT1.get()} {CT2.get()} es una persona de {CT3.get()} años y es {CT4.get()}") 
+    Lbl5.configure(text= textolargo)
+
+
 ventana = Tk()
 
 ventana.geometry("300x150")
@@ -9,20 +15,26 @@ Lbl = Label(ventana, text='Ingrese su primer nombre').pack(anchor= NW)
 Lbl2 = Label(ventana, text='Ingrese su primer apellido').pack(anchor= NW)
 Lbl3 = Label(ventana, text='Ingrese su edad').pack(anchor= NW)
 Lbl4 = Label(ventana, text='Ingrese su profesión').pack(anchor= NW)
+Lbl5 = Label(ventana, text="***")
+Lbl5.pack()
 
-CT1 = Entry(ventana, justify='center').pack()
-CT2 = Entry(ventana, justify='center').pack()
-CT3 = Entry(ventana, justify='center').pack()
-CT4 = Entry(ventana, justify='center').pack()
+CT1 = Entry(ventana, justify='center')
+CT2 = Entry(ventana, justify='center')
+CT3 = Entry(ventana, justify='center')
+CT4 = Entry(ventana, justify='center')
 
-Ct1.
+CT1.place(x=170, y=0)
+CT2.place(x=170, y=20)
+CT3.place(x=170, y=40)
+CT4.place(x=170, y=60)
 
-Btn = Button(ventana, text='Ingresar')
+Btn = Button(ventana, text='Ingresar', command=Mensaje)
 Btn.pack(anchor=CENTER)
 Btn.config(
     font= ('Times', 10),
     cursor= 'arrow',
     width= 8
 )
+Btn.place(x=125,y=110)
 
 ventana.mainloop()
