@@ -4,8 +4,6 @@ from ventana2 import AbrirVentana2
 from VentanaRegistrar import Registrar
 # -------------------------------------------------------
 
-top = Toplevel()
-
 Usuarios = {
     "Admin":{"password":"abcd23"} 
 
@@ -204,4 +202,4 @@ IniciarSecion.place(x= 410.5, y=240)
 
 
 # -------------------------------------------------------------
-top.mainloop()
+ventana.mainloop()
