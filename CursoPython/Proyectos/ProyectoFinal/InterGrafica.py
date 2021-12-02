@@ -2,12 +2,10 @@ from tkinter import *
 from tkinter import messagebox
 from ventana2 import AbrirVentana2
 from VentanaRegistrar import Registrar
+from Usuarios import Usuarios
+
 # -------------------------------------------------------
 
-Usuarios = {
-    "Admin":{"password":"abcd23"} 
-
-}
 
 # ----------------------------
 # definiciones
