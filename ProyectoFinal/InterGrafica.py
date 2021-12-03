@@ -3,14 +3,18 @@ from tkinter import messagebox
 from ventana2 import AbrirVentana2
 from VentanaRegistrar import Registrar
 from Usuarios import Usuarios
-
-# -------------------------------------------------------
+import time
+from tkinter import ttk
+from tkinter.ttk import Progressbar
+import random
 
 
 # ----------------------------
 # definiciones
 
+
 ColorFondo = "#818181"
+Aleatorio = random.randrange(1, 20)
 
 def Verificar():
     Username = NombreUsuario.get()
@@ -59,6 +63,23 @@ def Verificar():
         )
 
     elif Username in Usuarios and Password == Usuarios[Username]["password"]:
+        style = ttk.Style()
+
+        style.theme_use('default')
+        style.configure("black.Horizontal.TProgressbar", background= 'Orange')
+
+        bar = Progressbar(ventana, length=220, style="black.Horizontal.TProgressbar", mode="indeterminate")
+        bar['value'] = 0
+        bar.place(x= 410, y=370)
+
+        for x in range(20):
+            if x >= 300:
+                break
+            bar['value'] += Aleatorio
+            ventana.update_idletasks()
+            time.sleep(0.2)
+            
+        time.sleep(0.5)
         messagebox.showinfo("Login", "Inicio de secion exitoso")
     
         NombreUsuario.config(
@@ -113,7 +134,7 @@ ventana = Tk()
 
 
 ventana.title('VatGram')
-ventana.iconbitmap("CursoPython\Proyectos\ProyectoFinal\imagenes\icon.ico")
+ventana.iconbitmap("ProyectoFinal\imagenes\icon.ico")
 ventana.geometry('700x420')
 ventana.resizable(0, 0) 
 
@@ -121,7 +142,7 @@ back = Frame(master=ventana,bg='black')
 back.pack_propagate(0)
 back.pack(fill=BOTH, expand=1)
 
-img = PhotoImage(file="CursoPython\Proyectos\ProyectoFinal\imagenes\Imagen.png")
+img = PhotoImage(file="ProyectoFinal\imagenes\Imagen.png")
 
 lbl_image = Label(ventana, image=img).pack()
 # ------------------------------------------------
@@ -170,7 +191,6 @@ ContraseñaUsuario.place(x= 485, y=170)
 # -------------------------------------------------------------
 
 
-
 IniciarSecion = Button(ventana, text='iniciar sesión', command=Verificar)
 IniciarSecion.pack()
 IniciarSecion.config(
@@ -195,6 +215,7 @@ Registrar.config(
 
 Registrar.place(x= 410.5, y=310)
 IniciarSecion.place(x= 410.5, y=240)
+
 
 
 

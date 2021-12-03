@@ -5,7 +5,7 @@ def AbrirVentana2():
 
     Ventana2 = Tk()
     Ventana2.title('VatGram')
-    Ventana2.iconbitmap("CursoPython\Proyectos\ProyectoFinal\imagenes\icon.ico")
+    Ventana2.iconbitmap("ProyectoFinal\imagenes\icon.ico")
     Ventana2.geometry('600x600')
     Ventana2.resizable(0, 0) 
 
