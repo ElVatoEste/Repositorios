@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from Usuarios import Usuarios
 
 def Registrar():
@@ -116,7 +117,8 @@ def Registrar():
         bg="white",
         fg="black",
         font= ('Times', 11),
-        width= 25
+        width= 25,
+        show="*"
     )
 
     Entry1.place(x= 110, y=42.5)
@@ -127,23 +129,30 @@ def Registrar():
  
     # Button
     def Registro():
-        Usuarios.setdefault(Entry4.get(),{"password": Entry5.get})
+
+        Nom3 = Entry1.get()
+        Ape3 = Entry2.get()
+        Corr3 = Entry3.get()
+        Usu3 = Entry4.get()
+        Pass3 = Entry5.get()
+
+        if Pass3 == "" or Usu3 == "" or Nom3 == "" or Ape3 == "" or Corr3 == "":
+            messagebox.showerror("Error", "Llene el campo vacio")
+
+        else:
+            Usuarios.setdefault(Entry4.get(),{"password": Entry5.get()})
+            messagebox.showinfo("Registro Exitoso", f"{Entry1.get()} {Entry2.get()} su cuenta a sido creada exitosamente")
+            ventana3.destroy()
 
     Registrar3 = Button(ventana3, text='Registrar', command=Registro)
     Registrar3.pack()
     Registrar3.config(
         fg="black",
+        bg="gray",
         font= ('Times', 10),
         cursor= 'arrow',
-        height= 1,
-        width= 30
+        height= 2,
+        width= 30,
     )
 
-      
-
-
-
     ventana3.mainloop() 
-
-
-Registrar()
