@@ -24,8 +24,6 @@ Lbl2.config(
 
 Lbl2.place(x=45,y=35)
 
-Numero1 = IntVar
-
 Btn = Button(ventana, text='Ingresar', command=Mensaje)
 Btn.pack(anchor=CENTER)
 Btn.config(
@@ -34,5 +32,15 @@ Btn.config(
     width= 8
 )
 Btn.place(x=125,y=110)
+
+Numero1 = IntVar
+
+NumeroUno = Entry(ventana, textvariable=Numero1)
+NumeroUno.pack()
+NumeroUno.config(
+    font= ('Times', 10),
+    width= 7
+)
+NumeroUno.place(x=215,y=37)
 
 ventana.mainloop()
