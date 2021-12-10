@@ -1,7 +1,7 @@
 import smtplib 
 
-message = "Jajaja te envie un mensaje desde un codigo que hice uwu"
-subject = "Probando"
+message = ""
+subject = ""
 
 message= "Subject: {}\n\n{}".format(subject, message)
 server = smtplib.SMTP("smtp.gmail.com", 587)
