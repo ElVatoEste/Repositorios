@@ -1,6 +1,6 @@
 from tkinter import *
 
-def Mensaje():
+def Multiplicar():
 
     #basico
     print("hola")
@@ -8,7 +8,7 @@ def Mensaje():
 
 ventana = Tk()
 
-ventana.geometry("300x300")
+ventana.geometry("300x200")
 ventana.title("Registro de personas")
 
 Lbl = Label(ventana, text='Caculadora python')
@@ -29,18 +29,38 @@ Lbl3.config(
     font= ('Times', 11),
 )
 
-Lbl3.place(x=38,y=55)
+Lbl3.place(x=38,y=65)
 
-Btn = Button(ventana, text='Ingresar', command=Mensaje)
-Btn.pack(anchor=CENTER)
-Btn.config(
-    font= ('Times', 10),
+Btn1 = Button(ventana, text='+', command=Multiplicar)
+Btn1.pack(anchor=CENTER)
+Btn1.config(
+    font= ("Times", 25),
     cursor= 'arrow',
-    width= 8
+    width=3
 )
-Btn.place(x=125,y=110)
+Btn1.place(x=80,y=110)
 
-Numero1 = IntVar
+Btn2 = Button(ventana, text='-', command=Multiplicar)
+Btn2.pack(anchor=CENTER)
+Btn2.config(
+    font= ("Times", 25),
+    cursor= 'arrow',
+    width=3
+)
+Btn2.place(x=130,y=110)
+
+Btn3 = Button(ventana, text='*', command=Multiplicar)
+Btn3.pack(anchor=CENTER)
+Btn3.config(
+    font= ("Times", 25),
+    cursor= 'arrow',
+    width=3
+)
+Btn3.place(x=180,y=110)
+
+
+Numero1 = DoubleVar
+Numero2 = DoubleVar
 
 NumeroUno = Entry(ventana, textvariable=Numero1)
 NumeroUno.pack()
@@ -48,6 +68,15 @@ NumeroUno.config(
     font= ('Times', 10),
     width= 7
 )
+
+NumeroDos = Entry(ventana, textvariable=Numero2)
+NumeroDos.pack()
+NumeroDos.config(
+    font= ('Times', 10),
+    width= 7
+)
+
 NumeroUno.place(x=215,y=37)
+NumeroDos.place(x=215,y=67)
 
 ventana.mainloop()
