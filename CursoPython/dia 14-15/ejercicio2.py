@@ -24,6 +24,13 @@ Lbl2.config(
 
 Lbl2.place(x=45,y=35)
 
+Lbl3 =  Label(ventana, text="Ingrese su segundo numero:")
+Lbl3.config(
+    font= ('Times', 11),
+)
+
+Lbl3.place(x=38,y=55)
+
 Btn = Button(ventana, text='Ingresar', command=Mensaje)
 Btn.pack(anchor=CENTER)
 Btn.config(
