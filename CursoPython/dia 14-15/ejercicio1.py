@@ -1,9 +1,18 @@
 from tkinter import *
+from tkinter import messagebox
 
 def Mensaje():
 
-    textolargo = (f"{CT1.get()} {CT2.get()} es una persona de {CT3.get()} años y es {CT4.get()}") 
-    Lbl5.configure(text= textolargo)
+    c1 = CT1.get()
+    c2 = CT2.get()
+    c3 = CT3.get()
+    c4 = CT4.get()
+
+    if c1 == "" or c2 == "" or c3 == "" or c4 == "":
+        messagebox.showerror("Error", "Un campo esta vacio")
+    else:
+        textolargo = (f"{CT1.get()} {CT2.get()} es una persona de {CT3.get()} años y es {CT4.get()}") 
+        Lbl5.configure(text= textolargo)
 
 
 ventana = Tk()
@@ -15,7 +24,7 @@ Lbl = Label(ventana, text='Ingrese su primer nombre').pack(anchor= NW)
 Lbl2 = Label(ventana, text='Ingrese su primer apellido').pack(anchor= NW)
 Lbl3 = Label(ventana, text='Ingrese su edad').pack(anchor= NW)
 Lbl4 = Label(ventana, text='Ingrese su profesión').pack(anchor= NW)
-Lbl5 = Label(ventana, text="***")
+Lbl5 = Label(ventana, text="")
 Lbl5.pack()
 
 CT1 = Entry(ventana, justify='center')
