@@ -13,6 +13,33 @@ ventana1.config(
 def Celcius():
     ventana1.iconify()
     ventana2 = Toplevel()
+    ventana2.geometry("300x220")
+    ventana2.title("Registro de personas")
+
+    Lbl = Label(ventana2, text='Caculadora python')
+    Lbl.config(
+        font=("Times", 20),
+    )
+
+    Lbl2 =  Label(ventana2, text="Ingrese su primer numero:")
+    Lbl2.config(
+        font= ('Times', 11),
+    )
+
+    Lbl3 =  Label(ventana2, text="Ingrese su segundo numero:")
+    Lbl3.config(
+        font= ('Times', 11),
+    )
+
+    Lbl4 =  Label(ventana2, text="Calculo matematico ingresado")
+    Lbl4.config(
+        font= ('Times', 15),
+    )
+
+    Lbl.pack()
+    Lbl2.place(x=45,y=35)
+    Lbl3.place(x=38,y=65)
+    Lbl4.pack(side = BOTTOM)
 
 def Fahrenheit():
     ventana1.iconify()
@@ -28,15 +55,13 @@ Texto1.pack(anchor=CENTER)
 
 Boton1 = Button(ventana1, text="ºC", command=Celcius)
 Boton1.config(
-    bg="black",
-    fg="White",
+    bg="white",
     font=("Times", 18),
     width=3
 )
-Boton2 = Frame(ventana1, text="ºF", command=Fahrenheit)
+Boton2 = Button(ventana1, text="ºF", command=Fahrenheit)
 Boton2.config(
-    bg="black",
-    fg="White",
+    bg="white",
     font=("Times", 18),
     width=3
 )

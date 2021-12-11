@@ -39,7 +39,7 @@ def Restar():
 
 
 ventana.geometry("300x220")
-ventana.title("Registro de personas")
+ventana.title("Calculadora")
 
 Lbl = Label(ventana, text='Caculadora python')
 Lbl.config(
