@@ -21,9 +21,12 @@ Lbl2.config(
     font= ('Times', 11),
 )
 
-
-
 Lbl3 =  Label(ventana, text="Ingrese su segundo numero:")
+Lbl3.config(
+    font= ('Times', 11),
+)
+
+Lbl4 =  Label(ventana, text="Calculo matematico ingresado: {} {} {}".format)
 Lbl3.config(
     font= ('Times', 11),
 )
@@ -31,7 +34,7 @@ Lbl3.config(
 Lbl.pack()
 Lbl2.place(x=45,y=35)
 Lbl3.place(x=38,y=65)
-
+Lbl4.pack()
 
 Btn1 = Button(ventana, text='+', command=Multiplicar)
 Btn1.pack(anchor=CENTER)
