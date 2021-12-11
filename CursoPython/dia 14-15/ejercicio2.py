@@ -34,29 +34,32 @@ Lbl3.place(x=38,y=65)
 Btn1 = Button(ventana, text='+', command=Multiplicar)
 Btn1.pack(anchor=CENTER)
 Btn1.config(
-    font= ("Times", 25),
+    font= ("Times", 20),
     cursor= 'arrow',
     width=3
 )
-Btn1.place(x=80,y=110)
+
 
 Btn2 = Button(ventana, text='-', command=Multiplicar)
 Btn2.pack(anchor=CENTER)
 Btn2.config(
-    font= ("Times", 25),
+    font= ("Times", 20),
     cursor= 'arrow',
     width=3
 )
-Btn2.place(x=130,y=110)
+
 
 Btn3 = Button(ventana, text='*', command=Multiplicar)
 Btn3.pack(anchor=CENTER)
 Btn3.config(
-    font= ("Times", 25),
+    font= ("Times", 20),
     cursor= 'arrow',
     width=3
 )
-Btn3.place(x=180,y=110)
+
+Btn1.place(x=80,y=100)
+Btn2.place(x=130,y=100)
+Btn3.place(x=180,y=100)
 
 
 Numero1 = DoubleVar
