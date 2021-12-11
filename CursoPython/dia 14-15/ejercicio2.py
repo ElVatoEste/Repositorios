@@ -1,10 +1,24 @@
 from tkinter import *
 
 
+
+signo = ""
 def Multiplicar():
     
+    _valor1 = int(Numero1.get())
+    _valor2 = int(Numero2.get())
+    _valor = _valor1+_valor2
+
     signo = "*"
     
+    Lbl4 =  Label(ventana, text="Calculo matematico ingresado: \n{} {} {} = {}".format(_valor1, signo, Numero2, _valor))
+    Lbl4.config(
+        font= ('Times', 11),
+    )
+
+    Lbl4.place(x=20, y=160)
+
+
 
 
 ventana = Tk()
@@ -27,15 +41,11 @@ Lbl3.config(
     font= ('Times', 11),
 )
 
-Lbl4 =  Label(ventana, text="Calculo matematico ingresado: {} {} {}".format())
-Lbl3.config(
-    font= ('Times', 11),
-)
+
 
 Lbl.pack()
 Lbl2.place(x=45,y=35)
 Lbl3.place(x=38,y=65)
-Lbl4.pack()
 
 Btn1 = Button(ventana, text='+', command=Multiplicar)
 Btn1.pack(anchor=CENTER)
@@ -68,8 +78,8 @@ Btn2.place(x=130,y=100)
 Btn3.place(x=200,y=100)
 
 
-Numero1 = DoubleVar
-Numero2 = DoubleVar
+Numero1 = DoubleVar()
+Numero2 = DoubleVar()
 
 NumeroUno = Entry(ventana, textvariable=Numero1)
 NumeroUno.pack()
