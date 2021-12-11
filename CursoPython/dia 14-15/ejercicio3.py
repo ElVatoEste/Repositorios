@@ -11,39 +11,111 @@ ventana1.config(
 )
 
 def Celcius():
-    ventana1.iconify()
+
     ventana2 = Toplevel()
-    ventana2.geometry("300x220")
-    ventana2.title("Registro de personas")
-
-    Lbl = Label(ventana2, text='Caculadora python')
-    Lbl.config(
-        font=("Times", 20),
+    ventana2.resizable(0, 0) 
+    ventana2.geometry("250x150")
+    ventana2.title("Celcius")
+    ventana2.config(
+        bg="Black"
     )
 
-    Lbl2 =  Label(ventana2, text="Ingrese su primer numero:")
-    Lbl2.config(
-        font= ('Times', 11),
+
+    def Ingresar():
+        
+        _valor1 = float(En1.get())
+        _valor = (_valor1-32)*5/9
+        print(_valor)
+        L3.config(
+            text=_valor
+        )
+       
+
+    L1 = Label(ventana2, text="Fahrenheit")
+    L1.pack()
+    L1.config(
+        bg="Black",
+        fg="White"
     )
 
-    Lbl3 =  Label(ventana2, text="Ingrese su segundo numero:")
-    Lbl3.config(
-        font= ('Times', 11),
+    Grados = DoubleVar()
+    
+    En1 = Entry(ventana2, justify="center", textvariable=Grados)
+    En1.pack()
+
+
+    L2 = Label(ventana2, text="Celcius")
+    L2.pack()
+    L2.config(
+        bg="Black",
+        fg="White"
     )
 
-    Lbl4 =  Label(ventana2, text="Calculo matematico ingresado")
-    Lbl4.config(
-        font= ('Times', 15),
+
+    L3 = Label(ventana2, justify="center", text="***")
+    L3.pack()
+    L3.config(
+        bg="white",
+        width=17,
     )
 
-    Lbl.pack()
-    Lbl2.place(x=45,y=35)
-    Lbl3.place(x=38,y=65)
-    Lbl4.pack(side = BOTTOM)
+    Btn1 = Button(ventana2, text="Ingresar", command=Ingresar)
+    Btn1.pack(pady=10)
+
 
 def Fahrenheit():
-    ventana1.iconify()
+
     ventana3 = Toplevel()
+    ventana3.resizable(0, 0) 
+    ventana3.geometry("250x150")
+    ventana3.title("Fahrenheit")
+    ventana3.config(
+        bg="Black"
+    )
+
+
+    def Ingresar():
+        
+        _valor1 = float(En1.get())
+        _valor = (_valor1*9/5)+32
+        print(_valor)
+        L3.config(
+            text=_valor
+        )
+       
+
+    L1 = Label(ventana3, text="Celcius")
+    L1.pack()
+    L1.config(
+        bg="Black",
+        fg="White"
+    )
+
+    Grados = DoubleVar()
+    
+    En1 = Entry(ventana3, justify="center", textvariable=Grados)
+    En1.pack()
+
+
+    L2 = Label(ventana3, text="Fahrenheit")
+    L2.pack()
+    L2.config(
+        bg="Black",
+        fg="White"
+    )
+
+
+    L3 = Label(ventana3, justify="center", text="***")
+    L3.pack()
+    L3.config(
+        bg="white",
+        width=17,
+    )
+
+    Btn1 = Button(ventana3, text="Ingresar", command=Ingresar)
+    Btn1.pack(pady=10)
+
+
 
 Texto1 = Label(ventana1, text="Bienvenido al sistema convertidor de grados\nSeleccione su opción")
 Texto1.config(
