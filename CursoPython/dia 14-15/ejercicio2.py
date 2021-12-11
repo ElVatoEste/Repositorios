@@ -11,7 +11,7 @@ def Multiplicar():
 
     signo = "*"
     
-    Lbl4 =  Label(ventana, text="Calculo matematico ingresado: \n{} {} {} = {}".format(_valor1, signo, Numero2, _valor))
+    Lbl4 =  Label(ventana, text="Calculo matematico ingresado: \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
     Lbl4.config(
         font= ('Times', 11),
     )
