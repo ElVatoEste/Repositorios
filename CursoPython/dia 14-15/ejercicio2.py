@@ -1,29 +1,44 @@
 from tkinter import *
 
 
+ventana = Tk()
+ventana.resizable(0, 0) 
 
 signo = ""
-def Multiplicar():
-    
-    _valor1 = int(Numero1.get())
-    _valor2 = int(Numero2.get())
+
+def Sumar():
+
+    _valor1 = float(Numero1.get())
+    _valor2 = float(Numero2.get())
     _valor = _valor1+_valor2
 
+    signo = "+"
+
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
+
+def Multiplicar():
+
+    _valor1 = float(Numero1.get())
+    _valor2 = float(Numero2.get())
+    _valor = _valor1*_valor2
+
     signo = "*"
+
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
     
-    Lbl4 =  Label(ventana, text="Calculo matematico ingresado: \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
-    Lbl4.config(
-        font= ('Times', 11),
-    )
 
-    Lbl4.place(x=20, y=160)
+def Restar():
+
+    _valor1 = float(Numero1.get())
+    _valor2 = float(Numero2.get())
+    _valor = _valor1-_valor2
+
+    signo = "-"
+
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
 
 
-
-
-ventana = Tk()
-
-ventana.geometry("300x230")
+ventana.geometry("300x220")
 ventana.title("Registro de personas")
 
 Lbl = Label(ventana, text='Caculadora python')
@@ -41,13 +56,17 @@ Lbl3.config(
     font= ('Times', 11),
 )
 
-
+Lbl4 =  Label(ventana, text="Calculo matematico ingresado")
+Lbl4.config(
+    font= ('Times', 15),
+)
 
 Lbl.pack()
 Lbl2.place(x=45,y=35)
 Lbl3.place(x=38,y=65)
+Lbl4.pack(side = BOTTOM)
 
-Btn1 = Button(ventana, text='+', command=Multiplicar)
+Btn1 = Button(ventana, text='+', command=Sumar)
 Btn1.pack(anchor=CENTER)
 Btn1.config(
     font= ("Times", 20),
@@ -56,7 +75,7 @@ Btn1.config(
 )
 
 
-Btn2 = Button(ventana, text='-', command=Multiplicar)
+Btn2 = Button(ventana, text='-', command=Restar)
 Btn2.pack(anchor=CENTER)
 Btn2.config(
     font= ("Times", 20),
