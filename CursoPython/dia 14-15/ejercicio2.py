@@ -1,9 +1,10 @@
 from tkinter import *
 
-def Multiplicar():
 
-    #basico
-    print("hola")
+def Multiplicar():
+    
+    signo = "*"
+    
 
 
 ventana = Tk()
@@ -26,7 +27,7 @@ Lbl3.config(
     font= ('Times', 11),
 )
 
-Lbl4 =  Label(ventana, text="Calculo matematico ingresado: {} {} {}".format)
+Lbl4 =  Label(ventana, text="Calculo matematico ingresado: {} {} {}".format())
 Lbl3.config(
     font= ('Times', 11),
 )
