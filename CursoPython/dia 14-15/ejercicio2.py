@@ -71,7 +71,8 @@ Btn1.pack(anchor=CENTER)
 Btn1.config(
     font= ("Times", 20),
     cursor= 'arrow',
-    width=3
+    width=3,
+    bg=("#f7bd56")
 )
 
 
@@ -80,7 +81,8 @@ Btn2.pack(anchor=CENTER)
 Btn2.config(
     font= ("Times", 20),
     cursor= 'arrow',
-    width=3
+    width=3,
+    bg="#9acfdd"
 )
 
 
@@ -89,7 +91,8 @@ Btn3.pack(anchor=CENTER)
 Btn3.config(
     font= ("Times", 20),
     cursor= 'arrow',
-    width=3
+    width=3,
+    bg="#Cb82ff"
 )
 
 Btn1.place(x=60,y=100)
