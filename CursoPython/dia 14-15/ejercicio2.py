@@ -8,11 +8,10 @@ def Multiplicar():
 
 ventana = Tk()
 
-ventana.geometry("300x200")
+ventana.geometry("300x230")
 ventana.title("Registro de personas")
 
 Lbl = Label(ventana, text='Caculadora python')
-Lbl.pack()
 Lbl.config(
     font=("Times", 20),
 )
@@ -22,14 +21,17 @@ Lbl2.config(
     font= ('Times', 11),
 )
 
-Lbl2.place(x=45,y=35)
+
 
 Lbl3 =  Label(ventana, text="Ingrese su segundo numero:")
 Lbl3.config(
     font= ('Times', 11),
 )
 
+Lbl.pack()
+Lbl2.place(x=45,y=35)
 Lbl3.place(x=38,y=65)
+
 
 Btn1 = Button(ventana, text='+', command=Multiplicar)
 Btn1.pack(anchor=CENTER)
@@ -57,9 +59,9 @@ Btn3.config(
     width=3
 )
 
-Btn1.place(x=80,y=100)
+Btn1.place(x=60,y=100)
 Btn2.place(x=130,y=100)
-Btn3.place(x=180,y=100)
+Btn3.place(x=200,y=100)
 
 
 Numero1 = DoubleVar
