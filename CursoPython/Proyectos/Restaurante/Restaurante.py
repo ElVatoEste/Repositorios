@@ -1,8 +1,10 @@
+# Mensaje de bievenida
+
 print('\n-------------------------------')
 print('Bienvenido al sistema de propinas')
 print('-------------------------------\n')
-# Sistema en blucle
 
+# Sistema en blucle
 # Interruptor que definira si el blucle sigue o no
 interruptor = True 
 
@@ -15,6 +17,7 @@ while interruptor:
     # Se crea una copia de la lista para utilizar en la repartición
     MeserosCopia = Meseros.copy()
     Propina =[]
+
     # Lista Default para modificar mas adelante
     SubMeseros = []
     
@@ -24,6 +27,8 @@ while interruptor:
     # Zona de ingreso 
 
     Cantidad = int(input('¿Cuantos meseros desean ingresar propinas?: '))
+
+    # Que la cantidad no sobrepase la de los meseros registrados
     while Cantidad > len(Meseros):
         print('\n** La Cantidad sobrepasa el limite de meseros registrados **')
         print(f'             Meseros dispobles actualmente {len(Meseros)}')
@@ -40,14 +45,16 @@ while interruptor:
             print('\nEse mesero no esta registrado o ya fue ingresado')
             Nomb = str(input('Intente con otro nombre: '))
 
-        # Utilizar la sublista junto con la propina emparejar con el metodo
-        # dict(zip()) de los diccionarios
 
         SubMeseros.append(Nomb)
+
         # Eliminamos el mesero de la lista original para que no se repita
         Meseros.remove(Nomb)
 
         tips = float(input('Ingrese su propina: '))
+
+        # Dos mensajes de los cuales solo uno se enviara si sobrepasa una cantidad definida
+        # en caso contrario se enviara un mensaje comun de agradecimiento
         if tips >= 1000:
             print('\n-------------------------------')
             print('    Excelente aporte!')
@@ -60,6 +67,7 @@ while interruptor:
         Propina.append(tips)
     
     Ask1 = str(input('¿Desea ver el registro de propinas del dia? y/n: '))
+
     # Preguntar si quiere ver la lista de las propinas con su mesero correspondiente
     while Ask1 != "y" and Ask1 != 'n':
         print('\n         Dato ingresado incorrecto')
@@ -69,6 +77,10 @@ while interruptor:
 
         # Se establece un diccionario
         print('\nPropinas del dia: ')
+
+        # Utilizar la sublista junto con la propina emparejar con el metodo
+        # dict(zip()) de los diccionarios
+
         print(dict(zip(SubMeseros, Propina)))
 
     # Espacio para hacer calculos matematicos
@@ -76,6 +88,7 @@ while interruptor:
     Correspondiente = (T_Propina/len(MeserosCopia))
     
 
+    #Explicacion del sistema de distribución
     print('\n---------------------------------------------------------------')
     print('El sistema esta basado en que cada mesero incluya la propina\nque gano en el dia y que todos reciban la misma parte por igual')
     print('---------------------------------------------------------------\n')
@@ -85,13 +98,15 @@ while interruptor:
     # Salida del servicio
     print('\n-----------------------------------------------')
     entrada = str(input('       ¿Desea seguir con el menu? y/n: '))
+   
     # Solo entradas validas
-
     while entrada != "y" and entrada != 'n':
         print('\n         Dato ingresado incorrecto')
         print('               y/n = Yes/No')
         entrada = input(str('\n       ¿Desea seguir con el menu? y/n: '))
 
+    # apagar el bucle, terminando el sistema.
     if entrada == 'n':
         interruptor = False
+
 print('-----------------------------------------------\n')
