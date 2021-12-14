@@ -1,4 +1,3 @@
-# ejercicio
 
 # Preguntamos los nombres
 print('\n------------------------------------------------')
@@ -6,8 +5,8 @@ Per1 = str(input('¿Como se llama el primer estudiante? '))
 Per2 = str(input('¿Como se llama el segundo estudiante? '))
 Per3 = str(input('¿Como se llama el tercer estudiante? '))
 print('------------------------------------------------')
-# Preguntamos sus notas
 
+# Preguntamos sus notas
 Est1 = int(input(f'Ingrese la calificación de {Per1}: '))
 Est2 = int(input(f'Ingrese la calificación de {Per2}: '))
 Est3 = int(input(f'Ingrese la calificación de {Per3}: '))
@@ -37,7 +36,6 @@ elif Est3 < Est1 and Est3 < Est2 :
     print('------------------------------------------------\n')
 
 # Condiciones si hay notas que se repiten (solo si se repiten), mencionar quienes coinciden
-
 if Est1 == Est2 and Est1 == Est3 and Est2 == Est3:
     print(f'{Per1}, {Per2} y {Per3} tienen la misma nota de: {Est1}')
     print('------------------------------------------------\n')
