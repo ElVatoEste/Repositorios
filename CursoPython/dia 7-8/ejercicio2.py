@@ -3,30 +3,37 @@ Realice un programa en Python que leer los datos (nombre, edad y sueldo) de n em
 (máximo 10) e imprima los trabajadores con sueldo máximo y mínimo, así como la media de
 los sueldos
 '''
-
+# Validador de opciones tipo si y no pero en ingles xd
 y_n = ['Y', 'N', 'n', 'y']
 
-
+# Mensaje de bienvenida
 print('\n*****************************')
 print('** Sistema de trabajadores **')
 print('*****************************\n')
 
+
+# Bucle infinito
 while True:
 
+    # Listas y diccionarios asignados y vacios para llenarlos mas adelante
     Trabajadores = {}
     Dinero = []
     Numeros = []
 
+    # Preguntar cantidad de trabajadores para pedir los datos con la misma exactitud
     Cantidad = int(input('¿Cuantos trabajadores desea agregar?: '))
 
+    # si pone el numero cero es que no quiere nada y se va
     if Cantidad == 0:
         exit()
 
+    # El numero maximo es de 10
     while Cantidad > 10:
         print('\nLa cantidad solicitada excede el maximo disponible (10)')
         print('Ingrese nuevamente...')
         Cantidad = int(input('\n¿Cuantos trabajadores desea agregar?: '))
     
+    # Se usa for para hacer un recorrido la cantidad de veces que el usuario haya escogido en el rango de 1 a 10
     for x in range(Cantidad):
         Nombre = str(input('\nIngrese el nombre del trabajador: '))
         Edad = int(input('Ingrese la edad del trabajadro: '))
@@ -46,6 +53,11 @@ while True:
     Total = sum(Dinero)
 
 
+    # Nota del 13/12/21, no se porque hice esta barbaridad de codigo pero sirve para comprovar numero mayores
+    # y menores, le recomendaria bajar rapido para no mariarse  
+
+    # Resumido... Se asigna a la variable maxima y minima el salario que cumpla con esas caracteristicas, simplemente
+    # se hace una copia del valor pero con otro nombre.
     if Cantidad == 2:
 
         if Numeros[0] > Numeros[1]:
@@ -416,6 +428,7 @@ while True:
                                                 pass          
 
 
+    # Para que muestre los maximo y minimos si hay mas dos o más salarios
     if Cantidad > 1:
         print('\n--------------------------------------')
         print(f'La media es {Total/Cantidad:.2f} ')
@@ -426,6 +439,7 @@ while True:
         print('--------------------------------------')
 
 
+    # esto se explica solo...
     print('\n¿Desea volver a ingresar los datos de los trabajadores?')
     print('** Si desea continuar tiene que tomar en cuenta que los trabajadores ingresados se reiniciaran... **')
     print('En caso contrario el sistema de detendra')
