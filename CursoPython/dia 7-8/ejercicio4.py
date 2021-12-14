@@ -6,7 +6,7 @@ cual solicite al cliente que platillo que le gustaría  degustar he imprimir en 
 El desglose sería el siguiente: La opción pollo frito seguido del precio y del tiempo a esperar
 '''
 
-
+# Diccionario con el menu del restaurante
 Menu = {
     'Pollo Frito':{'Nombre': 'Pollo Frito', 'Precio': 150, 'Tiempo': 15},
     'Pizza':{'Nombre': 'Pizza', 'Precio': 220, 'Tiempo': 20},
