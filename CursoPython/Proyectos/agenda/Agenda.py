@@ -68,12 +68,16 @@ class Agenda():
     def Editar(self):
         Cct = input(str(f'\nIngrese el nombre del contacto que desea modificar {Contactos.keys()}: '))
         while Cct not in Contactos:
+            if Cct == "":
+                print("Usted no tiene a nadie registrado")
+                Opciones
             Cct = input(str(f'\nIngrese un nombre valido {Contactos.keys()}: '))
+        
         
         Valor = input(str(f'Ingrese el valor que desea cambiar {Contactos[Cct].keys()}: '))
         while Valor not in Contactos[Cct].keys():
             Valor = input(str(f'Ingrese el valor que desea cambiar {Contactos[Cct].keys()}: '))
-            
+
         print(f'Cambio realizado por "{Contactos[Cct][Valor]}"')
         if Valor == 'Nombre':
             Nuevo = input(str(f'Cual sera el nuevo valor de ({Contactos[Cct][Valor]}): '))
