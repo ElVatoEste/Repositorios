@@ -40,8 +40,7 @@ while True:
         # Se muestran los platos disponibles
         Comida = str(input(f'\nIngrese el nombre del plato\nDispobible {Menu.keys()}\n'))
         while Comida not in Menu:
-            Comida = str(input('Comida inexistente o dato ingresado no es el mismo de la base de datos...\nEscriba especificamente el plato solicitado: '))
-            print(f'Dispobible {Menu.keys()}\n')
+            Comida = str(input(f'Comida inexistente o dato ingresado no es el mismo de la base de datos...\nEscriba especificamente el plato solicitado {Menu.keys()}\n'))
         print(f'\nSu orden de {Comida}') 
         print('Se ha procesado exitosamente')
         print('Podra pagar con tarjeta o efectivo directamente con el motorizado.')
