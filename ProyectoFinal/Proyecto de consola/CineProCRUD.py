@@ -5,11 +5,15 @@ print('\n------------------------------')
 print('** Bienvenido a VatoCinemas **')
 print('------------------------------\n')
 
+
+Nom = str(input('Tramite a nombre de: '))
+Cantidad = int(input('\n¿Cuantas personas entraran al cine?: '))
+
 # Defino mi diccionario
 Cartelera={
-    'Spiderman':{'Nombre': 'Spiderman', 'Dias': ["Lunes", "Miercoles", "Sabado", "Domingo"] , 'Tiempo': 120, 'Precio': 20},
-    'Matrix':{'Nombre': 'Matrix', 'Dias': ["Lunes", "Martes", "Viernes"], 'Tiempo': 140, 'Precio': 17},
-    'Olds':{'Nombre': 'Olds', 'Dias':["Lunes", "Miercoles", "Domingo"], 'Tiempo': 115, 'Precio' : 12}
+    'Spiderman':{'Nombre': 'Spiderman', 'Dia': "Domingo" , 'Tiempo': 120, 'Precio': 20},
+    'Matrix':{'Nombre': 'Matrix', 'Dia': "Martes", 'Tiempo': 140, 'Precio': 17},
+    'Olds':{'Nombre': 'Olds', 'Dia': "Miercoles",'Tiempo': 115, 'Precio' : 12}
 }
 
 # Editar mas adelante
@@ -17,6 +21,7 @@ Contraseña = ("a1b2")
 
 # Mi menu de opciones
 def Opciones():
+
     print('\n---------------------------------\nQue opcion desea elegir:\n#1 Ver Cartelera\n#2 Comprar tickets\n#3 Buscar pelicula\n#4 Editar (Admins Olny)\n#5 Salir\n---------------------------------')
     Ask = int(input('#'))
 
@@ -45,8 +50,6 @@ def Cambiar():
     while Valor not in Cartelera[Pel].keys():
         Valor = input(str(f'Ingrese un valor valido {Cartelera[Pel].keys()}: '))
 
-    print(f'Cambio realizado por "{Cartelera[Pel][Valor]}"')
-
     if Valor == 'Nombre':
         Nuevo = input(str(f'Cual sera el nuevo valor de ({Cartelera[Pel][Valor]})?: '))
         Cambio = Cartelera[Pel][Valor] = Nuevo
@@ -55,8 +58,9 @@ def Cambiar():
         Nuevo = int(input(f'Cual sera el nuevo valor de ({Cartelera[Pel][Valor]})?: '))
         Cambio = Cartelera[Pel][Valor] = Nuevo
     else:
-        Nuevo = input(str(f'Cual sera el nuevo valor de ({Cartelera[Pel][Valor]})?: '))
+        Nuevo = str(input(f'Cual sera el nuevo valor de ({Cartelera[Pel][Valor]})?: '))
         Cambio = Cartelera[Pel][Valor] = Nuevo
+
 
 def Eliminar():
     Pel = input(str(f'\nIngrese la pelicula que desea borrar {Cartelera.keys()}: '))
@@ -64,13 +68,20 @@ def Eliminar():
         Pel = input(str(f'\nIngrese un nombre valido {Cartelera.keys()}: '))
     Cartelera.pop(Pel)
 
+def Agregar():
+    Npel = str(input('Ingrese el nombre de la comida que desea agregar: '))
+    Dpel = str(input(f'Cuando se exhibirá {Npel}?: '))
+    Tpel = int(input('Cuantos minutos durara?: '))
+    Ppel = int(input('Cuanto dolares costara la entrada: '))
+    Cartelera.setdefault(Npel,{'Nombre':Npel, 'Dia':Dpel, 'Tiempo':Tpel, 'Precio':Ppel})
+
 
 class Cinemas():
 
     # Defino init 
-    def __init__(self):
-        Nom = str(input('Tramite a nombre de: '))
-        Cantidad = int(input('\n¿Cuantas personas entraran al cine?: '))
+    def __init__(self, Nom, Cantidad):
+       self.Nom = Nom
+       self.Cantidad = Cantidad
 
     # Defino la funcion Añadir
     def Mostrar(self):
@@ -79,7 +90,7 @@ class Cinemas():
         for x in Cartelera:
 
             print('Pelicula:', Cartelera[x]['Nombre'])
-            print('Dias:', Cartelera[x]['Dias'] )
+            print('Dia:', Cartelera[x]['Dia'] )
             print('Tiempo', Cartelera[x]['Tiempo'], 'Minutos')
             print('Precio de la entrada', Cartelera[x]['Precio'], 'Dolares\n')
             print('------------------------------------------\n')
@@ -87,12 +98,24 @@ class Cinemas():
         
     def Comprar(self):
         NomPel = str(input(f'\nIngrese el nombre de la pelicula\nDispobible {Cartelera.keys()}\n'))
-        while Comida not in Cartelera:
-            Comida = str(input('Ha ingresado incorrectamente el nombre, vuelva a intentarlo: '))
-            
-        print(f'\nSu orden de {Comida}') 
-        print('Se ha procesado exitosamente')
-        print('Podra pagar con tarjeta o efectivo directamente con el motorizado.')
+        while NomPel not in Cartelera:
+            NomPel = str(input('Ha ingresado incorrectamente el nombre, vuelva a intentarlo: '))
+
+        PPrecio = Cartelera[NomPel]['Precio']
+        Total = PPrecio * self.Cantidad 
+        print('Espere un momento...')
+        sleep(2)
+        print(f'\nEstimad@ {self.Nom}, su compra se ha realizado exitosamente') 
+        print('\n         ** R E C I B O **         ')
+        print(f'factura a nombre de: {self.Nom}')
+        print(f'Monto a pagar: {Total}$')
+        print(f'Dia de la funcion', Cartelera[NomPel]['Dia'])
+        print(f'Duracion:', Cartelera[NomPel]['Precio'], 'min')
+        print('************************************\n')
+
+        print('Muchas gracias por su compra, regrese pronto\n\n')
+        exit()
+
 
     def Buscar(self):
         print('\n---------------------------------------------------------')
@@ -102,17 +125,19 @@ class Cinemas():
         for x in Cartelera:
             if NCartelera in Cartelera[x]['Nombre']:
                 print('\nInformacion encontrada de', Cartelera[x]['Nombre'])
-                print('Dias:', Cartelera[x]['Dias'],'\nTiempo que dura:', Cartelera[x]['Tiempo'], 'minutos', '\nPrecio de la entrada:', Cartelera[x]['Precio'], '$')
+                print('Dia:', Cartelera[x]['Dia'],'\nTiempo que dura:', Cartelera[x]['Tiempo'], 'minutos', '\nPrecio de la entrada:', Cartelera[x]['Precio'], '$')
                 sleep(1)
 
     def Editar(self):
         ctr = str(input('Ingrese la contraseña: '))
         if ctr in Contraseña:
-            ask = int(input('---------------------------\nQue accion desea realizar\n#1 Editar\n#2 Eliminar\n---------------------------\n'))
+            ask = int(input('---------------------------\nQue accion desea realizar\n#1 Editar\n#2 Eliminar\n#3 Añadir\n---------------------------\n'))
             if ask == 1:
                 Cambiar()
             elif ask == 2:
                 Eliminar()
+            elif ask == 3:
+                Agregar()
             else:
                 print('No existe esa opcion')
                 pass
@@ -124,7 +149,7 @@ class Cinemas():
         exit()
 
 # Acortar nombre de la clase
-C = Cinemas()
+C = Cinemas(Nom, Cantidad)
 
 # Un bucle infinito del sistema el cual solo terminara si se eleji la opcion salir
 while True:
