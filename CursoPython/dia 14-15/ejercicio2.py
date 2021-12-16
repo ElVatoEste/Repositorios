@@ -17,7 +17,7 @@ def Sumar():
 
     signo = "+"
 
-    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(zvalor1, signo, zvalor2, xvalor))
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(zvalor1, signo, zvalor2, zvalor))
 
 def Multiplicar():
 
@@ -32,13 +32,13 @@ def Multiplicar():
 
 def Restar():
 
-    xvalor1 = float(Numero1.get())
-    xvalor2 = float(Numero2.get())
-    xvalor = xvalor1-xvalor2
+    rvalor1 = float(Numero1.get())
+    rvalor2 = float(Numero2.get())
+    rvalor = rvalor1-rvalor2
 
     signo = "-"
 
-    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(xvalor1, signo, xvalor2, xvalor))
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(rvalor1, signo, rvalor2, rvalor))
 
 # medida de la ventana
 ventana.geometry("300x220")
