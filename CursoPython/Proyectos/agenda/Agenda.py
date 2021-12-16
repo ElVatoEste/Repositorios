@@ -1,15 +1,21 @@
 
+# Importo la libreria time para usar la funcion sleep
+import time
 
+# Bienvenida
 print('\n-----------------------------------')
 print('** Bienvenido a la agenda python **')
 print('-----------------------------------\n')
 
-
+# Defino mi diccionario
 Contactos={}
 
+# Mi menu de opciones
 def Opciones():
     print('\n---------------------------------\nQue opcion desea elegir:\n#1 Añadir\n#2 Mostrar\n#3 Buscar\n#4 Editar\n#5 Salir\n---------------------------------')
     Ask = int(input('#'))
+
+    # Llamar a la funcion deseada dependiendo de la opcion solicitada
 
     if Ask == 1:
         A.Añadir()
@@ -24,8 +30,11 @@ def Opciones():
     else:
         pass
 
- 
+# Creacion de la clase llamada Agenda
+
 class Agenda():
+
+    # Defino init 
     def __init__(self):
         Cantidad = int(input('Cuantos contactos desea agregar?: '))
         for x in range(Cantidad):
@@ -45,6 +54,7 @@ class Agenda():
             print('\n-------------------------------------')
             print(f'Nombre del contacto: {x}\nNumero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
             print('-------------------------------------')
+            time.sleep(1)
 
     def Buscar(self):
         print('\n---------------------------------------------------------')
@@ -57,7 +67,13 @@ class Agenda():
     
     def Editar(self):
         Cct = input(str(f'\nIngrese el nombre del contacto que desea modificar {Contactos.keys()}: '))
+        while Cct not in Contactos:
+            Cct = input(str(f'\nIngrese un nombre valido {Contactos.keys()}: '))
+        
         Valor = input(str(f'Ingrese el valor que desea cambiar {Contactos[Cct].keys()}: '))
+        while Valor not in Contactos[Cct].keys():
+            Valor = input(str(f'Ingrese el valor que desea cambiar {Contactos[Cct].keys()}: '))
+            
         print(f'Cambio realizado por "{Contactos[Cct][Valor]}"')
         if Valor == 'Nombre':
             Nuevo = input(str(f'Cual sera el nuevo valor de ({Contactos[Cct][Valor]}): '))
