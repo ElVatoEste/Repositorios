@@ -5,7 +5,7 @@ programa el cual muestre en pantalla el menú del restaurante con sus precios y 
 cual solicite al cliente que platillo que le gustaría  degustar he imprimir en pantalla pedido exitoso
 El desglose sería el siguiente: La opción pollo frito seguido del precio y del tiempo a esperar
 '''
-# importo una libreria time para ocupar la funcion sleep
+# importo la libreria time para ocupar la funcion sleep
 import time
 
 # Diccionario con el menu del restaurante
