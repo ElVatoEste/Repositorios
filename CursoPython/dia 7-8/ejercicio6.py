@@ -8,20 +8,24 @@ utilizar una estructura selectiva if que nos ayudara a hacer comparaciones.
 por último, hacemos la operación respecto al descuento.
 
 '''
-
+# Importacion de la libreria random
 import random
 
+# Definir el rango del minimo y maximo de numero a optener
 NumeroRandom = random.randrange(1, 100)
 
+# Bienvenida
 print('\n***********************************')
 print('** Bienvenido a la tienda python **')
 print('***********************************\n')
 
+# Explicacion del sistema
 print(f'Estimado cliente le notificamos que el dia de hoy estaremos\naplicando descuentos por el black friday, dependiento de su\nsuerte se le aplicara el 30% o 50% de decuento en su compra')
 
 Nomb = str(input('\nIngrese el nombre del cliente: '))
 Cantidad = float(input('Monto total a pagar: '))
 
+# Si el numero sale igual o mayor a 6 se le aplica un descuento de 50%
 if NumeroRandom >= 60:
     print('\n                 ¡¡¡¡FELICIFADES!!!')
     print('Usted a ganado el 50% porciento de descuento en su compra\n')
@@ -36,9 +40,10 @@ if NumeroRandom >= 60:
     print(format(Total, '^22'))
     print('------------------------\n')
 
+# Como caso contrario de no cumplir la condicion, se le aplicara un descuento de 30%
 else:
     
-    print('Usted a ganado el 30% porciento de descuento en su compra\n')
+    print('\nUsted a ganado el 30% porciento de descuento en su compra\n')
     
     Total = Cantidad*0.7
 

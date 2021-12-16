@@ -26,10 +26,11 @@ while Salida:
     Horas = 6
     Paga = 300 # Al dia
 
+    # Operaciones Matematicas
     Dia = Horas*Paga
-
     Salario = Dia*Dias
 
+    #Agrego los datos al diccionario
     Salarios.setdefault(Nombre, {'Nombre': Nombre, 'Salario':Salario})
 
     ask = str(input('\nSeguira agregando trabajadores? y/n: '))
