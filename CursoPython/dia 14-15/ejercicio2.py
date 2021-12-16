@@ -2,45 +2,50 @@ from tkinter import *
 
 
 ventana = Tk()
+
+# Esta linea me permite establer una medida fija, es decir no se puede ni expandir ni contraer la ventana
 ventana.resizable(0, 0) 
 
 signo = ""
 
+# Defincion de funciones
 def Sumar():
 
-    _valor1 = float(Numero1.get())
-    _valor2 = float(Numero2.get())
-    _valor = _valor1+_valor2
+    zvalor1 = float(Numero1.get())
+    zvalor2 = float(Numero2.get())
+    zvalor = zvalor1+zvalor2
 
     signo = "+"
 
-    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(zvalor1, signo, zvalor2, xvalor))
 
 def Multiplicar():
 
-    _valor1 = float(Numero1.get())
-    _valor2 = float(Numero2.get())
-    _valor = _valor1*_valor2
+    xvalor1 = float(Numero1.get())
+    xvalor2 = float(Numero2.get())
+    xvalor = xvalor1*xvalor2
 
     signo = "*"
 
-    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(xvalor1, signo, xvalor2, xvalor))
     
 
 def Restar():
 
-    _valor1 = float(Numero1.get())
-    _valor2 = float(Numero2.get())
-    _valor = _valor1-_valor2
+    xvalor1 = float(Numero1.get())
+    xvalor2 = float(Numero2.get())
+    xvalor = xvalor1-xvalor2
 
     signo = "-"
 
-    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(_valor1, signo, _valor2, _valor))
+    Lbl4.config(text="Calculo matematico ingresado \n{} {} {} = {}".format(xvalor1, signo, xvalor2, xvalor))
 
-
+# medida de la ventana
 ventana.geometry("300x220")
 ventana.title("Calculadora")
 
+
+# Sector de los Labels --------------------------------------
 Lbl = Label(ventana, text='Caculadora python')
 Lbl.config(
     font=("Times", 20),
@@ -65,6 +70,8 @@ Lbl.pack()
 Lbl2.place(x=45,y=35)
 Lbl3.place(x=38,y=65)
 Lbl4.pack(side = BOTTOM)
+
+# Sector de botones ---------------------------------------------------------
 
 Btn1 = Button(ventana, text='+', command=Sumar)
 Btn1.pack(anchor=CENTER)
@@ -99,10 +106,11 @@ Btn1.place(x=60,y=100)
 Btn2.place(x=130,y=100)
 Btn3.place(x=200,y=100)
 
-
+# decile al sistema que los valores que se ingresaran seran flotantes
 Numero1 = DoubleVar()
 Numero2 = DoubleVar()
 
+# Sector de las entrys ----------------------------------------------
 NumeroUno = Entry(ventana, textvariable=Numero1)
 NumeroUno.pack()
 NumeroUno.config(
