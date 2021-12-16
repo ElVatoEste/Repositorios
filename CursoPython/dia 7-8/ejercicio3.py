@@ -45,19 +45,21 @@ if Pedir == 'n' or Pedir == 'N':
 # Peticion de datos
 else:
     print('\nIngrese su nombre completo: ')
-    Nombre = str(input(''))
+    Nombre = str(input())
 
     print('\nIngrese su numero de cedula\nEjemplo: 001-260204-1234J')
-    Cedula = str(input(''))
+    Cedula = str(input())
 
+    # Aqui especifico que la cedula tiene que ser exactamente de 16 caracteres incluyendo las letras, numeros y guiones
     while len(Cedula) != 16:
         print('\n                 Cedula invalida')
         print("    tienes que introducir 14 digitos validos")
         print('** Utilize - para separar la cadena de digitos **\n')
-        Cedula = str(input(''))
+        Cedula = str(input())
 
     Ingresos = float(input('\nIngrese la cantidad de ingresos mensuales: '))
 
+    # Filtro las personas que tengan un salario mayor a 5 mil coordobas puedan aplicar a un prestamo
     if Ingresos >= 5000.00:
         print('\n                           ** Solicitud aceptada **                          ')
 
@@ -66,7 +68,8 @@ else:
         print('-----------------------------------------------------------------------------')
         Meses = int(input('¿Cuantas cuotas mensuales desea realiazar para completar su prestamo?: '))
         print('-----------------------------------------------------------------------------')
-
+        
+        # Calculos matematicos
         Cuotas =  Prestamo/Meses
         Extra = Cuotas+(Cuotas*0.02)
 
@@ -75,6 +78,8 @@ else:
         print('\nSu prestamo se ha procesado...')   
         print(f'\nPrestamo exitoso, el pago final sera de {Total} en cuotas de {Extra} por {Meses} meses')
         print('Gracias por su tiempo, gracias por confiar en B.I.P\nVuelva pronto\n')
+
+    # Mensaje que se muestra solo si no cumple los requisitos 
     else:
         print('\nLo sentiento pero usted no cumple con los requisitos...')
         print('Gracias por su tiempo, gracias por confiar en B.I.P\nVuelva pronto\n')
