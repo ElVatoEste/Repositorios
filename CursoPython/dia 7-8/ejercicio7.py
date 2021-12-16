@@ -1,3 +1,5 @@
+# Este fue el ejercicio que expuse por lo que esta exageradamente comentariado xdd
+
 
 '''
 Los empleados de una fábrica trabajan en dos turnos diurno y nocturno, se desea Calcular el
