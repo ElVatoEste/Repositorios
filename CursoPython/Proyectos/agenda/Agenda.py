@@ -43,12 +43,14 @@ class Agenda():
             email = str(input('¿Cual es el correo de su contacto?: '))
             Contactos.setdefault(nom, {'Nombre': nom, 'Numero':numero, 'Email':email})
 
+    # Defino la funcion Añadir
     def Añadir(self):
         nom = str(input('\n¿Cual es el nombre de su contacto?: '))
         numero = int(input('¿Cual es el telefono de su contacto?: '))
         email = str(input('¿Cual es el correo de su contacto?: '))
         Contactos.setdefault(nom, {'Nombre': nom, 'Numero':numero, 'Email':email})
     
+    # Defino la funcion Mostrar
     def Mostrar(self):
         for x in Contactos:
             print('\n-------------------------------------')
@@ -66,13 +68,12 @@ class Agenda():
                 print('Numero:', Contactos[x]['Numero'],'\nCorreo Electronico:', Contactos[x]['Email'])
     
     def Editar(self):
+        if len(Contactos) == 0:
+            print("Usted no tiene a nadie registrado")
+            Opciones()
         Cct = input(str(f'\nIngrese el nombre del contacto que desea modificar {Contactos.keys()}: '))
         while Cct not in Contactos:
-            if Cct == "":
-                print("Usted no tiene a nadie registrado")
-                Opciones
             Cct = input(str(f'\nIngrese un nombre valido {Contactos.keys()}: '))
-        
         
         Valor = input(str(f'Ingrese el valor que desea cambiar {Contactos[Cct].keys()}: '))
         while Valor not in Contactos[Cct].keys():
