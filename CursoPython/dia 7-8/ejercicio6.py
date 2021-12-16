@@ -27,10 +27,16 @@ Cantidad = float(input('Monto total a pagar: '))
 
 # Si el numero sale igual o mayor a 6 se le aplica un descuento de 50%
 if NumeroRandom >= 60:
+
     print('\n                 ¡¡¡¡FELICIFADES!!!')
     print('Usted a ganado el 50% porciento de descuento en su compra\n')
 
+    # Operacion matematica 
     Total = Cantidad*0.5
+    
+    # use una funcion incluida en python (No la enseñaron pero busque como)
+    # En entre estas esta center y format, asi sin importar el contenido de la factura
+    # Se adecuara correctamente
 
     print('------------------------')
     print('-- Recibo a nombre de --')
@@ -45,7 +51,12 @@ else:
     
     print('\nUsted a ganado el 30% porciento de descuento en su compra\n')
     
+    # Operacion matematica
     Total = Cantidad*0.7
+
+    # use una funcion incluida en python (No la enseñaron pero busque como)
+    # En entre estas esta center y format, asi sin importar el contenido de la factura
+    # Se adecuara correctamente
 
     print('------------------------')
     print('-- Recibo a nombre de --')
