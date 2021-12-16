@@ -10,9 +10,10 @@ print('\n----------------------------')
 print('** Calculadora de salario ** ')
 print('----------------------------')
 
-
+# Se define un diccionario
 Salarios={}
 
+#Interuptor de while
 Salida = True
 
 while Salida:
@@ -32,10 +33,11 @@ while Salida:
     Salarios.setdefault(Nombre, {'Nombre': Nombre, 'Salario':Salario})
 
     ask = str(input('\nSeguira agregando trabajadores? y/n: '))
-
+    # En caso de querer salir, el interuptor pasara de True a False apagando el bucle while
     if ask == 'n' or ask == 'N':
         Salida = False
 
+# Se hace un recorrido de todos los trabajadores ingresados
 for x in Salarios:
     print('\n-------------------------------------')
     print('El trabajador', Salarios[x]['Nombre'],'gana', Salarios[x]['Salario'], 'a la semana ')
