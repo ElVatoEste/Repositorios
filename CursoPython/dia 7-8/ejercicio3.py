@@ -50,7 +50,7 @@ else:
     print('\nIngrese su numero de cedula\nEjemplo: 001-260204-1234J')
     Cedula = str(input(''))
 
-    while Cedula != len(16):
+    while len(Cedula) != 16:
         print('\n                 Cedula invalida')
         print("    tienes que introducir 14 digitos validos")
         print('** Utilize - para separar la cadena de digitos **\n')
@@ -76,5 +76,5 @@ else:
         print(f'\nPrestamo exitoso, el pago final sera de {Total} en cuotas de {Extra} por {Meses} meses')
         print('Gracias por su tiempo, gracias por confiar en B.I.P\nVuelva pronto\n')
     else:
-        print('\nRequisitos faltantes...')
+        print('\nLo sentiento pero usted no cumple con los requisitos...')
         print('Gracias por su tiempo, gracias por confiar en B.I.P\nVuelva pronto\n')
