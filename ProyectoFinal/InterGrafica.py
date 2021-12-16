@@ -216,6 +216,6 @@ Registrar.config(
 Registrar.place(x= 410.5, y=310)
 IniciarSecion.place(x= 410.5, y=240)
 
-
 # -------------------------------------------------------------
+
 ventana.mainloop()

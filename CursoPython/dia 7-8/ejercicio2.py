@@ -444,6 +444,9 @@ while True:
     print('** Si desea continuar tiene que tomar en cuenta que los trabajadores ingresados se reiniciaran... **')
     print('En caso contrario el sistema de detendra')
     
+
+    # Salida del sistema.
+    
     Salida = str(input('¿Desea continuar? y/n: '))
 
     
