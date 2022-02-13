@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+*.toc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
