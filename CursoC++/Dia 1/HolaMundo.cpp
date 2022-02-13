@@ -6,7 +6,7 @@ using namespace std; //Le indicas que usas el c++ estandar y evitas complicarte 
 
 int main(){
 
-    cout<<"Hola mundo";
+    cout<<"Hola mundo"; // /n sirve igual que en python :O
 
     return 0;
 }
