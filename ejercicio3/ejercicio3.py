@@ -1,6 +1,6 @@
 from tkinter import *
 
-# Lo acabo de recuperar :'v
+# Lo acabo de recuperar :'c
 
 ventana1 = Tk()
 # Proporciones de la ventana
