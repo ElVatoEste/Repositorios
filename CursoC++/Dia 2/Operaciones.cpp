@@ -13,4 +13,5 @@ int main (){
 
     cout<<"La suma de " << n1 << " + " << n2 << " es: " << n1+n2 << endl;
 
+    return 0;
 };
