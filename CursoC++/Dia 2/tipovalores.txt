@@ -1,0 +1,27 @@
+Bolleanos son aquellos bit que solo pueden ser 0 y 1 lo cual se traduce a
+verdadero y falso
+Utiliza 1 bit
+
+char es un caracter simple (aun no se como se usa)
+utiliza 8 bits
+
+wchar_t es la misma wea que el char pero ancho)?, quien sabe q es eso xd
+utiliza 16 bits
+
+short es un tipo de entero corto  (no le encuentro utilidad todavia :'v)
+utiliza 16 bits 
+
+int es un entero normal como ya conosco de otros lenguajes
+utiliza 16 bits
+
+long es un tipo de entero largo, por logica supongo que numeros demasiado grandes y se necesita mas
+espacio en memoria por lo cual se tienen que especificar
+utiliza 32 bits
+
+float es el tipico entero con decimales hasta 6 movimientos ejemplo 4.123456
+
+double es lo mismo que float pero es mas largo: 9.1234567890
+
+long double es una barbaridad de digitos como para utilizarse en pi nmms
+
+
