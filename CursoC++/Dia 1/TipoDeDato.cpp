@@ -13,7 +13,6 @@ int main(){
 
     // Los tipos de valores "int, float, str" son programacion universal
 
-
     // el << es como un simbolo como un :
     cout<<numero;
 
