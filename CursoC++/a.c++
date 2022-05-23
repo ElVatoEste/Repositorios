@@ -328,7 +328,7 @@ std::cout << "Ingrese su correo electronico: "<< '\n';
  
 passValues::validEmail = isItAnEmail(passValues::email);
     
-std::cout << "Ingrese los numeros frontales de su tarjeta de credito, sin espacios o guiones: "<< '\n';
+std::cout << "Ingrese los numeros frontales de su tarjeta de credito: "<< '\n';
    passValues::ccard = inputString();
 
 passValues::validCreditCard = isItACreditCard(passValues::ccard);
@@ -349,8 +349,6 @@ std::cout << "Ingrese los digitos en la parte posterior" << '\n';
   passValues::digits = inputString();
 
 bool validCVV{isItcreditCardCVV(passValues::digits)};
-
-passValues::finalPass = passValues::usuarioFinal+';'+passValues::nombre+';'+passValues::apellido+';'+passValues::email; 
 
 //std::cout << validCVV;
 
@@ -383,12 +381,10 @@ std::cout << " (s/n)? " << '\n';
 char end{static_cast<char>(getch())};
 if(end == 's')
 {
-passValues::finalPass = passValues::usuarioFinal+';'+passValues::nombre+';'+passValues::apellido+';'+passValues::email+';'+(passValues::ccard.substr(0,4)+'_'+passValues::ccard.substr(4,4)+'_'+passValues::ccard.substr(7,4)+'_'+passValues::ccard.substr(11,8))+';'+passValues::finalDate+';'+passValues::digits+';'+passValues::pass; 
 std::cout << "\n";
 std::cout << "=============================================================\n";
 std::cout << "Usuario agregado exitosamente!" << '\n';
 std::cout << "=============================================================\n";
-std::cout << passValues::finalPass;
 break;
 }
 }while(true);
@@ -512,3 +508,5 @@ std::cout << '\n';
 }while(exit == false);
 return 0;
 }
+
+
