@@ -34,7 +34,8 @@ string Password = "123";
 
 void MenuPrincipal();
 
-void ContraValida(){
+void ContraValida()
+{
 	
 	string contra;
 	
@@ -95,7 +96,8 @@ void ContraValida(){
 	PassUsu = contra;
 }
 
-void AgregarN(){
+void AgregarN()
+{
 	///Variables de la biblioteca fstream para el manejo de archivos
 	ofstream escritura;
 	ifstream consulta;
@@ -126,14 +128,14 @@ void AgregarN(){
         	}
 
         	if (repetido==false){
-            	cout<<"\tIngresa el nombre del usuario: ";
+            	cout<<"\tIngresa el primer nombre del usuario: ";
             	cin>>nombre;
             	
-            	cout<<"\tIngresa el apellido del usuario: ";
+            	cout<<"\tIngresa el primer apellido del usuario: ";
             	cin>>apellido;
             	//Problema en el nombre completo
             	
-            	cout<<"\tIngresa la fecha de nacimiento:	";
+            	cout<<"\tIngresa la fecha de nacimiento: (dd/mm/aa)	";
             	cin>>nacimiento;
             	
             	cout<<"\tIngresa el correo del usuario:	";
@@ -193,13 +195,13 @@ void AgregarD()
         	}
 
         	if (repetido==false){
-            	cout<<"\tIngresa el nombre del dependiente: ";
+            	cout<<"\tIngresa el primer nombre del dependiente: ";
             	cin>>nombre;
             	
-            	cout<<"\tIngresa el apellido del usuario: ";
+            	cout<<"\tIngresa el primer apellido del usuario: ";
             	cin>>apellido;
             	
-            	cout<<"\tIngresa la fecha de nacimiento:	";
+            	cout<<"\tIngresa la fecha de nacimiento: (dd/mm/aa)	";
             	cin>>nacimiento;
             	
             	cout<<"\tIngresa el correo del dependiente:	";
@@ -226,7 +228,6 @@ void AgregarD()
 
 }
 
-
 void EliminarN()
 {
 	ofstream aux;
@@ -251,7 +252,7 @@ void EliminarN()
             	if (tempCedula==cedula){
                     	encontrado=true;
                     	cout<<"\n";
-                    	cout<<"\tCeula:	"<<cedula<<endl;
+                    	cout<<"\tCedula:	"<<cedula<<endl;
                     	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
                     	cout<<"\tFecha Nacimiento: "<<nacimiento<<endl;
                     	cout<<"\tCorreo:	"<<correo<<endl;
@@ -309,7 +310,7 @@ void EliminarD()
             	if (tempCedula==cedula){
                     	encontrado=true;
                     	cout<<"\n";
-                    	cout<<"\tCeula:	"<<cedula<<endl;
+                    	cout<<"\tCedula:	"<<cedula<<endl;
                     	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
                     	cout<<"\tFecha Nacimiento: "<<nacimiento<<endl;
                     	cout<<"\tCorreo:	"<<correo<<endl;
@@ -395,7 +396,8 @@ void consultasD()
 	lectura.close();
 }
 
-void loginU(){
+void loginU()
+{
 	
 	ifstream lectura;
 	lectura.open("UsuariosN.txt", ios::out | ios::in);
@@ -438,6 +440,8 @@ void loginU(){
 				
 				cout<<"\n\tFase de desarollo";
 				cout<<"\n\tAqui se debe mostrar el menu de acciones\n\t\t";
+				
+				
 	        	break;
 	    	}
 	    	else{
@@ -462,7 +466,8 @@ void loginU(){
 	
 }
 	
-void loginD(){
+void loginD()
+{
 	
 	ifstream lectura;
 	lectura.open("UsuariosD.txt", ios::out | ios::in);
@@ -717,13 +722,74 @@ void modificarD()
 	remove ("UsuariosN.txt");
 	rename("tempUsuario.txt", "UsuariosD.txt");
 }
- /*
-void encriptar(PassUsu){
+
+void abono(){
 	
-	while texto
-	
+	///Variables de la biblioteca fstream para el manejo de archivos
+	ofstream escritura;
+	ifstream consulta;
+
+	do{
+	escritura.open("Movimientos.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
+	consulta.open("Movimientos.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico UsuariosN.txt
+
+	if (escritura.is_open() && consulta.is_open()){
+
+
+        	bool repetido=false;
+
+        	cout<<"\n";
+        	cout<<"\tIngresa la cedula del usuario:	";
+        	cin>>tempCedula;
+             	 
+        	///A continuación se aplica el tipo de lectura de archivos secuencial
+        	consulta>>cedula;
+        	while (!consulta.eof()){
+            	consulta>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
+            	if (tempCedula==cedula){
+                	cout<<"\t\tYa existe un usuario con esa cedula...\n";
+                	repetido=true;
+                	break;
+            	}
+            	consulta>>cedula;
+        	}
+
+        	if (repetido==false){
+            	cout<<"\tIngresa el nombre del usuario: ";
+            	cin>>nombre;
+            	
+            	cout<<"\tIngresa el apellido del usuario: ";
+            	cin>>apellido;
+            	//Problema en el nombre completo
+            	
+            	cout<<"\tIngresa la fecha de nacimiento:	";
+            	cin>>nacimiento;
+            	
+            	cout<<"\tIngresa el correo del usuario:	";
+            	cin>>correo;
+            	
+            	ContraValida();
+				        	
+            	//ESCRIBIENDO LOS DATOS CAPTURADOS POR EL USUARIO EN EL ARCHIVO
+            	escritura<<tempCedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
+            	cout<<"\n\tUsuario agregado...\n";
+        	}
+
+        	cout<<"\n\tDeseas ingresar otro usuario? (S/N): ";
+        	cin>>opca;
+
+	}else{
+    	cout<<"El archivo no se pudo abrir \n";
+	}
+
+	escritura.close();
+	consulta.close();
+
+	}while (opca=='S' or opca=='s');
+
 }
-*/
+	
+
 
 void MenuUsuario()
 {
@@ -1048,7 +1114,7 @@ case 2:{
 	}
     	}//fin switch
    	 
-    }while (opc!=4);
+    	}while (opc!=4);
     
     	system("cls");
  
@@ -1067,3 +1133,8 @@ int main()
 	
 	return 0;
 }
+
+
+
+
+
