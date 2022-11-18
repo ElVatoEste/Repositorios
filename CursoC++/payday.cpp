@@ -8,8 +8,14 @@
 #include <clocale>
 #include <ctype.h>
 #include <conio.h>
+#include <string>
+#include <ctime>
 
 using namespace std;
+
+// fecha
+string fecha;
+
 
 int len = 0;
 int salida = 1;
@@ -32,7 +38,32 @@ bool valida = false;
 string Admin = "Admin";
 string Password = "123";
 
+//-----------------------------------------------
+// Seccion de montos y acciones
+
+float cdinero; //la cantidad que se mueve
+float ctotal; // la cantidad de dinero total de una cuenta
+float temptotal;
+
+string maccion; // puede ser transferencia / deposito / retiro
+
+bool ValidAccion = false;
+
+//-----------------------------------------------
+
 void MenuPrincipal();
+void MenuAccionesD();
+void MenuDependiente();
+
+string obtenerfecha(){
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+ 
+    char buffer[128];
+    strftime(buffer, sizeof(buffer), "%m-%d-%Y", now);
+    return buffer;
+}
+
 
 void ContraValida()
 {
@@ -104,7 +135,7 @@ void AgregarN()
 
 	do{
 	escritura.open("UsuariosN.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
-	consulta.open("UsuariosN.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico UsuariosN.txt
+	consulta.open("UsuariosN.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico 
 
 	if (escritura.is_open() && consulta.is_open()){
 
@@ -118,7 +149,7 @@ void AgregarN()
         	///A continuación se aplica el tipo de lectura de archivos secuencial
         	consulta>>cedula;
         	while (!consulta.eof()){
-            	consulta>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
+            	consulta>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
             	if (tempCedula==cedula){
                 	cout<<"\t\tYa existe un usuario con esa cedula...\n";
                 	repetido=true;
@@ -133,18 +164,20 @@ void AgregarN()
             	
             	cout<<"\tIngresa el primer apellido del usuario: ";
             	cin>>apellido;
-            	//Problema en el nombre completo
             	
-            	cout<<"\tIngresa la fecha de nacimiento: (dd/mm/aa)	";
+            	
+            	cout<<"\tIngresa la fecha de nacimiento (dd/mm/aa): ";
             	cin>>nacimiento;
             	
-            	cout<<"\tIngresa el correo del usuario:	";
+            	cout<<"\tIngresa el correo del usuario: ";
             	cin>>correo;
             	
             	ContraValida();
-				        	
+				
+				ctotal = 0;
+				
             	//ESCRIBIENDO LOS DATOS CAPTURADOS POR EL USUARIO EN EL ARCHIVO
-            	escritura<<tempCedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
+            	escritura<<tempCedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
             	cout<<"\n\tUsuario agregado...\n";
         	}
 
@@ -201,7 +234,7 @@ void AgregarD()
             	cout<<"\tIngresa el primer apellido del usuario: ";
             	cin>>apellido;
             	
-            	cout<<"\tIngresa la fecha de nacimiento: (dd/mm/aa)	";
+            	cout<<"\tIngresa la fecha de nacimiento (dd/mm/aa): ";
             	cin>>nacimiento;
             	
             	cout<<"\tIngresa el correo del dependiente:	";
@@ -354,7 +387,7 @@ void consultasN()
    	//LEYENDO Y MOSTRANDO CADA CAMPO DEL ARCHIVO DE FORMA SECUENCIAL
    	lectura>>cedula;
    	while (!lectura.eof()){
-        	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
+        	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
         	cout<<"\n";
         	cout<<"\tCedula:	"<<cedula<<endl;
         	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
@@ -410,7 +443,7 @@ void loginU()
 
     	lectura>>cedula;
     	while(!lectura.eof()){
-        	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
+        	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
         	
     	//comparar cada registro para ver si es encontrado
     	
@@ -509,8 +542,7 @@ void loginD()
 			
 	    	if(tempPassUsu==PassUsu){
 				
-				cout<<"\n\tFase de desarollo";
-				cout<<"\n\tAqui se debe mostrar el menu de acciones\n\t\t";
+				MenuAccionesD();
 	        	break;
 	    	}
 	    	else{
@@ -548,7 +580,7 @@ void buscarN()
 
     	lectura>>cedula;
     	while(!lectura.eof()){
-        	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
+        	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
     	//comparar cada registro para ver si es encontrado
 
     	if(tempCedula==cedula){
@@ -633,7 +665,7 @@ void modificarN()
 
         	lectura>>cedula;
         	while (!lectura.eof()){
-            	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
+            	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
             	if (tempCedula==cedula){
                 	encontrado=true;
                 	cout<<"\n";
@@ -648,10 +680,10 @@ void modificarN()
                 	cout<<"\tIngresa el nuevo correo del usuario con la cedula: "<<tempCedula<<"\n\n\t---> ";
                 	cin>>tempcorreo;
 
-                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
+                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<ctotal<<endl;
                 	cout<<"\n\n\t\t\tRegistro modificado...\n\t\t\a";
                 	}else{
-                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
+                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<ctotal<<endl;
                 	}
             	lectura>>cedula;
         	}
@@ -723,78 +755,269 @@ void modificarD()
 	rename("tempUsuario.txt", "UsuariosD.txt");
 }
 
-void abono(){
-	
+void Deposito(){
+
 	///Variables de la biblioteca fstream para el manejo de archivos
-	ofstream escritura;
-	ifstream consulta;
-
+	ofstream escritura2;
+	ifstream consulta2;
+	
 	do{
-	escritura.open("Movimientos.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
-	consulta.open("Movimientos.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico UsuariosN.txt
+	escritura2.open("Movimientos.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
+	consulta2.open("Movimientos.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico 
+	
+	if (escritura2.is_open() && consulta2.is_open()){
+	    	
+    	ofstream aux;
+		ifstream lectura;
+			
+		encontrado=false;
+		ValidAccion = false;
+			
+		aux.open("tempUsuario.txt", ios::out);
+		lectura.open("UsuariosN.txt", ios::in);
+			
+		if (aux.is_open() && lectura.is_open()){
+			
+	    	system("cls");
+    		cout<<"\n\tIngrese el usuario al que desea depositar: ";
+    		cin>>tempCedula;
+    		
+			lectura>>cedula;
+			
+			while (!lectura.eof()){
+				
+				lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
+				
+		        if (tempCedula==cedula){
+		            encontrado=true;
+		            
+		        	cout<<"\n\tIngrese la cantidad de dinero que desea depositar a la cuenta a nombre de "<<nombre<<" "<<apellido<<"\n\t ---> ";
+		            cin>>temptotal;
+		            
+					if (temptotal > 0){
+						ctotal = ctotal + temptotal;
+						aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+						system("cls");
+	            		cout<<"\n\n\t\tDeposito realizado con exito...";
+	            		ValidAccion = true;
+	        			}
+						else{
+						system("cls");
+						cout<<"\n\n\t** Ha ingresado un valor incorrecto, reinicie el proceso **";
+						system("pause");
+						system("cls");
+						aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+						}
+				}else{
+					aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+					}
+				
+			
+				lectura>>cedula;
+			}
+		
 
-	if (escritura.is_open() && consulta.is_open()){
-
-
-        	bool repetido=false;
-
-        	cout<<"\n";
-        	cout<<"\tIngresa la cedula del usuario:	";
-        	cin>>tempCedula;
-             	 
-        	///A continuación se aplica el tipo de lectura de archivos secuencial
-        	consulta>>cedula;
-        	while (!consulta.eof()){
-            	consulta>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
-            	if (tempCedula==cedula){
-                	cout<<"\t\tYa existe un usuario con esa cedula...\n";
-                	repetido=true;
-                	break;
-            	}
-            	consulta>>cedula;
-        	}
-
-        	if (repetido==false){
-            	cout<<"\tIngresa el nombre del usuario: ";
-            	cin>>nombre;
-            	
-            	cout<<"\tIngresa el apellido del usuario: ";
-            	cin>>apellido;
-            	//Problema en el nombre completo
-            	
-            	cout<<"\tIngresa la fecha de nacimiento:	";
-            	cin>>nacimiento;
-            	
-            	cout<<"\tIngresa el correo del usuario:	";
-            	cin>>correo;
-            	
-            	ContraValida();
-				        	
-            	//ESCRIBIENDO LOS DATOS CAPTURADOS POR EL USUARIO EN EL ARCHIVO
-            	escritura<<tempCedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
-            	cout<<"\n\tUsuario agregado...\n";
-        	}
-
-        	cout<<"\n\tDeseas ingresar otro usuario? (S/N): ";
-        	cin>>opca;
-
-	}else{
-    	cout<<"El archivo no se pudo abrir \n";
-	}
-
-	escritura.close();
-	consulta.close();
-
+		}else{
+			cout<<"\n\tEl archivo no se pudo abrir \n";
+			}
+			
+		aux.close();
+		lectura.close();
+		remove ("UsuariosN.txt");
+		rename("tempUsuario.txt", "UsuariosN.txt");
+		
+		if (encontrado==false){
+        	cout<<"\n\tNo se encontro ningun usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
+    		}
+    		
+		if(ValidAccion == true){	
+			fecha = obtenerfecha();
+		   	escritura2<<"- "<<tempCedula<<" Deposito "<<temptotal<<" "<<fecha<<endl;
+		    cout<<"\tAccion guardada con exito...\n\n\t";
+		    system("pause");
+		    system("cls");
+			}
+		
+    		
+		cout<<"\n\tDesea realizar otro deposito? (S/N): ";
+		cin>>opca;
+	
+		}else{
+   			cout<<"El archivo no se pudo abrir \n";
+			}
+			
+		escritura2.close();
+		consulta2.close();
+		
 	}while (opca=='S' or opca=='s');
 
 }
+
+void Retiro(){
+
+	///Variables de la biblioteca fstream para el manejo de archivos
+	ofstream escritura2;
+	ifstream consulta2;
 	
-
-
-void MenuUsuario()
-{
-
+	do{
+	escritura2.open("Movimientos.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
+	consulta2.open("Movimientos.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico 
 	
+	if (escritura2.is_open() && consulta2.is_open()){
+	    	
+    	ofstream aux;
+		ifstream lectura;
+			
+		encontrado=false;
+		ValidAccion = false;
+			
+		aux.open("tempUsuario.txt", ios::out);
+		lectura.open("UsuariosN.txt", ios::in);
+			
+		if (aux.is_open() && lectura.is_open()){
+			
+			system("cls");
+    		cout<<"\n\tIngrese el usuario el cual desea retirar dinero: ";
+    		cin>>tempCedula;
+    		
+			lectura>>cedula;
+			
+			while (!lectura.eof()){
+				
+				lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
+				
+		        if (tempCedula==cedula){
+		            encontrado=true;
+		            
+		        	cout<<"\tIngrese la cantidad de dinero que desea retirar a la cuenta de "<<nombre<<" "<<apellido<<"\n\t ---> ";
+		            cin>>temptotal;
+		            
+					if (temptotal <= 0){
+						
+						system("cls");
+						cout<<"\n\n\t** Ha ingresado un valor invalido, reinicie el proceso\n\t\t**";
+						system("pause");
+						system("cls");
+						aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+						
+	        		}else{
+					
+					temptotal = (-1*temptotal);
+					float checker = ctotal + temptotal;
+					
+					if (checker < 0){
+							
+						system("cls");
+						cout<<"\n\n\t** El usuario no tiene el saldo suficiente para realizar este retiro **\n\t\t";
+						system("pause");
+						system("cls");
+						aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+						
+					}else{
+						ctotal = checker;
+						aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+	            		cout<<"\n\n\t\tRetiro realizado con exito...";
+	            		ValidAccion = true;
+						}
+					}
+				}else{
+					aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+					}
+				
+			
+				lectura>>cedula;
+			}
+		
+
+		}else{
+			cout<<"\n\tEl archivo no se pudo abrir \n";
+			}
+			
+		aux.close();
+		lectura.close();
+		remove ("UsuariosN.txt");
+		rename("tempUsuario.txt", "UsuariosN.txt");
+		
+		if (encontrado==false){
+        	cout<<"\n\tNo se encontro ningun usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
+    		}
+    		
+		if(ValidAccion == true){	
+			fecha = obtenerfecha();
+		   	escritura2<<"- "<<tempCedula<<" Retiro "<<temptotal<<" "<<fecha<<endl;
+		    cout<<"\n\tAccion guardada con exito...\n\n\t\t";
+		    system("pause");
+		    system("cls");
+			}
+		
+    	system("cls");
+		cout<<"\n\tDesea realizar otro retiro? (S/N): ";
+		cin>>opca;
+			
+
+		}else{
+   			cout<<"El archivo no se pudo abrir \n";
+			}
+			
+		escritura2.close();
+		consulta2.close();
+		
+	}while (opca=='S' or opca=='s');
+
+}
+
+void MenuAccionesD(){
+
+	int opc;
+
+	if (salida){
+	inicia_menuAccionesD:
+	system("cls");
+    
+	cout<<"\n\tMenu de acciones";
+	cout<<"\n\t1.-Deposito";
+	cout<<"\n\t2.-Retiro";
+	cout<<"\n\t3.-Salir ";
+	
+	cout<<"\n\n\tElige una opcion:  ";
+    
+	cin>>opc;
+    
+	switch (opc)
+    	{
+	case 1:{
+    	system("cls");
+    	Deposito();
+    	cout<<"\n\t\t";
+    	system ("pause");
+    	goto inicia_menuAccionesD;
+	}
+	case 2:{
+    	system("cls");
+    	Retiro();
+    	cout<<"\n\t\t";
+    	system ("pause");
+    	goto inicia_menuAccionesD;
+	}
+	case 3:{
+    	cout<<"\n\n\tHa elegido salir...\n\n\t\t"; system ("pause");
+    	MenuDependiente();
+	}
+	
+	default:{
+    	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
+    	goto inicia_menuAccionesD;
+	}
+	}//fin switch
+    
+  }while (opc!=3)
+    
+    	system("cls");
+   	 
+}
+
+void MenuUsuario(){
+
 	int opc;
 
 	if (salida){
@@ -833,12 +1056,14 @@ void MenuUsuario()
 	
 	default:{
     	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
+    	goto inicia_menuUsuario;
 	}
 	}//fin switch
     
   }while (opc!=3)
     
     	system("cls");
+    	
    	 
 }
 
@@ -883,6 +1108,7 @@ void MenuDependiente()
 	
 	default:{
     	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
+    	goto inicia_menuDependiente;
 	}
 	}//fin switch
     
@@ -1003,6 +1229,7 @@ void MenuAdmin()
 	}
 	default:{
     	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
+    	goto inicia_menuAdmin;
 	}
 	}//fin switch
     
@@ -1133,8 +1360,3 @@ int main()
 	
 	return 0;
 }
-
-
-
-
-
