@@ -20,9 +20,11 @@ string fecha;
 int len = 0;
 int salida = 1;
 int medidor;
+int cont = 0;
+
 
 string nombre, apellido, nacimiento, correo, tempcorreo, PassUsu, tempPassUsu;
-string cedula, tempCedula, tempCedula2;
+string cedula, tempCedula, tempCedula2, datoRepo;
 
 char opca;
 
@@ -37,6 +39,7 @@ bool valida = false;
 
 string Admin = "Admin";
 string Password = "123";
+string lms = "- "; // solo se ocupa para reportes
 
 //-----------------------------------------------
 // Seccion de montos y acciones
@@ -55,13 +58,14 @@ bool ValidAccion = false;
 void MenuPrincipal();
 void MenuAccionesD();
 void MenuDependiente();
+void loginU();
 
 string obtenerfecha(){
     time_t t = time(nullptr);
     tm* now = localtime(&t);
  
     char buffer[128];
-    strftime(buffer, sizeof(buffer), "%m-%d-%Y", now);
+    strftime(buffer, sizeof(buffer), "%d-%m-%Y", now);
     return buffer;
 }
 
@@ -430,10 +434,117 @@ void consultasD()
 	lectura.close();
 }
 
+string Reportes(string datoRepo = "")
+{	
+	tempCedula = datoRepo;
+	system("cls");
+	
+	ifstream lectura;
+	lectura.open("Movimientos.txt", ios::out | ios::in);
+
+	encontrado=false;
+	bool a=false;
+
+	if (lectura.is_open()){
+		
+    	lectura>>lms;
+    	cont = 0;
+    	
+    	    	
+    	while(!lectura.eof()){
+        	lectura>>tempCedula2>>maccion>>ctotal>>fecha;
+        	if(tempCedula==tempCedula2){
+        		cont++;
+        	}
+    		lectura>>lms;
+    		
+    	}
+    	
+    	a = true;
+	}else{
+    	cout<<"\n\tAun no se pudo abrir el archivo... ";
+	}
+	lectura.close();
+	
+	if(a){
+		ifstream lectura2;
+	lectura2.open("Movimientos.txt", ios::out | ios::in);
+	
+	if (lectura2.is_open()){
+		lectura2>>lms;
+	
+    	while(!lectura2.eof()){
+    		
+        	lectura2>>tempCedula2>>maccion>>ctotal>>fecha;
+    		//comparar cada registro para ver si es encontrado
+				if(tempCedula==tempCedula2){
+						if (cont <= 5){
+							if (lms == "-"){
+			        		cout<<"\n";
+			        		cout<<"\tTipo de accion: "<<maccion<<endl;
+			        		cout<<"\tMonto: "<<ctotal<<endl;
+				        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
+				        	cout<<"\t________________________________\n";
+			        		encontrado=true;
+						}else{
+						
+							cout<<"\n";
+			        		cout<<"\tTipo de accion: "<<maccion<<endl;
+							cout<<"\tCuenta destino: "<<lms<<endl;
+							cout<<"\tMonto: "<<ctotal<<endl;
+				        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
+				        	cout<<"\t________________________________\n";
+			        		encontrado=true;	
+						}
+								
+					}
+			       cont = cont-1; 	
+				}
+				
+			
+
+    	lectura2>>lms;
+    	}//fin del while
+    	
+    	if (encontrado==false){
+        	cout<<"\n\n\tNo hay usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
+    	}
+	}else{
+    	cout<<"\n\tAun no se pudo abrir el archivo...";
+	}
+		
+	}
+	
+	system("cls");
+}
+
 void loginU()
 {
 	
+	
 	ifstream lectura;
+	ofstream aux;
+
+	encontrado=false;
+	
+	lectura.open("UsuariosN.txt",ios::in);
+	aux.open("Tempbusqueda.txt", ios::out);
+
+	if (aux.is_open() && lectura.is_open()){
+    		lectura>>cedula;
+        	while (!lectura.eof()){
+            	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
+                aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+                lectura>>cedula;
+        	}
+	}else{
+    	cout<<"\n\tEl archivo no se pudo abrir \n";
+	}
+	
+	lectura.close();
+	aux.close();
+	rename("Tempbusqueda.txt", "BusquedaUsu.txt");
+
 	lectura.open("UsuariosN.txt", ios::out | ios::in);
 	
 	bool a = false;
@@ -475,221 +586,365 @@ void loginU()
 	    	if(tempPassUsu==PassUsu){
 	    	
 	    		float ctotalt;
-	    		ctotalt = ctotal; 
-	    	
-				ofstream escritura2;
-				ifstream consulta2;
+		    	ctotalt = ctotal; 
+	    				
+				int opc;
+			
+				if (salida){
+				inicia_menuAccionesA:
+				system("cls");
+			    
+				cout<<"\n\tMenu de acciones";
+				cout<<"\n\t1.-Transferencia";
+				cout<<"\n\t2.-Estado de cuenta";
+				cout<<"\n\t3.-Reporte de acciones";
+				cout<<"\n\t4.-Salir ";
 				
+				cout<<"\n\n\tElige una opcion:  ";
+			    
+				cin>>opc;
+			    
+				switch (opc)
+			    	{
+				case 1:{
+	
+					ofstream escritura2;
+					ifstream consulta2;
 				
+					
+					escritura2.open("Movimientos.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
+					consulta2.open("Movimientos.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico 
 				
-				escritura2.open("Movimientos.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
-				consulta2.open("Movimientos.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico 
-				
-				if (escritura2.is_open() && consulta2.is_open()){
-				    	
+					if (escritura2.is_open() && consulta2.is_open()){
+					    	
+					    		
+				    	ofstream aux3;
+						ifstream lectura3;
+							
+						encontrado=false;
+						ValidAccion = false;
+						
+						
+						aux3.open("tempUsuario.txt", ios::out);
+						lectura3.open("BusquedaUsu.txt", ios::in);
+							
+						if (aux3.is_open() && lectura3.is_open()){
+							
+							
+							
+					    	system("cls");
+				    		cout<<"\n\tIngrese el usuario al que desea transferir: ";
+				    		cin>>tempCedula2;
 				    		
-			    	ofstream aux;
-					ifstream lectura;
-						
-					encontrado=false;
-					ValidAccion = false;
-					
-					
-					aux.open("tempUsuario.txt", ios::out);
-					lectura.open("UsuariosN.txt", ios::in);
-						
-					if (aux.is_open() && lectura.is_open()){
-						
-						string tempCedula2;
-						
-				    	system("cls");
-			    		cout<<"\n\tIngrese el usuario al que desea transferir: ";
-			    		cin>>tempCedula2;
-			    		
-						lectura>>cedula;
-						
-						while (!lectura.eof()){
+							lectura3>>cedula;
 							
-							lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
-							
-					        if (tempCedula2==cedula){
-					            encontrado=true;
-					            
-					        	cout<<"\n\tIngrese la cantidad de dinero que desea depositar a la cuenta a nombre de "<<nombre<<" "<<apellido<<"\n\t ---> ";
-					            cin>>temptotal;
-					            
-								if (temptotal > 0){
+							while (!lectura3.eof()){
 								
-		
-									checker = ctotalt - temptotal;
-					
-									if (checker < 0){
-							
-									system("cls");
-									cout<<"\n\n\t** Usted no tiene saldo suficiente para transferir esa cantidad **\n\t\t";
+								lectura3>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
+								
+								if (tempCedula2 == tempCedula){
+									system("cls"); 
+									cout<<"\n\t\t ** Error **";
+									cout<<"\n\t No es posible realizarse una autotransferencia\n\t\t";
 									system("pause");
+									lectura3.close();
+									aux.close();
+									remove("BusquedaUsu.txt");
+									encontrado=true;
 									system("cls");
-									}else {
-						
-										ctotal = ctotal + temptotal;
-										
-										cout<<"\n\n **"<<cedula<<"**\n";
-										
-										aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-								
-										
-										cout<<"\n\n **"<<ctotal<<"**\n";
-										
-					            		cout<<"\n\n\t\ttransacción realizada con exito...";
-					            		ValidAccion = true;
-				
-									}
 									
-				        			}
-									else{
-									system("cls");
-									cout<<"\n\n\t** Ha ingresado un valor incorrecto, reinicie el proceso **";
-									system("pause");
-									system("cls");
-									aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-									}
-							}else{
-								aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-								}
+									}else if(tempCedula2==cedula){
+							            encontrado=true;
+							            
+							        	cout<<"\n\tIngrese la cantidad de dinero que desea depositar a la cuenta a nombre de "<<nombre<<" "<<apellido<<"\n\t ---> ";
+							            cin>>temptotal;
+							            
+										if (temptotal > 0){
+										
+				
+											checker = ctotalt - temptotal;
 							
+											if (checker < 0){
+									
+											system("cls");
+											cout<<"\n\n\t** Usted no tiene saldo suficiente para transferir esa cantidad **\n\t\t";
+											system("pause");
+											system("cls");
+											}else {
+								
+												ctotal = ctotal + temptotal;
+																									
+												aux3<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+																			
+							            		cout<<"\n\n\t\ttransacción realizada con exito...";
+							            		ValidAccion = true;
 						
-							lectura>>cedula;
-						}
+											}
+											
+						        			}
+											else{
+											system("cls");
+											cout<<"\n\n\t** Ha ingresado un valor incorrecto, reinicie el proceso **";
+											system("pause");
+											system("cls");
+											aux3<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+											}
+									}else{
+										aux3<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+										}
+								
+							
+								lectura3>>cedula;
+							}
 					
 						if (encontrado==false){
 			        	cout<<"\n\tNo se encontro ningun usuario con la cedula: "<<tempCedula2<<"\n\n\t\t\t";
 			    		}
 			    		
-						}else{
-						cout<<"\n\tEl archivo no se pudo abrir \n";
-						}
+									}else{
+									cout<<"\n\tEl archivo no se pudo abrir \n";
+										}
 					
 			    		
-					aux.close();
-					lectura.close();
-					remove("UsuariosN.txt");
-					rename("tempUsuario.txt", "UsuariosN.txt");
-			    		
+										aux3.close();
+										lectura3.close();
+										remove("BusquedaUsu.txt");
+										rename("tempUsuario.txt", "BusquedaUsu.txt");
+										
+										if (ValidAccion){
+								
+											ofstream aux4;
+											ifstream lectura4;
+																
+											aux4.open("tempUsuario.txt", ios::out);
+											lectura4.open("BusquedaUsu.txt", ios::in);
+												
+											if (aux4.is_open() && lectura4.is_open()){
+												
+												lectura4>>cedula;
+												while (!lectura4.eof()){
+													lectura4>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
+											        if (tempCedula==cedula){
+											        	
+														ctotal =checker;
+														
+														aux4<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;			    		
+															
+														}
+													else{
+														aux4<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
+														}
+													lectura4>>cedula;
+												}
+											}else{
+												cout<<"\n\tEl archivo no se pudo abrir \n";
+												}
+											
+											a = true;
+											aux.close();
+											lectura.close();
+											remove ("BusquedaUsu.txt");
+											rename("tempUsuario.txt", "BusquedaUsu.txt");
+											rename("tempUsuario.txt", "UsuariosN.txt");	
+											}
+								    		
+										if(ValidAccion == true){	
+											fecha = obtenerfecha();
+											escritura2<<tempCedula2<<" "<<tempCedula<<" Transacción "<<temptotal<<" "<<fecha<<endl;
+											escritura2<<lms<<tempCedula2<<" Recibido "<<temptotal<<" "<<fecha<<endl;
+									    	cout<<"\n\tAccion guardada con exito...\n\n\t\t";
+									    	system("pause");
+									    	system("cls");
+										} 
+										}else{
+								   			cout<<"El archivo no se pudo abrir \n";
+											}
+											
+										escritura2.close();
+										consulta2.close();
+										if (a){
+										remove ("BusquedaUsu.txt");
+										remove("UsuariosN.txt");
+										rename("tempUsuario.txt", "UsuariosN.txt");
+										a=false;	
+										}
+										else{
+										remove ("BusquedaUsu.txt");
+										remove("tempUsuario.txt");}									    	
+							    	goto inicia_menuAccionesA;
+			    	
+			    	
+			    	
+			    	
+				}
+				case 2:{
+					
+			    	system("cls");
+			    	ifstream lectura;
+					lectura.open("BusquedaUsu.txt", ios::out | ios::in);
 				
+					encontrado=false;
+				
+					if (lectura.is_open()){
+				
+				    	lectura>>cedula;
+				    	while(!lectura.eof()){
+				        	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
+				    	//comparar cada registro para ver si es encontrado
+				
+				    	if(tempCedula==cedula){
+				        	cout<<"\n\n";
+				        	cout<<"\tSaldo de la cuenta: "<<ctotal<<endl;
+				        	encontrado=true;
+				        	break;
+				    	}//fin del if mostrar encontrado
+				
+				    	//lectura adelantada
+				    	lectura>>cedula;
+				    	}//fin del while
+				    	if (encontrado==false){
+				        	cout<<"\n\n\tNo hay usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
+				    	}
 					}else{
-			   			cout<<"El archivo no se pudo abrir \n";
-						}
+				    	cout<<"\n\tAun no se pudo abrir el archivo...";
+					}
+				
+					lectura.close();
+			    	system ("pause");
+					a = false;   	
+			    	goto inicia_menuAccionesA;
+				}
+				case 3:{
+			    	system("cls");
+	
+					ifstream lectura;
+					lectura.open("Movimientos.txt", ios::out | ios::in);
+				
+					encontrado=false;
+					bool a=false;
+				
+					if (lectura.is_open()){
 						
-					escritura2.close();
-					consulta2.close();
-				
-			if (ValidAccion){
-			
-				ofstream aux;
-				ifstream lectura;
-									
-				aux.open("tempUsuario.txt", ios::out);
-				lectura.open("UsuariosN.txt", ios::in);
-					
-				if (aux.is_open() && lectura.is_open()){
-					
-					lectura>>cedula;
-					while (!lectura.eof()){
-						lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
-				        if (tempCedula==cedula){
-				        	
-				        	cout<<"\n\n"<<checker;
-							ctotal =checker;
-							cout<<"\n\n"<<ctotal;
-	
-							aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-				    		cout<<"\n\n\t\tRetiro realizado con exito...";
+				    	lectura>>lms;
+				    	cont = 0;
+				    	
+				    	    	
+				    	while(!lectura.eof()){
+				        	lectura>>tempCedula2>>maccion>>ctotal>>fecha;
+				        	if(tempCedula==tempCedula2){
+				        		cont++;
+				        	}
+				    		lectura>>lms;
 				    		
+				    	}
+				    	
+				    	a = true;
+					}else{
+				    	cout<<"\n\tAun no se pudo abrir el archivo... ";
+					}
+					lectura.close();
+					
+					if(a){
+						ifstream lectura2;
+					lectura2.open("Movimientos.txt", ios::out | ios::in);
+					
+					if (lectura2.is_open()){
+						lectura2>>lms;
+					
+				    	while(!lectura2.eof()){
+				    		
+				        	lectura2>>tempCedula2>>maccion>>ctotal>>fecha;
+				    		//comparar cada registro para ver si es encontrado
+								if(tempCedula==tempCedula2){
+										if (cont <= 5){
+											if (lms == "-"){
+							        		cout<<"\n";
+							        		cout<<"\tTipo de accion: "<<maccion<<endl;
+							        		cout<<"\tMonto: "<<ctotal<<endl;
+								        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
+								        	cout<<"\t________________________________\n";
+							        		encontrado=true;
+										}else{
+										
+											cout<<"\n";
+							        		cout<<"\tTipo de accion: "<<maccion<<endl;
+											cout<<"\tCuenta destino: "<<lms<<endl;
+											cout<<"\tMonto: "<<ctotal<<endl;
+								        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
+								        	cout<<"\t________________________________\n";
+							        		encontrado=true;	
+										}
+												
+									}
+							       cont = cont-1; 	
+								}
 								
-							}
-						else{
-							aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-							}
-						lectura>>cedula;
-					}
-				}else{
-					cout<<"\n\tEl archivo no se pudo abrir \n";
-					}
+							
 				
-				a = true;
-				aux.close();
-				lectura.close();
-				remove ("UsuariosN.txt");
-				rename("tempUsuario.txt", "UsuariosN.txt");	
+				    	lectura2>>lms;
+				    	}//fin del while
+				    	
+				    	if (encontrado==false){
+				        	cout<<"\n\n\tNo hay usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
+				    	}
+					}else{
+				    	cout<<"\n\tAun no se pudo abrir el archivo...";
+					}
+						
+				}
+					 
+					system("pause");
+					system("cls");
+					a = false;	
+			    	goto inicia_menuAccionesA;
+				}
+				case 4:{
+			    	cout<<"\n\n\tHa elegido salir...\n\n\t\t";
+			    	break;
 				}
 				
-				if (ValidAccion){
-			
-				ofstream aux;
-				ifstream lectura;
-									
-				aux.open("tempUsuario.txt", ios::out);
-				lectura.open("UsuariosN.txt", ios::in);
-					
-				if (aux.is_open() && lectura.is_open()){
-					
-					lectura>>cedula;
-					while (!lectura.eof()){
-						lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
-				        if (tempCedula2==cedula){
-				        	
-				        
-							ctotal = ctotal + temptotal;
-							cout<<"\n\n"<<ctotal;
-	
-							aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-				    		cout<<"\n\n\t\tRetiro realizado con exito...";
-				    		
-								
-							}
-						else{
-							aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-							}
-						lectura>>cedula;
-					}
-				}else{
-					cout<<"\n\tEl archivo no se pudo abrir \n";
-					}
-				
-				a = true;
-				aux.close();
-				lectura.close();
-				remove ("UsuariosN.txt");
-				rename("tempUsuario.txt", "UsuariosN.txt");	
+				default:{
+			    	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
+			    	goto inicia_menuAccionesA;
 				}
-					
-	        break;
-	    	}
-	    	else{
-	    		cout<<"\n\t\tContraseña incorrecta";
-			}
-    	
-        	break;
-    	}//fin del if mostrar encontrado
-		
-    	//lectura adelantada
-    	lectura>>cedula;
-    	}//fin del while
-    	if (encontrado==false){
-        	cout<<"\n\n\tNo hay usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
-    	}
-    	
+				}//fin switch
+			    
+			  }while (opc!=4)
+			    
+			    	system("cls");
+			   	 
+			}	
+	    	
+	    		    	else{
+						    		cout<<"\n\t\tContraseña incorrecta";
+								}
+					    	
+					        	break;
+					    	}//fin del if mostrar encontrado
+							
+					    	//lectura adelantada
+					    	lectura>>cedula;
+					    	}//fin del while
+					    	if (encontrado==false){
+					        	cout<<"\n\n\tNo hay usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
+					    	}
+					    	
+						}
+						else{
+					    	cout<<"\n\tAun no se pudo abrir el archivo...";
+						}
+						lectura.close();
+	    	
+	
+	if (a){
+	remove ("BusquedaUsu.txt");
+	remove("UsuariosN.txt");
+	rename("tempUsuario.txt", "UsuariosN.txt");	
 	}
 	else{
-    	cout<<"\n\tAun no se pudo abrir el archivo...";
-	}
-	lectura.close();
+	remove ("BusquedaUsu.txt");
+	remove("tempUsuario.txt");}
 	
-	/*if (a){
-	remove ("UsuariosN.txt");
-	rename("tempUsuario.txt", "UsuariosN.txt");	
-	}//else {remove ("tempUsuario.txt");}
-	*/
 }
 
 
@@ -873,10 +1128,10 @@ void modificarN()
                 	cout<<"\tIngresa el nuevo correo del usuario con la cedula: "<<tempCedula<<"\n\n\t---> ";
                 	cin>>tempcorreo;
 
-                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<ctotal<<endl;
+                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
                 	cout<<"\n\n\t\t\tRegistro modificado...\n\t\t\a";
                 	}else{
-                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<ctotal<<endl;
+                	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
                 	}
             	lectura>>cedula;
         	}
@@ -1025,7 +1280,7 @@ void Deposito(){
     		
 		if(ValidAccion == true){	
 			fecha = obtenerfecha();
-		   	escritura2<<"- "<<tempCedula<<" Deposito "<<temptotal<<" "<<fecha<<endl;
+		   	escritura2<<lms<<tempCedula<<" Deposito "<<temptotal<<" "<<fecha<<endl;
 		    cout<<"\tAccion guardada con exito...\n\n\t";
 		    system("pause");
 		    system("cls");
@@ -1137,7 +1392,8 @@ void Retiro(){
     		
 		if(ValidAccion == true){	
 			fecha = obtenerfecha();
-		   	escritura2<<"- "<<tempCedula<<" Retiro "<<temptotal<<" "<<fecha<<endl;
+			temptotal = (-1*temptotal);
+		   	escritura2<<lms<<tempCedula<<" Retiro "<<temptotal<<" "<<fecha<<endl;
 		    cout<<"\n\tAccion guardada con exito...\n\n\t\t";
 		    system("pause");
 		    system("cls");
@@ -1159,6 +1415,7 @@ void Retiro(){
 
 }
 
+
 void MenuAccionesD(){
 
 	int opc;
@@ -1170,7 +1427,8 @@ void MenuAccionesD(){
 	cout<<"\n\tMenu de acciones";
 	cout<<"\n\t1.-Deposito";
 	cout<<"\n\t2.-Retiro";
-	cout<<"\n\t3.-Salir ";
+	cout<<"\n\t3.-Historial de Acciones";
+	cout<<"\n\t4.-Salir ";
 	
 	cout<<"\n\n\tElige una opcion:  ";
     
@@ -1193,6 +1451,14 @@ void MenuAccionesD(){
     	goto inicia_menuAccionesD;
 	}
 	case 3:{
+    	system("cls");
+    	cout<<"\n\tIngrese la cuenta: ";
+		cin>>tempCedula;
+		Reportes(tempCedula);
+		system ("pause");    	
+    	goto inicia_menuAccionesD;
+	}
+	case 4:{
     	cout<<"\n\n\tHa elegido salir...\n\n\t\t"; system ("pause");
     	MenuDependiente();
 	}
@@ -1203,7 +1469,7 @@ void MenuAccionesD(){
 	}
 	}//fin switch
     
-  }while (opc!=3)
+  }while (opc!=4)
     
     	system("cls");
    	 
@@ -1547,9 +1813,11 @@ int main()
 	system ("title Payday");
 	setlocale(LC_CTYPE,"Spanish"); // Para usar tildes y "ñ", define idioma
     
+    
 	while (seguir){
 	MenuPrincipal();
 	}
+	
 	
 	return 0;
 }
