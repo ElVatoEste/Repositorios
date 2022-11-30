@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+#include <iostream>
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
@@ -13,20 +15,18 @@
 
 using namespace std;
 
-// fecha
+string cipher;
 string fecha;
-
 
 int len = 0;
 int salida = 1;
 int medidor;
 int cont = 0;
 
-
 string nombre, apellido, nacimiento, correo, tempcorreo, PassUsu, tempPassUsu;
 string cedula, tempCedula, tempCedula2, datoRepo;
 
-char opca;
+string opca;
 
 bool encontrado = false;
 bool minimo = false;
@@ -35,7 +35,7 @@ bool minuscula = false;
 bool especial = false;
 bool seguir = true;
 bool valida = false;
-
+int key = 3;
 
 string Admin = "Admin";
 string Password = "123";
@@ -48,7 +48,8 @@ float cdinero; //la cantidad que se mueve
 float ctotal; // la cantidad de dinero total de una cuenta
 float temptotal;
 float checker;
-
+float compra = 35.70;
+float venta = 36.54;
 string maccion; // puede ser transferencia / deposito / retiro
 
 bool ValidAccion = false;
@@ -61,6 +62,7 @@ void MenuDependiente();
 void loginU();
 
 string obtenerfecha(){
+	
     time_t t = time(nullptr);
     tm* now = localtime(&t);
  
@@ -69,18 +71,27 @@ string obtenerfecha(){
     return buffer;
 }
 
+string cesar(string cipher){
+	
+	for (char& c : cipher){
+		c = c+key;
+	}
+	
+	PassUsu = cipher;
+	
+}
+
 
 void ContraValida()
 {
-	
 	string contra;
 	
 	bool pass=false;
 	while(!pass){
-	cout << "\n\tIngrese una contraseña con un minimo 8 digitos y maximo 20\n";
-	cout << "\tIncluya por lo menos un caracter en minuscula, mayuscula y especial o un numero\n";
+	cout << "\n\tIngrese una clave con un minimo 8 digitos y maximo 20\n";
+	cout << "\tIncluya por lo menos un caracter en minuscula, mayuscula y especial o numero\n";
 	cout << "\t** No use espacios **\n\n";
-	cout << "\tContraseña ->  ";
+	cout << "\tclave ->  ";
 
 	char caracter;
 	caracter = getch();
@@ -100,33 +111,33 @@ void ContraValida()
 	caracter = getch();
 		}
 		
-	medidor=contra.length();	//	"medidor" lee la cantidad de caracteres de la contraseña
+	medidor=contra.length();	//	"medidor" lee la cantidad de caracteres de la 
 	
-	if (medidor >= 8)	// "medidor" se compara la contraseña hasta que sea >=8
+	if (medidor >= 8)	// "medidor" se compara la clave hasta que sea >=8
 	{minimo = true; }
 	
-	for (int i = 0;i < medidor;i++){	//Ciclo que lee la contraseña para ver que tenga al menos una mayuscula
+	for (int i = 0;i < medidor;i++){	//Ciclo que lee la clave para ver que tenga al menos una mayuscula
 		if(isupper(contra[i])){
 			mayus = true;
 		}
 	}
 	
-	for (int i = 0;i < medidor;i++){	//Ciclo que lee la contraseña para ver que tenga al menos una minuscula
+	for (int i = 0;i < medidor;i++){	//Ciclo que lee la clave para ver que tenga al menos una minuscula
 		if(islower(contra[i])){
 			minuscula = true;
 		}
 	}
 	
-	for (int i = 0;i < medidor;i++){	//Ciclo que lee la contraseña para ver que tenga al menos un caracter especial o un numero
+	for (int i = 0;i < medidor;i++){	//Ciclo que lee la clave para ver que tenga al menos un caracter especial o un numero
 		if(isalpha(contra[i])==false){
 			especial = true;
 		}
 	}
 	if(minimo && mayus && minuscula && especial){
-		cout<<"\n\n\tLa contraseña cumple con los requisitos"<<endl;
+		cout<<"\n\n\tLa clave cumple con los requisitos"<<endl;
 		pass=true;
 	} else {
-		cout<<"\n\n\tLa contraseña no cumple con los requisitos."<<endl; //si no cumple los requisitos la contraseña se vuelve a intentar
+		cout<<"\n\n\tLa clave no cumple con los requisitos."<<endl; //si no cumple los requisitos la clave se vuelve a intentar
 	}
 }
 	PassUsu = contra;
@@ -170,14 +181,14 @@ void AgregarN()
             	cout<<"\tIngresa el primer apellido del usuario: ";
             	cin>>apellido;
             	
-            	
-            	cout<<"\tIngresa la fecha de nacimiento (dd/mm/aa): ";
+            	cout<<"\tIngresa la fecha de nacimiento (dd/mm/aaaa): ";
             	cin>>nacimiento;
             	
             	cout<<"\tIngresa el correo del usuario: ";
             	cin>>correo;
             	
             	ContraValida();
+            	cesar(PassUsu);
 				
 				ctotal = 0;
 				
@@ -186,7 +197,7 @@ void AgregarN()
             	cout<<"\n\tUsuario agregado...\n";
         	}
 
-        	cout<<"\n\tDeseas ingresar otro usuario? (S/N): ";
+        	cout<<"\n\t¿Deseas ingresar otro usuario? (S/N): ";
         	cin>>opca;
 
 	}else{
@@ -196,7 +207,7 @@ void AgregarN()
 	escritura.close();
 	consulta.close();
 
-	}while (opca=='S' or opca=='s');
+	}while (opca=="S" or opca=="s");
 
 }
 
@@ -218,8 +229,7 @@ void AgregarD()
         	cout<<"\n";
         	cout<<"\tIngresa la cedula del dependiente:	";
         	cin>>tempCedula;
-
-       	 
+        	
         	///A continuación se aplica el tipo de lectura de archivos secuencial
         	consulta>>cedula;
         	while (!consulta.eof()){
@@ -236,7 +246,7 @@ void AgregarD()
             	cout<<"\tIngresa el primer nombre del dependiente: ";
             	cin>>nombre;
             	
-            	cout<<"\tIngresa el primer apellido del usuario: ";
+            	cout<<"\tIngresa el primer apellido del dependiente: ";
             	cin>>apellido;
             	
             	cout<<"\tIngresa la fecha de nacimiento (dd/mm/aa): ";
@@ -246,13 +256,14 @@ void AgregarD()
             	cin>>correo;
             
             	ContraValida();
+            	cesar(PassUsu);
             		
             	//ESCRIBIENDO LOS DATOS CAPTURADOS POR EL USUARIO EN EL ARCHIVO
             	escritura<<tempCedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
             	cout<<"\n\tDependiente agregado...\n";
         	}
 
-        	cout<<"\n\tDeseas ingresar otro depenidente? (S/N): ";
+        	cout<<"\n\t¿Deseas ingresar otro depenidente? (S/N): ";
         	cin>>opca;
 
 	}else{
@@ -262,7 +273,7 @@ void AgregarD()
 	escritura.close();
 	consulta.close();
 
-	}while (opca=='S' or opca=='s');
+	}while (opca=="S" or opca=="s");
 
 }
 
@@ -286,42 +297,46 @@ void EliminarN()
         	///hasta llegar al final del archivo gracias a la función .eof()
         	lectura>>cedula;
         	while (!lectura.eof()){
-            	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
+            	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
             	if (tempCedula==cedula){
                     	encontrado=true;
                     	cout<<"\n";
-                    	cout<<"\tCedula:	"<<cedula<<endl;
+                    	cout<<"\tcedula:	"<<cedula<<endl;
                     	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
                     	cout<<"\tFecha Nacimiento: "<<nacimiento<<endl;
                     	cout<<"\tCorreo:	"<<correo<<endl;
+                    	cout<<"\tTotal : $"<<ctotal<<endl;
                     	cout<<"\t________________________________\n\n";
-                    	cout<<"\tRealmente deseas eliminar el registro actual (S/N)? ---> ";
+                    	cout<<"\t¿Realmente deseas eliminar el registro actual (S/N)? ---> ";
                     	cin>>opca;
 
-                    	if (opca=='S' or opca=='s'){
+                    	if (opca=="S" or opca=="s"){
                         	cout<<"\n\n\t\t\tRegistro eliminado...\n\n\t\t\a";
                     	}else{
-                        	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
+                        	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
                     	}
 
                 	}else{
-                    	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
+                    	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
                 	}
             	lectura>>cedula;
         	}
 	}else{
     	cout<<"\n\tEl archivo no se pudo abrir \n";
 	}
-
+    
+    aux.close();
+	lectura.close();
+	
 	if (encontrado==false){
             	cout<<"\n\tNo se encontro ningun usuario con la cedula: "<<tempCedula<<"\n\n\t\t\t";
+            	remove ("tempUsuario.txt");
         	}
-
-	aux.close();
-	lectura.close();
-	remove ("UsuariosN.txt");
-	rename("tempUsuario.txt", "UsuariosN.txt");
-
+	
+	if (encontrado){
+		remove ("UsuariosN.txt");
+		rename("tempUsuario.txt", "UsuariosN.txt");
+    }
 }
 
 void EliminarD()
@@ -348,7 +363,7 @@ void EliminarD()
             	if (tempCedula==cedula){
                     	encontrado=true;
                     	cout<<"\n";
-                    	cout<<"\tCedula:	"<<cedula<<endl;
+                    	cout<<"\tcedula:	"<<cedula<<endl;
                     	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
                     	cout<<"\tFecha Nacimiento: "<<nacimiento<<endl;
                     	cout<<"\tCorreo:	"<<correo<<endl;
@@ -356,7 +371,7 @@ void EliminarD()
                     	cout<<"\tRealmente deseas eliminar el registro actual (S/N)? ---> ";
                     	cin>>opca;
 
-                    	if (opca=='S' or opca=='s'){
+                    	if (opca=="S" or opca=="s"){
                         	cout<<"\n\n\t\t\tRegistro eliminado...\n\n\t\t\a";
                     	}else{
                         	aux<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<endl;
@@ -394,10 +409,11 @@ void consultasN()
    	while (!lectura.eof()){
         	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
         	cout<<"\n";
-        	cout<<"\tCedula:	"<<cedula<<endl;
+        	cout<<"\tcedula:	"<<cedula<<endl;
         	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
         	cout<<"\tFecha nacimiento: "<<nacimiento<<endl;
         	cout<<"\tCorreo:	"<<correo<<endl;
+        	cout<<"\tTotal : $"<<ctotal<<endl;
         	lectura>>cedula;
         	cout<<"\t________________________________\n";
    	}
@@ -420,7 +436,7 @@ void consultasD()
    	while (!lectura.eof()){
         	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu;
         	cout<<"\n";
-        	cout<<"\tCedula:	"<<cedula<<endl;
+        	cout<<"\tcedula:	"<<cedula<<endl;
         	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
         	cout<<"\tFecha nacimiento: "<<nacimiento<<endl;
         	cout<<"\tCorreo:	"<<correo<<endl;
@@ -482,16 +498,25 @@ string Reportes(string datoRepo = "")
 							if (lms == "-"){
 			        		cout<<"\n";
 			        		cout<<"\tTipo de accion: "<<maccion<<endl;
-			        		cout<<"\tMonto: "<<ctotal<<endl;
+			        		cout<<"\tMonto: $"<<ctotal<<endl;
 				        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
 				        	cout<<"\t________________________________\n";
 			        		encontrado=true;
+						}else if(maccion == "Recibido"){
+							
+							cout<<"\n";
+			        		cout<<"\tTipo de accion: "<<maccion<<endl;
+							cout<<"\tEnviado por: "<<lms<<endl;
+							cout<<"\tMonto: $"<<ctotal<<endl;
+				        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
+				        	cout<<"\t________________________________\n";
+			        		encontrado=true;	
 						}else{
 						
 							cout<<"\n";
 			        		cout<<"\tTipo de accion: "<<maccion<<endl;
 							cout<<"\tCuenta destino: "<<lms<<endl;
-							cout<<"\tMonto: "<<ctotal<<endl;
+							cout<<"\tMonto: $"<<ctotal<<endl;
 				        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
 				        	cout<<"\t________________________________\n";
 			        		encontrado=true;	
@@ -514,7 +539,8 @@ string Reportes(string datoRepo = "")
 	}
 		
 	}
-	
+	cout<<("\n\n\t");
+	system("pause");
 	system("cls");
 }
 
@@ -557,14 +583,13 @@ void loginU()
     	lectura>>cedula;
     	while(!lectura.eof()){
         	lectura>>nombre>>apellido>>nacimiento>>correo>>PassUsu>>ctotal;
-        	
+			  	
     	//comparar cada registro para ver si es encontrado
     	
     	if(tempCedula==cedula){
         	encontrado=true;
     		
-    		
-    		cout<<"\n\tIngrese la contraseña: ";
+    		cout<<"\n\tIngrese la clave: ";
     			char caracter;
 				caracter = getch();
 				tempPassUsu="";
@@ -582,6 +607,12 @@ void loginU()
 			caracter = getch();
 			}
 
+			cipher = PassUsu;
+			for (char& c : cipher){
+					c = c-key;
+				}
+				
+				PassUsu = cipher;
 			
 	    	if(tempPassUsu==PassUsu){
 	    	
@@ -591,7 +622,7 @@ void loginU()
 				int opc;
 			
 				if (salida){
-				inicia_menuAccionesA:
+				inicia_MenuAccionesA:
 				system("cls");
 			    
 				cout<<"\n\tMenu de acciones";
@@ -615,8 +646,7 @@ void loginU()
 					escritura2.open("Movimientos.txt", ios::out | ios::app);//crea y escribe, si ya tiene texto une al final del archivo
 					consulta2.open("Movimientos.txt", ios::in);//solamente consulta o lee usando la variable sobre el archivo físico 
 				
-					if (escritura2.is_open() && consulta2.is_open()){
-					    	
+					if (escritura2.is_open() && consulta2.is_open()){	
 					    		
 				    	ofstream aux3;
 						ifstream lectura3;
@@ -624,14 +654,11 @@ void loginU()
 						encontrado=false;
 						ValidAccion = false;
 						
-						
 						aux3.open("tempUsuario.txt", ios::out);
 						lectura3.open("BusquedaUsu.txt", ios::in);
 							
 						if (aux3.is_open() && lectura3.is_open()){
-							
-							
-							
+								
 					    	system("cls");
 				    		cout<<"\n\tIngrese el usuario al que desea transferir: ";
 				    		cin>>tempCedula2;
@@ -661,9 +688,7 @@ void loginU()
 							            
 										if (temptotal > 0){
 										
-				
 											checker = ctotalt - temptotal;
-							
 											if (checker < 0){
 									
 											system("cls");
@@ -674,9 +699,8 @@ void loginU()
 								
 												ctotal = ctotal + temptotal;
 																									
-												aux3<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;
-																			
-							            		cout<<"\n\n\t\ttransacción realizada con exito...";
+												aux3<<cedula<<" "<<nombre<<" "<<apellido<<" "<<nacimiento<<" "<<correo<<" "<<PassUsu<<" "<<ctotal<<endl;	
+							            		cout<<"\n\n\t\ttransaccion realizada con exito...";
 							            		ValidAccion = true;
 						
 											}
@@ -704,8 +728,7 @@ void loginU()
 									}else{
 									cout<<"\n\tEl archivo no se pudo abrir \n";
 										}
-					
-			    		
+										
 										aux3.close();
 										lectura3.close();
 										remove("BusquedaUsu.txt");
@@ -750,8 +773,8 @@ void loginU()
 								    		
 										if(ValidAccion == true){	
 											fecha = obtenerfecha();
-											escritura2<<tempCedula2<<" "<<tempCedula<<" Transacción "<<temptotal<<" "<<fecha<<endl;
-											escritura2<<lms<<tempCedula2<<" Recibido "<<temptotal<<" "<<fecha<<endl;
+											escritura2<<tempCedula2<<" "<<tempCedula<<" Transaccion "<<temptotal<<" "<<fecha<<endl;
+											escritura2<<tempCedula<<" "<<tempCedula2<<" Recibido "<<temptotal<<" "<<fecha<<endl;
 									    	cout<<"\n\tAccion guardada con exito...\n\n\t\t";
 									    	system("pause");
 									    	system("cls");
@@ -763,19 +786,14 @@ void loginU()
 										escritura2.close();
 										consulta2.close();
 										if (a){
-										remove ("BusquedaUsu.txt");
 										remove("UsuariosN.txt");
 										rename("tempUsuario.txt", "UsuariosN.txt");
 										a=false;	
 										}
 										else{
-										remove ("BusquedaUsu.txt");
-										remove("tempUsuario.txt");}									    	
-							    	goto inicia_menuAccionesA;
-			    	
-			    	
-			    	
-			    	
+										remove("tempUsuario.txt");}
+																		    	
+							    	goto inicia_MenuAccionesA;
 				}
 				case 2:{
 					
@@ -794,7 +812,10 @@ void loginU()
 				
 				    	if(tempCedula==cedula){
 				        	cout<<"\n\n";
-				        	cout<<"\tSaldo de la cuenta: "<<ctotal<<endl;
+				        	cout<<"\tCuenta a nombre de: "<<nombre<<" "<<apellido<<endl;
+				        	cout<<"\tSaldo de la cuenta: "<<ctotal<<" $"<<endl;
+				        	cout<<"\n\n\t";
+				        	
 				        	encontrado=true;
 				        	break;
 				    	}//fin del if mostrar encontrado
@@ -812,7 +833,7 @@ void loginU()
 					lectura.close();
 			    	system ("pause");
 					a = false;   	
-			    	goto inicia_menuAccionesA;
+			    	goto inicia_MenuAccionesA;
 				}
 				case 3:{
 			    	system("cls");
@@ -828,7 +849,6 @@ void loginU()
 				    	lectura>>lms;
 				    	cont = 0;
 				    	
-				    	    	
 				    	while(!lectura.eof()){
 				        	lectura>>tempCedula2>>maccion>>ctotal>>fecha;
 				        	if(tempCedula==tempCedula2){
@@ -860,16 +880,25 @@ void loginU()
 											if (lms == "-"){
 							        		cout<<"\n";
 							        		cout<<"\tTipo de accion: "<<maccion<<endl;
-							        		cout<<"\tMonto: "<<ctotal<<endl;
+							        		cout<<"\tMonto: $"<<ctotal<<endl;
 								        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
 								        	cout<<"\t________________________________\n";
 							        		encontrado=true;
+						        		}else if(maccion == "Recibido"){
+						
+											cout<<"\n";
+							        		cout<<"\tTipo de accion: "<<maccion<<endl;
+											cout<<"\tEnviado por: "<<lms<<endl;
+											cout<<"\tMonto: $"<<ctotal<<endl;
+								        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
+								        	cout<<"\t________________________________\n";
+							        		encontrado=true;	
 										}else{
 										
 											cout<<"\n";
 							        		cout<<"\tTipo de accion: "<<maccion<<endl;
 											cout<<"\tCuenta destino: "<<lms<<endl;
-											cout<<"\tMonto: "<<ctotal<<endl;
+											cout<<"\tMonto: $"<<ctotal<<endl;
 								        	cout<<"\tFecha en la que se realizo la accion: "<<fecha<<endl;
 								        	cout<<"\t________________________________\n";
 							        		encontrado=true;	
@@ -877,9 +906,7 @@ void loginU()
 												
 									}
 							       cont = cont-1; 	
-								}
-								
-							
+								}	
 				
 				    	lectura2>>lms;
 				    	}//fin del while
@@ -892,20 +919,21 @@ void loginU()
 					}
 						
 				}
-					 
+					cout<<("\n\n\t");
 					system("pause");
 					system("cls");
 					a = false;	
-			    	goto inicia_menuAccionesA;
+			    	goto inicia_MenuAccionesA;
 				}
 				case 4:{
 			    	cout<<"\n\n\tHa elegido salir...\n\n\t\t";
+			    	
 			    	break;
 				}
 				
 				default:{
 			    	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
-			    	goto inicia_menuAccionesA;
+			    	goto inicia_MenuAccionesA;
 				}
 				}//fin switch
 			    
@@ -916,7 +944,7 @@ void loginU()
 			}	
 	    	
 	    		    	else{
-						    		cout<<"\n\t\tContraseña incorrecta";
+						    		cout<<"\n\t\tClave incorrecta";
 								}
 					    	
 					        	break;
@@ -970,7 +998,7 @@ void loginD()
         	encontrado=true;
     		
     		
-    		cout<<"\n\tIngrese la contraseña: ";
+    		cout<<"\n\tIngrese la clave: ";
     			char caracter;
 				caracter = getch();
 				tempPassUsu="";
@@ -987,14 +1015,21 @@ void loginD()
 			}	
 			caracter = getch();
 			}
-
+			
+			cipher = PassUsu;
+			for (char& c : cipher){
+					c = c-key;
+				}
+				
+				PassUsu = cipher;
+			
 	    	if(tempPassUsu==PassUsu){
 				
 				MenuAccionesD();
 	        	break;
 	    	}
 	    	else{
-	    		cout<<"\n\t\tContraseña incorrecta";
+	    		cout<<"\n\t\tclave incorrecta";
 			}
     	
         	break;
@@ -1033,7 +1068,7 @@ void buscarN()
 
     	if(tempCedula==cedula){
         	cout<<"\n";
-        	cout<<"\tCedula:	"<<cedula<<endl;
+        	cout<<"\tcedula:	"<<cedula<<endl;
         	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
         	cout<<"\tFecha nacimiento: "<<nacimiento<<endl;
         	cout<<"\tCorreo:	"<<correo<<endl;
@@ -1073,7 +1108,7 @@ void buscarD()
 
     	if(tempCedula==cedula){
         	cout<<"\n";
-        	cout<<"\tCedula:	"<<cedula<<endl;
+        	cout<<"\tcedula:	"<<cedula<<endl;
         	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
         	cout<<"\tFecha nacimiento: "<<nacimiento<<endl;
         	cout<<"\tCorreo:	"<<correo<<endl;
@@ -1117,13 +1152,13 @@ void modificarN()
             	if (tempCedula==cedula){
                 	encontrado=true;
                 	cout<<"\n";
-                	cout<<"\tCedula:	"<<cedula<<endl;
+                	cout<<"\tcedula:	"<<cedula<<endl;
                 	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
                 	cout<<"\tFecha nacimiento: "<<nacimiento<<endl;
                 	cout<<"\tCorreo:	"<<correo<<endl;
                 	cout<<"\t________________________________\n\n";
                	 
-                	//sub menu para opciones de las cuales desea modificar y en bucle para no estar entra y sale..8
+                	//sub Menu para opciones de las cuales desea modificar y en bucle para no estar entra y sale..8
                	 
                 	cout<<"\tIngresa el nuevo correo del usuario con la cedula: "<<tempCedula<<"\n\n\t---> ";
                 	cin>>tempcorreo;
@@ -1171,13 +1206,13 @@ void modificarD()
             	if (tempCedula==cedula){
                 	encontrado=true;
                 	cout<<"\n";
-                	cout<<"\tCedula:	"<<cedula<<endl;
+                	cout<<"\tcedula:	"<<cedula<<endl;
                 	cout<<"\tNombre:   "<<nombre<<" "<<apellido<<endl;
                 	cout<<"\tFecha nacimiento: "<<nacimiento<<endl;
                 	cout<<"\tCorreo:	"<<correo<<endl;
                 	cout<<"\t________________________________\n\n";
                	 
-                	//sub menu para opciones de las cuales desea modificar y en bucle para no estar entra y sale..8
+                	//sub Menu para opciones de las cuales desea modificar y en bucle para no estar entra y sale..8
                	 
                 	cout<<"\tIngresa el nuevo correo del dependiente con la cedula: "<<tempCedula<<"\n\n\t---> ";
                 	cin>>tempcorreo;
@@ -1281,13 +1316,13 @@ void Deposito(){
 		if(ValidAccion == true){	
 			fecha = obtenerfecha();
 		   	escritura2<<lms<<tempCedula<<" Deposito "<<temptotal<<" "<<fecha<<endl;
-		    cout<<"\tAccion guardada con exito...\n\n\t";
+		   	cout<<"\n\n\t\t";
 		    system("pause");
 		    system("cls");
 			}
 		
     		
-		cout<<"\n\tDesea realizar otro deposito? (S/N): ";
+		cout<<"\n\t¿Desea realizar otro deposito? (S/N): ";
 		cin>>opca;
 	
 		}else{
@@ -1297,7 +1332,7 @@ void Deposito(){
 		escritura2.close();
 		consulta2.close();
 		
-	}while (opca=='S' or opca=='s');
+	}while (opca=="S" or opca=="s");
 
 }
 
@@ -1394,7 +1429,7 @@ void Retiro(){
 			fecha = obtenerfecha();
 			temptotal = (-1*temptotal);
 		   	escritura2<<lms<<tempCedula<<" Retiro "<<temptotal<<" "<<fecha<<endl;
-		    cout<<"\n\tAccion guardada con exito...\n\n\t\t";
+		    cout<<"\n\n\t\t";
 		    system("pause");
 		    system("cls");
 			}
@@ -1411,7 +1446,7 @@ void Retiro(){
 		escritura2.close();
 		consulta2.close();
 		
-	}while (opca=='S' or opca=='s');
+	}while (opca=="S" or opca=="s");
 
 }
 
@@ -1421,7 +1456,7 @@ void MenuAccionesD(){
 	int opc;
 
 	if (salida){
-	inicia_menuAccionesD:
+	inicia_MenuAccionesD:
 	system("cls");
     
 	cout<<"\n\tMenu de acciones";
@@ -1441,14 +1476,14 @@ void MenuAccionesD(){
     	Deposito();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuAccionesD;
+    	goto inicia_MenuAccionesD;
 	}
 	case 2:{
     	system("cls");
     	Retiro();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuAccionesD;
+    	goto inicia_MenuAccionesD;
 	}
 	case 3:{
     	system("cls");
@@ -1456,7 +1491,7 @@ void MenuAccionesD(){
 		cin>>tempCedula;
 		Reportes(tempCedula);
 		system ("pause");    	
-    	goto inicia_menuAccionesD;
+    	goto inicia_MenuAccionesD;
 	}
 	case 4:{
     	cout<<"\n\n\tHa elegido salir...\n\n\t\t"; system ("pause");
@@ -1465,7 +1500,7 @@ void MenuAccionesD(){
 	
 	default:{
     	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
-    	goto inicia_menuAccionesD;
+    	goto inicia_MenuAccionesD;
 	}
 	}//fin switch
     
@@ -1480,7 +1515,7 @@ void MenuUsuario(){
 	int opc;
 
 	if (salida){
-	inicia_menuUsuario:
+	inicia_MenuUsuario:
 	system("cls");
     
 	cout<<"\n\tMenu de usuario";
@@ -1499,14 +1534,14 @@ void MenuUsuario(){
     	AgregarN();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuUsuario;
+    	goto inicia_MenuUsuario;
 	}
 	case 2:{
     	system("cls");
     	loginU();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuUsuario;
+    	goto inicia_MenuUsuario;
 	}
 	case 3:{
     	cout<<"\n\n\tHa elegido salir...\n\n\t\t"; system ("pause");
@@ -1515,7 +1550,7 @@ void MenuUsuario(){
 	
 	default:{
     	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
-    	goto inicia_menuUsuario;
+    	goto inicia_MenuUsuario;
 	}
 	}//fin switch
     
@@ -1532,7 +1567,7 @@ void MenuDependiente()
 	int opc;
 
 	if (salida){
-	inicia_menuDependiente:
+	inicia_MenuDependiente:
 	system("cls");
     
 	cout<<"\n\tMenu de dependiente";
@@ -1551,14 +1586,14 @@ void MenuDependiente()
     	AgregarD();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuDependiente;
+    	goto inicia_MenuDependiente;
 	}
 	case 2:{
     	system("cls");
     	loginD();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuDependiente;
+    	goto inicia_MenuDependiente;
 	}
 	case 3:{
     	cout<<"\n\n\tHa elegido salir...\n\n\t\t"; system ("pause");
@@ -1567,7 +1602,7 @@ void MenuDependiente()
 	
 	default:{
     	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
-    	goto inicia_menuDependiente;
+    	goto inicia_MenuDependiente;
 	}
 	}//fin switch
     
@@ -1583,11 +1618,12 @@ void MenuAdmin()
 	int opc;
 
 	if (salida){
-	inicia_menuAdmin:
+	inicia_MenuAdmin:
 	system("cls");
     
 	cout<<"\n\tMenu de administrador\n";
-	cout<<"\n\t1.-Agregar usuario natural";
+	cout<<"\n\t-----------------------------------";
+	cout<<"\n\t1.-Agregar usuario natural";       
 	cout<<"\n\t2.-Eliminar usuario natural";
 	cout<<"\n\t3.-Lista de usuarios naturales";
 	cout<<"\n\t4.-Buscar un usuario natural";
@@ -1599,7 +1635,7 @@ void MenuAdmin()
 	cout<<"\n\t9.-Buscar dependiente";
 	cout<<"\n\t10.-Modificar dependiente";
 	cout<<"\n\t-----------------------------------";
-	cout<<"\n\t11.-Salir al menu principal";
+	cout<<"\n\t11.-Salir al Menu principal";
 	cout<<"\n\t-----------------------------------";
 	cout<<"\n\n\tElige una opcion:  ";
     
@@ -1612,14 +1648,14 @@ void MenuAdmin()
     	AgregarN();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	case 2:{
     	system("cls");
     	EliminarN();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
     
 	case 3:{
@@ -1627,14 +1663,14 @@ void MenuAdmin()
     	consultasN();
     	cout<<"\n\t\t";
     	system ("pause");
-   	goto inicia_menuAdmin;
+   	goto inicia_MenuAdmin;
 	}
 	case 4:{
     	system("cls");
     	buscarN();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	case 5:{
     	system("cls");
@@ -1642,7 +1678,7 @@ void MenuAdmin()
     	cout<<"\n\t\t";
     	system ("pause");
     
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	case 6:{
     	system("cls");
@@ -1650,28 +1686,28 @@ void MenuAdmin()
     	cout<<"\n\t\t";
     	system ("pause");
     
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	case 7:{
     	system("cls");
     	EliminarD();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	case 8:{
     	system("cls");
     	consultasD();
     	cout<<"\n\t\t";
     	system ("pause");
-		goto inicia_menuAdmin;
+		goto inicia_MenuAdmin;
 	}
 	case 9:{
     	system("cls");
     	buscarD();
     	cout<<"\n\t\t";
     	system ("pause");
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	case 10:{
     	system("cls");
@@ -1679,7 +1715,7 @@ void MenuAdmin()
     	cout<<"\n\t\t";
     	system ("pause");
     
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	case 11:{
     	cout<<"\n\n\tHa elegido salir...\n\n\t\t"; system ("pause");
@@ -1688,7 +1724,7 @@ void MenuAdmin()
 	}
 	default:{
     	cout<<"\n\n\tHa elegido una opcion inexistente...\n\n\t\t"; system ("pause");
-    	goto inicia_menuAdmin;
+    	goto inicia_MenuAdmin;
 	}
 	}//fin switch
     
@@ -1706,10 +1742,13 @@ void MenuPrincipal()
 	system("cls");
     
 	cout<<"\n\tBanca en linea Payday\n";
-	cout<<"\n\t1.-Administrador";
+	cout<<"\n\t-----------------------------------";
+	cout<<"\n\t1.-Administrador";                 
 	cout<<"\n\t2.-Usuario";
 	cout<<"\n\t3.-Dependiente";
-	cout<<"\n\t4.-Salir";
+	cout<<"\n\t4.-Tipo de cambio";
+	cout<<"\n\t5.-Salir";
+	cout<<"\n\t-----------------------------------";
 	cout<<"\n\n\tElige una opcion:  ";
     
 	cin>>opc;
@@ -1733,7 +1772,7 @@ void MenuPrincipal()
         	cin>>tempUser;
        	 
         	system("cls");
-        	cout<<"\n\tIngrese la contraseña\n";
+        	cout<<"\n\tIngrese la clave\n";
         		cout<<"\n\n\t->:  ";
     			char caracter;
 				caracter = getch();
@@ -1761,7 +1800,7 @@ void MenuPrincipal()
                        	 
         	else {
             	attempts = attempts + 1;
-            	cout<<"\n\t** Error **\n\tIngrese correctamente el usuario o contraseña";
+            	cout<<"\n\t** Error **\n\tIngrese correctamente el usuario o clave";
             	cout<<"\n\tNumero de intentos restantes "<<3-attempts<<"\n\t"; system ("pause");
            	 
             	if (attempts == 3){
@@ -1774,7 +1813,8 @@ void MenuPrincipal()
         	}    
         	break;
     	}    
-case 2:{
+    	
+	case 2:{
     	system("cls");
     	MenuUsuario();
     	cout<<"\n\t\t";
@@ -1788,6 +1828,15 @@ case 2:{
     	system ("pause");
 	}
 	case 4:{
+    	system("cls");
+    	fecha = obtenerfecha();
+    	cout<<"\n\tEl precio de compra del dolar a: 1$ = "<<compra<<"C$";
+    	cout<<"\n\tEl precio de venta del coordoba a: "<<venta<<"C$ = 1$";
+    	cout<<"\n\n\tDato optenido del banco central "<<fecha;
+    	cout<<"\n\n\t\t";
+    	system ("pause");
+	}
+	case 5:{
     	cout<<"\n\n\tHa elegido salir...\n\n\t\t"; system ("pause");
     	seguir = false;
     	system("cls");
@@ -1800,7 +1849,7 @@ case 2:{
 	}
     	}//fin switch
    	 
-    	}while (opc!=4);
+    	}while (opc!=5);
     
     	system("cls");
  
@@ -1812,8 +1861,7 @@ int main()
 	system ("color 17");
 	system ("title Payday");
 	setlocale(LC_CTYPE,"Spanish"); // Para usar tildes y "ñ", define idioma
-    
-    
+ 
 	while (seguir){
 	MenuPrincipal();
 	}
@@ -1821,3 +1869,5 @@ int main()
 	
 	return 0;
 }
+
+
